@@ -7,4 +7,161 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:id="@+id/gameGridLayout"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
+        >
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_10"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_9"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_8"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_7"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_6"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_5"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_3"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_2"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <include layout="@layout/grid_row"
+            android:id="@+id/row_1"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/buttonLayout"
+        android:weightSum="10"
+
+        app:layout_constraintTop_toBottomOf="@id/gameGridLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/redButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:src="@color/game_red" />
+
+
+        <ImageButton
+            android:id="@+id/blueButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_blue" />
+
+
+        <ImageButton
+            android:id="@+id/greenButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_green" />
+
+
+        <ImageButton
+            android:id="@+id/yellowButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_yellow" />
+
+
+        <ImageButton
+            android:id="@+id/brownButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_brown" />
+
+
+        <ImageButton
+            android:id="@+id/orangeButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_orange" />
+
+
+        <ImageButton
+            android:id="@+id/pinkButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_pink" />
+
+
+        <ImageButton
+            android:id="@+id/purpleButton"
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/game_purple" />
+    </LinearLayout>
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
