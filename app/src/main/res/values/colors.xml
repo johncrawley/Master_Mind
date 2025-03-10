@@ -18,5 +18,9 @@
 
     <color name="pane_background">#999494</color>
     <color name="clue_default_background">#5B5555</color>
-    <color name="peg_default_background">#181515</color>
+    <color name="clue_cow">#B8B7B7</color>
+    <color name="clue_bull">#E63131</color>
+    <color name="peg_default_background">#929090</color>
+    <color name="game_over_panel_background">#A69B9B</color>
+    <color name="game_over_text">#2F2323</color>
 </resources>

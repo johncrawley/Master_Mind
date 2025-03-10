@@ -2,4 +2,8 @@
 <resources>
     <dimen name="peg_margin">8dp</dimen>
 
+    <dimen name="game_over_panel_margin">18dp</dimen>
+
+    <dimen name="game_over_title_text_size">42sp</dimen>
+
 </resources>
