@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Turbo Master Mind</string>
     <string name="game_over_title"> GAME OVER </string>
-    <string name="number_of_tries"> Tries: %1$d</string>
+    <string name="number_of_tries"> You found the solution in %1$d tries!</string>
+    <string name="number_of_tries_one"> Wow! You found the solution on your first guess!</string>
+    <string name="game_over_message_fail"> The correct answer was: </string>
+    <string name="game_over_title_success"> WELL DONE!</string>
 </resources>
