@@ -16,8 +16,8 @@
     <color name="game_pink">#E05D96</color>
     <color name="game_brown">#622E04</color>
 
-    <color name="pane_background">#999494</color>
-    <color name="highlighted_row_background">#B6AFAF</color>
+    <color name="pane_background">#2E2D2D</color>
+    <color name="highlighted_row_background">#3E3D3D</color>
     <color name="clue_default_background">#5B5555</color>
     <color name="clue_cow">#B8B7B7</color>
     <color name="clue_bull">#E63131</color>

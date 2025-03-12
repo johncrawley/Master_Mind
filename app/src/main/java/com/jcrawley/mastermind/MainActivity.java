@@ -102,20 +102,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void updateViewWith(List<Clue> clues){
-        ViewGroup cluesTopLayout = (ViewGroup) getRow(currentRow).getChildAt(pegsPerRow);
+        var clueViews = getClueViewsIn(getRow(currentRow));
+        for(int i = 0; i < clueViews.size(); i++){
+            updateClueView(clueViews.get(i), clues.get(i));
+        }
+    }
+
+
+    private List<View> getClueViewsIn(ViewGroup row){
+        ViewGroup cluesTopLayout = (ViewGroup) row.getChildAt(pegsPerRow);
         ViewGroup cluesLayout = (ViewGroup) cluesTopLayout.getChildAt(0);
         ViewGroup row1 = (ViewGroup) cluesLayout.getChildAt(0);
         ViewGroup row2 = (ViewGroup) cluesLayout.getChildAt(1);
 
-        List<View> cluesLayouts = List.of(row1.getChildAt(0),
+        return List.of(row1.getChildAt(0),
                 row1.getChildAt(1),
                 row2.getChildAt(0),
                 row2.getChildAt(1));
-
-        for(int i = 0; i < cluesLayouts.size(); i++){
-            updateClueView(cluesLayouts.get(i), clues.get(i));
-        }
     }
+
 
 
     private void updateClueView(View clueLayout, Clue clue){
@@ -166,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addPegColorAtCurrentIndex(PegColor pegColor){
-        if(pegsPlaced >= MAX_PEGS){
+        pegsPlaced++;
+        if(pegsPlaced > MAX_PEGS){
             return;
         }
 
@@ -177,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
             checkCurrentAnswer();
             moveToNextRow();
         }
-        pegsPlaced++;
     }
 
 
@@ -191,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void resetGame(){
-        resetAllRowBackgrounds();
+        resetAllRows();
         numberOfTries = 0;
         currentRow = 0;
         currentIndex = 0;
@@ -202,10 +207,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void resetAllRowBackgrounds(){
+    private void resetAllRows(){
         int defaultBackgroundColor = getColor(R.color.pane_background);
         for(int i = 0; i < numberOfRows; i++){
-            getRow(i).setBackgroundColor(defaultBackgroundColor);
+            var row = getRow(i);
+            row.setBackgroundColor(defaultBackgroundColor);
+            resetAllPegsIn(row);
+            resetAllCluesIn(row);
+        }
+    }
+
+
+    private void resetAllPegsIn(ViewGroup row){
+        for(int i = 0; i < row.getChildCount(); i++){
+            var peg = row.getChildAt(i);
+
+            peg.setBackgroundColor(getColor(R.color.peg_default_background));
+        }
+    }
+
+    private void resetAllCluesIn(ViewGroup row){
+        for(var clueView : getClueViewsIn(row)){
+            clueView.setBackgroundColor(getColor(R.color.clue_default_background));
         }
     }
 
