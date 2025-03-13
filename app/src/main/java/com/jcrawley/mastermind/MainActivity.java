@@ -177,7 +177,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         var pegView = getViewForCurrentIndex();
-        pegView.setBackgroundColor(getBackgroundColorForPeg(pegColor));
+
+        pegView.setBackgroundColor(getColorOf(pegColor));
         currentAnswer.add(pegColor);
         if(++currentIndex >= pegsPerRow){
             checkCurrentAnswer();
@@ -221,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
     private void resetAllPegsIn(ViewGroup row){
         for(int i = 0; i < row.getChildCount(); i++){
             var peg = row.getChildAt(i);
-
             peg.setBackgroundColor(getColor(R.color.peg_default_background));
         }
     }
@@ -257,22 +257,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private int getBackgroundColorForPeg(PegColor pegColor){
-        log("getBackgroundColorForPeg() color: " + pegColor.name());
-        int colorId = switch (pegColor){
-            case RED -> R.color.game_red;
-            case BLUE -> R.color.game_blue;
-            case GREEN -> R.color.game_green;
-            case YELLOW -> R.color.game_yellow;
-            case ORANGE -> R.color.game_orange;
-            case PURPLE -> R.color.game_purple;
-            case BROWN -> R.color.game_brown;
-            case PINK -> R.color.game_pink;
-        };
-        return getColor(colorId);
-    }
-
-
     private void setupRandomAnswer(){
         random = new Random(System.currentTimeMillis());
         solution.clear();
@@ -289,8 +273,9 @@ public class MainActivity extends AppCompatActivity {
             if(i >= solutionPegsLayout.getChildCount()){
                 return;
             }
+            var pegColor = solution.get(i);
             solutionPegsLayout.getChildAt(i)
-                    .setBackgroundColor(getBackgroundColorForPeg(solution.get(i)));
+                    .setBackgroundColor(getColorOf(pegColor));
         }
     }
 
@@ -298,6 +283,10 @@ public class MainActivity extends AppCompatActivity {
     private PegColor getRandomPegColor(){
         int randomIndex = random.nextInt(possibleColors.length);
         return possibleColors[randomIndex];
+    }
+
+    private int getColorOf(PegColor pegColor){
+        return getColor(pegColor.getColorId());
     }
 
 }
