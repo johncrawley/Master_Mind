@@ -1,4 +1,6 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.mastermind.game;
+
+import com.jcrawley.mastermind.view.GameView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,15 @@
 package com.jcrawley.mastermind;
 
-import static com.jcrawley.mastermind.Clue.*;
-import static com.jcrawley.mastermind.PegColor.*;
+import static com.jcrawley.mastermind.game.Clue.*;
+import static com.jcrawley.mastermind.game.PegColor.*;
 
 import static org.junit.Assert.assertTrue;
 
 import static org.junit.Assert.*;
+
+import com.jcrawley.mastermind.game.Clue;
+import com.jcrawley.mastermind.game.GameUtils;
+import com.jcrawley.mastermind.game.PegColor;
 
 import org.junit.Test;
 
@@ -65,7 +69,7 @@ public class GameUtilsTest {
 
     }
 
-    private void assertClueGeneration(List<PegColor> solution, List<PegColor> answer, Clue ...expectedClues){
+    private void assertClueGeneration(List<PegColor> solution, List<PegColor> answer, Clue...expectedClues){
         var clues = GameUtils.generateClues(answer, solution);
         assertClues(clues, expectedClues);
     }

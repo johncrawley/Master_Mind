@@ -1,4 +1,7 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.mastermind.view;
+
+import com.jcrawley.mastermind.game.Clue;
+import com.jcrawley.mastermind.game.PegColor;
 
 import java.util.List;
 

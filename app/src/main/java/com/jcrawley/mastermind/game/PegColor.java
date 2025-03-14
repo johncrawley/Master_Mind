@@ -1,4 +1,6 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.mastermind.game;
+
+import com.jcrawley.mastermind.R;
 
 public enum PegColor {
     RED(R.color.game_red),

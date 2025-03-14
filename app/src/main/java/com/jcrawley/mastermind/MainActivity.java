@@ -1,7 +1,5 @@
 package com.jcrawley.mastermind;
 
-import static android.view.View.VISIBLE;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.jcrawley.mastermind.game.Clue;
+import com.jcrawley.mastermind.game.Game;
+import com.jcrawley.mastermind.game.PegColor;
+import com.jcrawley.mastermind.view.AnimationHelper;
+import com.jcrawley.mastermind.view.GameView;
 
 import java.util.List;
 
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
         gameOverPanel.setOnClickListener(v -> {
             game.resetGame();
-            gameOverPanel.setVisibility(View.GONE);
+            AnimationHelper.hidePanel(gameOverPanel);
         });
     }
 
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     public void showBadGameOver(){
         gameOverMessageText.setText(R.string.game_over_message_fail);
         gameOverTitleText.setText(R.string.game_over_title);
-        showGameOverPanel();
+        AnimationHelper.showPanel(gameOverPanel);
     }
 
 
@@ -104,12 +107,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     public void showGoodGameOver(int numberOfTries){
         gameOverTitleText.setText(R.string.game_over_title_success);
         showSuccessMessage(numberOfTries);
-        showGameOverPanel();
-    }
-
-
-    private void showGameOverPanel(){
-        gameOverPanel.setVisibility(VISIBLE);
+        AnimationHelper.showPanel(gameOverPanel);
     }
 
 
@@ -130,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
             peg.setBackgroundColor(getColor(R.color.peg_default_background));
         }
     }
+
 
     private void resetAllCluesIn(ViewGroup row){
         for(var clueView : getClueViewsIn(row)){
