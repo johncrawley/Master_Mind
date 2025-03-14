@@ -14,22 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GameView {
 
-    private final int pegsPerRow = 4;
-    private int currentIndex, currentRow, pegsPlaced;
-    private final int numberOfRows = 10;
-    private final int MAX_PEGS = pegsPerRow * numberOfRows;
-    private final List<PegColor> currentAnswer = new ArrayList<>();
-    private int numberOfTries;
-    private Random random;
-    PegColor[] possibleColors = PegColor.values();
-    List<PegColor> solution = new ArrayList<>(pegsPerRow);
     ViewGroup gameLayout;
+    private Game game;
     private ViewGroup gameOverPanel;
     private TextView gameOverTitleText, gameOverMessageText;
 
@@ -40,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         setupLayout();
+        game = new Game(this);
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
         setupGameOverScreen();
-        resetGame();
+        game.resetGame();
     }
 
 
@@ -62,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         gameOverMessageText = findViewById(R.id.gameOverMessageText);
 
         gameOverPanel.setOnClickListener(v -> {
-            resetGame();
+            game.resetGame();
             gameOverPanel.setVisibility(View.GONE);
         });
     }
@@ -82,35 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupButton(int buttonId, PegColor pegColor){
         ImageButton button = findViewById(buttonId);
-        button.setOnClickListener((v -> addPegColorAtCurrentIndex(pegColor)));
+        button.setOnClickListener((v -> game.addPegColorAtCurrentIndex(pegColor)));
 
-    }
-
-
-    private void checkCurrentAnswer(){
-        var clues = GameUtils.generateClues(currentAnswer, solution);
-        updateViewWith(clues);
-        if(isAnswerCorrect(clues)){
-            showGoodGameOver();
-            return;
-        }
-        if(pegsPlaced >= MAX_PEGS){
-            showBadGameOver();
-        }
-        log("pegs placed: " + pegsPlaced + " max pegs: " + MAX_PEGS);
-    }
-
-
-    private void updateViewWith(List<Clue> clues){
-        var clueViews = getClueViewsIn(getRow(currentRow));
-        for(int i = 0; i < clueViews.size(); i++){
-            updateClueView(clueViews.get(i), clues.get(i));
-        }
     }
 
 
     private List<View> getClueViewsIn(ViewGroup row){
-        ViewGroup cluesTopLayout = (ViewGroup) row.getChildAt(pegsPerRow);
+        ViewGroup cluesTopLayout = (ViewGroup) row.getChildAt(game.getPegsPerRow());
         ViewGroup cluesLayout = (ViewGroup) cluesTopLayout.getChildAt(0);
         ViewGroup row1 = (ViewGroup) cluesLayout.getChildAt(0);
         ViewGroup row2 = (ViewGroup) cluesLayout.getChildAt(1);
@@ -122,34 +92,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void updateClueView(View clueLayout, Clue clue){
-        int clueColorId = switch (clue){
-            case WRONG -> R.color.clue_default_background;
-            case COW -> R.color.clue_cow;
-            case BULL -> R.color.clue_bull;
-        };
-
-        clueLayout.setBackgroundColor(getColor(clueColorId));
-    }
-
-
-    private boolean isAnswerCorrect(List<Clue> clues){
-        return clues.stream()
-                .allMatch(c -> c == Clue.BULL);
-    }
-
-
-    private void showBadGameOver(){
+    @Override
+    public void showBadGameOver(){
         gameOverMessageText.setText(R.string.game_over_message_fail);
         gameOverTitleText.setText(R.string.game_over_title);
         showGameOverPanel();
     }
 
 
-    private void showGoodGameOver(){
+    @Override
+    public void showGoodGameOver(int numberOfTries){
         gameOverTitleText.setText(R.string.game_over_title_success);
-        showSuccessMessage();
+        showSuccessMessage(numberOfTries);
         showGameOverPanel();
     }
 
@@ -159,62 +113,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showSuccessMessage(){
+    private void showSuccessMessage(int numberOfTries){
         if(numberOfTries == 1){
             gameOverMessageText.setText(R.string.number_of_tries_one);
         }
         else{
             var msg = getString(R.string.number_of_tries, numberOfTries);
             gameOverMessageText.setText(msg);
-        }
-    }
-
-
-    private void addPegColorAtCurrentIndex(PegColor pegColor){
-        pegsPlaced++;
-        if(pegsPlaced > MAX_PEGS){
-            return;
-        }
-
-        var pegView = getViewForCurrentIndex();
-
-        pegView.setBackgroundColor(getColorOf(pegColor));
-        currentAnswer.add(pegColor);
-        if(++currentIndex >= pegsPerRow){
-            checkCurrentAnswer();
-            moveToNextRow();
-        }
-    }
-
-
-    private void moveToNextRow(){
-        currentIndex = 0;
-        numberOfTries++;
-        currentRow++;
-        currentAnswer.clear();
-        highlightCurrentRowBackground();
-    }
-
-
-    private void resetGame(){
-        resetAllRows();
-        numberOfTries = 0;
-        currentRow = 0;
-        currentIndex = 0;
-        pegsPlaced = 0;
-        currentAnswer.clear();
-        setupRandomAnswer();
-        highlightCurrentRowBackground();
-    }
-
-
-    private void resetAllRows(){
-        int defaultBackgroundColor = getColor(R.color.pane_background);
-        for(int i = 0; i < numberOfRows; i++){
-            var row = getRow(i);
-            row.setBackgroundColor(defaultBackgroundColor);
-            resetAllPegsIn(row);
-            resetAllCluesIn(row);
         }
     }
 
@@ -233,21 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void highlightCurrentRowBackground(){
-        int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
-        if(currentRow < numberOfRows){
-            getRow(currentRow).setBackgroundColor(highlightedBackgroundColor);
-        }
-    }
-
-
-    public View getViewForCurrentIndex(){
-        return getRow(currentRow).getChildAt(currentIndex);
-    }
-
-
     private ViewGroup getRow(int index){
-        int rowIndex = numberOfRows - index -1;
+        int rowIndex = game.getNumberOfRows() - index -1;
         return (ViewGroup) gameLayout.getChildAt(rowIndex);
     }
 
@@ -257,17 +149,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setupRandomAnswer(){
-        random = new Random(System.currentTimeMillis());
-        solution.clear();
-        for(int i = 0; i < pegsPerRow; i++ ){
-            solution.add(getRandomPegColor());
-        }
-        setupSolutionPegs(solution);
-    }
-
-
-    private void setupSolutionPegs(List<PegColor> solution){
+    public void setupSolutionPegs(List<PegColor> solution){
         ViewGroup solutionPegsLayout = findViewById(R.id.solutionPegsLayout);
         for(int i = 0 ; i < solution.size(); i++){
             if(i >= solutionPegsLayout.getChildCount()){
@@ -280,10 +162,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private PegColor getRandomPegColor(){
-        int randomIndex = random.nextInt(possibleColors.length);
-        return possibleColors[randomIndex];
+    @Override
+    public void update(int row, List<Clue> clues){
+
+        var rowLayout = getRow(row);
+        var clueLayouts = getClueViewsIn(rowLayout);
+        for(int i = 0; i < clueLayouts.size(); i++){
+            updateClueView(clueLayouts.get(i), clues.get(i));
+        }
     }
+
+
+    private void updateClueView(View clueLayout, Clue clue){
+        int clueColorId = switch (clue){
+            case WRONG -> R.color.clue_default_background;
+            case COW -> R.color.clue_cow;
+            case BULL -> R.color.clue_bull;
+        };
+        clueLayout.setBackgroundColor(getColor(clueColorId));
+    }
+
+
+    @Override
+    public void resetAllRows(){
+        int defaultBackgroundColor = getColor(R.color.pane_background);
+        for(int i = 0; i < game.getNumberOfRows(); i++){
+            var row = getRow(i);
+            row.setBackgroundColor(defaultBackgroundColor);
+            resetAllPegsIn(row);
+            resetAllCluesIn(row);
+        }
+    }
+
+
+    @Override
+    public  void setPegColor(PegColor pegColor, int row, int index){
+        var pegView = getViewAt(row, index);
+        pegView.setBackgroundColor(getColorOf(pegColor));
+    }
+
+
+    private View getViewAt(int row, int index){
+        return getRow(row).getChildAt(index);
+    }
+
+
+    @Override
+    public void highlightRowBackground(int rowIndex){
+        int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
+        getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
+    }
+
 
     private int getColorOf(PegColor pegColor){
         return getColor(pegColor.getColorId());
