@@ -16,12 +16,12 @@
     <color name="game_pink">#E05D96</color>
     <color name="game_brown">#622E04</color>
 
-    <color name="pane_background">#2E2D2D</color>
-    <color name="highlighted_row_background">#3E3D3D</color>
-    <color name="clue_default_background">#5B5555</color>
+    <color name="pane_background">#5B5757</color>
+    <color name="highlighted_row_background">#8E8C8C</color>
+    <color name="clue_default_background">#1F1E1E</color>
     <color name="clue_cow">#B8B7B7</color>
     <color name="clue_bull">#E63131</color>
-    <color name="peg_default_background">#929090</color>
+    <color name="peg_default_background">#1F1E1E</color>
     <color name="game_over_panel_background">#A69B9B</color>
     <color name="game_over_text">#2F2323</color>
 </resources>

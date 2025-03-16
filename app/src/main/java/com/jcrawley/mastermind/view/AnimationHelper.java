@@ -29,7 +29,6 @@ public class AnimationHelper {
             public void onAnimationEnd(Animation animation) {
                 panel.setVisibility(GONE);
             }
-
         });
         panel.startAnimation(animation);
     }
