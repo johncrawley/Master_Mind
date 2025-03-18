@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="peg_margin">8dp</dimen>
+    <dimen name="peg_layout_margin">8dp</dimen>
 
     <dimen name="button_panel_margin">12dp</dimen>
 
     <dimen name="game_over_panel_margin">18dp</dimen>
     <dimen name="game_over_panel_padding">12dp</dimen>
     <dimen name="game_over_panel_height">400dp</dimen>
+    <dimen name="peg_padding">5dp</dimen>
+    <dimen name="peg_view_margin">4dp</dimen>
 
     <dimen name="game_over_title_text_size">48sp</dimen>
     <dimen name="game_over_message_text_size">32sp</dimen>

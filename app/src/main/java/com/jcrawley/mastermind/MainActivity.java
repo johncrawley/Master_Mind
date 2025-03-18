@@ -1,5 +1,7 @@
 package com.jcrawley.mastermind;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -123,9 +126,17 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private void resetAllPegsIn(ViewGroup row){
+        Drawable d = AppCompatResources.getDrawable(getApplicationContext(),R.drawable.peg_drawable);
+        if(d == null){
+            return;
+        }
+        var color = getColor(R.color.peg_default_background);
+        d.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
         for(int i = 0; i < row.getChildCount(); i++){
             var peg = row.getChildAt(i);
-            peg.setBackgroundColor(getColor(R.color.peg_default_background));
+           // peg.setBackgroundColor(getColor(R.color.peg_default_background));
+            peg.setBackground(d);
         }
     }
 

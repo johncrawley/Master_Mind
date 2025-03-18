@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/peg_layout_margin"
+    android:background="@drawable/peg_drawable"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/peg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/game_over_panel_padding"
+        android:layout_margin="@dimen/peg_view_margin"
+        android:background="@drawable/peg_drawable"
+        />
+
+</LinearLayout>
