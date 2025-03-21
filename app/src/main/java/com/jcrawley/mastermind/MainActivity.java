@@ -130,14 +130,21 @@ public class MainActivity extends AppCompatActivity implements GameView {
         if(d == null){
             return;
         }
-        var color = getColor(R.color.peg_default_background);
-        d.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
 
         for(int i = 0; i < row.getChildCount(); i++){
-            var peg = row.getChildAt(i);
-           // peg.setBackgroundColor(getColor(R.color.peg_default_background));
-            peg.setBackground(d);
+            var pegLayout = (ViewGroup) row.getChildAt(i);
+            setPegColor(pegLayout, R.color.peg_default_background);
         }
+    }
+
+    private void setPegColor(ViewGroup pegLayout, int colorId){
+        View pegView = pegLayout.getChildAt(0);
+        var drawable = pegView.getBackground();
+        var amended = drawable.mutate();
+        var color = getColor(colorId);
+        amended.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        pegView.setBackground(amended);
     }
 
 

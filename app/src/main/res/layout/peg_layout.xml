@@ -11,7 +11,7 @@
         android:id="@+id/peg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/game_over_panel_padding"
+        android:padding="@dimen/peg_padding"
         android:layout_margin="@dimen/peg_view_margin"
         android:background="@drawable/peg_drawable"
         />
