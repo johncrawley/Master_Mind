@@ -1,7 +1,6 @@
 package com.jcrawley.mastermind;
 
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -125,29 +123,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void resetAllPegsIn(ViewGroup row){
-        Drawable d = AppCompatResources.getDrawable(getApplicationContext(),R.drawable.peg_drawable);
-        if(d == null){
-            return;
-        }
-
-
-        for(int i = 0; i < row.getChildCount(); i++){
-            var pegLayout = (ViewGroup) row.getChildAt(i);
-            setPegColor(pegLayout, R.color.peg_default_background);
-        }
-    }
-
-    private void setPegColor(ViewGroup pegLayout, int colorId){
-        View pegView = pegLayout.getChildAt(0);
-        var drawable = pegView.getBackground();
-        var amended = drawable.mutate();
-        var color = getColor(colorId);
-        amended.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-        pegView.setBackground(amended);
-    }
-
-
     private void resetAllCluesIn(ViewGroup row){
         for(var clueView : getClueViewsIn(row)){
             clueView.setBackgroundColor(getColor(R.color.clue_default_background));
@@ -174,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
             }
             var pegColor = solution.get(i);
             solutionPegsLayout.getChildAt(i)
-                    .setBackgroundColor(getColorOf(pegColor));
+                    .setBackgroundColor(getColorIdOf(pegColor));
         }
     }
 
@@ -212,15 +187,33 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    @Override
-    public  void setPegColor(PegColor pegColor, int row, int index){
-        var pegView = getViewAt(row, index);
-        pegView.setBackgroundColor(getColorOf(pegColor));
+    private void resetAllPegsIn(ViewGroup row){
+        for(int i = 0; i < row.getChildCount() -1; i++){
+            var pegLayout = (ViewGroup) row.getChildAt(i);
+            setPegColor(pegLayout.getChildAt(0), R.color.peg_default_background);
+        }
     }
 
 
-    private View getViewAt(int row, int index){
-        return getRow(row).getChildAt(index);
+    private void setPegColor(View pegView, int colorId){
+        var drawable = pegView.getBackground();
+        var amended = drawable.mutate();
+        var color = getColor(colorId);
+        amended.setColorFilter(color, PorterDuff.Mode.LIGHTEN);
+        pegView.setBackground(amended);
+    }
+
+
+    @Override
+    public  void setPegColor(PegColor pegColor, int row, int index){
+        var pegView = getPegViewAt(row, index);
+        setPegColor(pegView, pegColor.getColorId());
+    }
+
+
+    private View getPegViewAt(int row, int index){
+        var pegLayout = (ViewGroup) getRow(row).getChildAt(index);
+        return pegLayout.getChildAt(0);
     }
 
 
@@ -231,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private int getColorOf(PegColor pegColor){
+    private int getColorIdOf(PegColor pegColor){
         return getColor(pegColor.getColorId());
     }
 

@@ -68,7 +68,7 @@
             android:layout_height="0dp"/>
 
         <include layout="@layout/grid_row"
-            android:id="@+id/row_2"
+            android:id="@+id/row"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"/>

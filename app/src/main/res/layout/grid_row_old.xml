@@ -5,39 +5,47 @@
     android:orientation="horizontal"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/peg_layout"
+    <LinearLayout
         android:id="@+id/peg_1"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_margin="@dimen/peg_layout_margin"
-        android:layout_height="match_parent" />
+        android:background="@color/peg_default_background"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+    </LinearLayout>
 
-    <include
-        layout="@layout/peg_layout"
+    <LinearLayout
         android:id="@+id/peg_2"
         android:layout_weight="1"
-        android:layout_width="0dp"
         android:layout_margin="@dimen/peg_layout_margin"
-        android:layout_height="match_parent" />
+        android:layout_width="0dp"
+        android:background="@color/peg_default_background"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+    </LinearLayout>
 
 
-    <include
-        layout="@layout/peg_layout"
+    <LinearLayout
         android:id="@+id/peg_3"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_margin="@dimen/peg_layout_margin"
-        android:layout_height="match_parent" />
+        android:background="@color/peg_default_background"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+    </LinearLayout>
 
 
-    <include
-        layout="@layout/peg_layout"
+    <LinearLayout
         android:id="@+id/peg_4"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_margin="@dimen/peg_layout_margin"
-        android:layout_height="match_parent" />
+        android:background="@color/peg_default_background"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+    </LinearLayout>
 
     <include
         android:id="@+id/clue_grid"
