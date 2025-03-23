@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_margin="18dp"
         android:weightSum="10"
         android:id="@+id/gameGridLayout"
         android:orientation="vertical"

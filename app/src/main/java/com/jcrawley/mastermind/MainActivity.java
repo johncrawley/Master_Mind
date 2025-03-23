@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setupButtons();
         setupGameOverScreen();
         game.resetGame();
+
     }
 
 
@@ -83,19 +84,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private List<View> getClueViewsIn(ViewGroup row){
-        ViewGroup cluesTopLayout = (ViewGroup) row.getChildAt(game.getPegsPerRow());
-        ViewGroup cluesLayout = (ViewGroup) cluesTopLayout.getChildAt(0);
-        ViewGroup row1 = (ViewGroup) cluesLayout.getChildAt(0);
-        ViewGroup row2 = (ViewGroup) cluesLayout.getChildAt(1);
-
-        return List.of(row1.getChildAt(0),
-                row1.getChildAt(1),
-                row2.getChildAt(0),
-                row2.getChildAt(1));
-    }
-
-
     @Override
     public void showBadGameOver(){
         gameOverMessageText.setText(R.string.game_over_message_fail);
@@ -130,12 +118,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private ViewGroup getRow(int index){
-        int rowIndex = game.getNumberOfRows() - index -1;
-        return (ViewGroup) gameLayout.getChildAt(rowIndex);
-    }
-
-
     private void log(String msg){
         System.out.println("^^^ MainActivity: " + msg);
     }
@@ -155,13 +137,21 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void update(int row, List<Clue> clues){
+    public void update(int rowIndex, List<Clue> clues){
 
-        var rowLayout = getRow(row);
+        var rowLayout = getRow(rowIndex);
         var clueLayouts = getClueViewsIn(rowLayout);
         for(int i = 0; i < clueLayouts.size(); i++){
             updateClueView(clueLayouts.get(i), clues.get(i));
         }
+    }
+
+
+    private List<View> getClueViewsIn(ViewGroup row){
+        return List.of(row.findViewById(R.id.clue1),
+                row.findViewById(R.id.clue2),
+                row.findViewById(R.id.clue3),
+                row.findViewById(R.id.clue4));
     }
 
 
@@ -181,14 +171,15 @@ public class MainActivity extends AppCompatActivity implements GameView {
         for(int i = 0; i < game.getNumberOfRows(); i++){
             var row = getRow(i);
             row.setBackgroundColor(defaultBackgroundColor);
-            resetAllPegsIn(row);
-            resetAllCluesIn(row);
+            resetAllPegsIn(getPegRow(i));
+            resetAllCluesIn(getCluesRow(i));
         }
     }
 
 
     private void resetAllPegsIn(ViewGroup row){
-        for(int i = 0; i < row.getChildCount() -1; i++){
+        ViewGroup pegRow = row.findViewById(R.id.pegRowLayout);
+        for(int i = 0; i < pegRow.getChildCount(); i++){
             var pegLayout = (ViewGroup) row.getChildAt(i);
             setPegColor(pegLayout.getChildAt(0), R.color.peg_default_background);
         }
@@ -212,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private View getPegViewAt(int row, int index){
-        var pegLayout = (ViewGroup) getRow(row).getChildAt(index);
+        var pegLayout = (ViewGroup) getPegRow(row).getChildAt(index);
         return pegLayout.getChildAt(0);
     }
 
@@ -221,6 +212,21 @@ public class MainActivity extends AppCompatActivity implements GameView {
     public void highlightRowBackground(int rowIndex){
         int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
         getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
+    }
+
+    private ViewGroup getRow(int index){
+        int rowIndex = game.getNumberOfRows() - index -1;
+        return (ViewGroup) gameLayout.getChildAt(rowIndex);
+    }
+
+
+    private ViewGroup getPegRow(int index){
+        return (ViewGroup) getRow(index).getChildAt(0);
+    }
+
+
+    private ViewGroup getCluesRow(int index){
+        return (ViewGroup) getRow(index).getChildAt(1);
     }
 
 
