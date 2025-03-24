@@ -6,75 +6,19 @@
     android:orientation="horizontal"
     android:layout_marginHorizontal="12dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/pegRowLayout"
+
+    <include android:id="@+id/pegRowLayout"
+        layout="@layout/peg_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginHorizontal="18dp"
         android:paddingStart="0dp"
         android:paddingEnd="18dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cluesGrid">
-
-
-
-        <include
-            layout="@layout/peg_layout"
-            android:id="@+id/peg_1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/peg_layout_margin"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/peg_2"
-            app:layout_constraintDimensionRatio="1:1"
-            />
-
-
-        <include
-            layout="@layout/peg_layout"
-            android:id="@+id/peg_2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/peg_layout_margin"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/peg_1"
-            app:layout_constraintEnd_toStartOf="@id/peg_3"
-            app:layout_constraintDimensionRatio="1:1"
-            />
-
-        <include
-            layout="@layout/peg_layout"
-            android:id="@+id/peg_3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/peg_layout_margin"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/peg_2"
-            app:layout_constraintEnd_toStartOf="@id/peg_4"
-            app:layout_constraintDimensionRatio="1:1"/>
-
-        <include
-            layout="@layout/peg_layout"
-            android:id="@+id/peg_4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/peg_layout_margin"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/peg_3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1:1" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toStartOf="@id/cluesGrid"
+        />
 
     <include
         android:id="@+id/cluesGrid"
