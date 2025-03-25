@@ -77,7 +77,7 @@ public class Game {
 
     public void resetGame(){
         gameView.resetAllRows();
-        numberOfTries = 0;
+        numberOfTries = 1;
         currentRow = 0;
         currentIndex = 0;
         pegsPlaced = 0;

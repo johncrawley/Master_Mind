@@ -44,16 +44,16 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupLayout(){
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
+    private void setupLayout() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
     }
 
 
-    private void setupGameOverScreen(){
+    private void setupGameOverScreen() {
         gameOverPanel = findViewById(R.id.gameOverPanelInclude);
         gameOverTitleText = findViewById(R.id.gameOverTitleText);
         gameOverMessageText = findViewById(R.id.gameOverMessageText);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupButtons(){
+    private void setupButtons() {
         setupButton(R.id.redButton, PegColor.RED);
         setupButton(R.id.blueButton, PegColor.BLUE);
         setupButton(R.id.greenButton, PegColor.GREEN);
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupButton(int buttonId, PegColor pegColor){
+    private void setupButton(int buttonId, PegColor pegColor) {
         ImageButton button = findViewById(buttonId);
         button.setOnClickListener((v -> game.addPegColorAtCurrentIndex(pegColor)));
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void showBadGameOver(){
+    public void showBadGameOver() {
         gameOverMessageText.setText(R.string.game_over_message_fail);
         gameOverTitleText.setText(R.string.game_over_title);
         AnimationHelper.showPanel(gameOverPanel);
@@ -93,61 +93,55 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void showGoodGameOver(int numberOfTries){
+    public void showGoodGameOver(int numberOfTries) {
         gameOverTitleText.setText(R.string.game_over_title_success);
         showSuccessMessage(numberOfTries);
         AnimationHelper.showPanel(gameOverPanel);
     }
 
 
-    private void showSuccessMessage(int numberOfTries){
-        if(numberOfTries == 1){
+    private void showSuccessMessage(int numberOfTries) {
+        if (numberOfTries == 1) {
             gameOverMessageText.setText(R.string.number_of_tries_one);
-        }
-        else{
+        } else {
             var msg = getString(R.string.number_of_tries, numberOfTries);
             gameOverMessageText.setText(msg);
         }
     }
 
 
-    private void resetAllCluesIn(ViewGroup row){
-        for(var clueView : getClueViewsIn(row)){
+    private void resetAllCluesIn(ViewGroup row) {
+        for (var clueView : getClueViewsIn(row)) {
             clueView.setBackgroundColor(getColor(R.color.clue_default_background));
         }
     }
 
 
-    private void log(String msg){
-        System.out.println("^^^ MainActivity: " + msg);
-    }
-
-
-    public void setupSolutionPegs(List<PegColor> solution){
+    public void setupSolutionPegs(List<PegColor> solution) {
         ViewGroup solutionPegsLayout = findViewById(R.id.solutionPegsLayout);
-        for(int i = 0 ; i < solution.size(); i++){
-            if(i >= solutionPegsLayout.getChildCount()){
+
+        for (int i = 0; i < solution.size(); i++) {
+            if (i >= solutionPegsLayout.getChildCount()) {
                 return;
             }
             var pegColor = solution.get(i);
-            solutionPegsLayout.getChildAt(i)
-                    .setBackgroundColor(getColorIdOf(pegColor));
+            var pegLayout = (ViewGroup) solutionPegsLayout.getChildAt(i);
+            setPegColor(pegLayout.getChildAt(0), pegColor.getColorId());
         }
     }
 
 
     @Override
-    public void update(int rowIndex, List<Clue> clues){
-
+    public void update(int rowIndex, List<Clue> clues) {
         var rowLayout = getRow(rowIndex);
         var clueLayouts = getClueViewsIn(rowLayout);
-        for(int i = 0; i < clueLayouts.size(); i++){
+        for (int i = 0; i < clueLayouts.size(); i++) {
             updateClueView(clueLayouts.get(i), clues.get(i));
         }
     }
 
 
-    private List<View> getClueViewsIn(ViewGroup row){
+    private List<View> getClueViewsIn(ViewGroup row) {
         return List.of(row.findViewById(R.id.clue1),
                 row.findViewById(R.id.clue2),
                 row.findViewById(R.id.clue3),
@@ -155,8 +149,8 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void updateClueView(View clueLayout, Clue clue){
-        int clueColorId = switch (clue){
+    private void updateClueView(View clueLayout, Clue clue) {
+        int clueColorId = switch (clue) {
             case WRONG -> R.color.clue_default_background;
             case COW -> R.color.clue_cow;
             case BULL -> R.color.clue_bull;
@@ -166,9 +160,9 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void resetAllRows(){
+    public void resetAllRows() {
         int defaultBackgroundColor = getColor(R.color.pane_background);
-        for(int i = 0; i < game.getNumberOfRows(); i++){
+        for (int i = 0; i < game.getNumberOfRows(); i++) {
             var row = getRow(i);
             row.setBackgroundColor(defaultBackgroundColor);
             resetAllPegsIn(getPegRow(i));
@@ -177,16 +171,16 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void resetAllPegsIn(ViewGroup row){
+    private void resetAllPegsIn(ViewGroup row) {
         ViewGroup pegRow = row.findViewById(R.id.pegRowLayout);
-        for(int i = 0; i < pegRow.getChildCount(); i++){
+        for (int i = 0; i < pegRow.getChildCount(); i++) {
             var pegLayout = (ViewGroup) row.getChildAt(i);
             setPegColor(pegLayout.getChildAt(0), R.color.peg_default_background);
         }
     }
 
 
-    private void setPegColor(View pegView, int colorId){
+    private void setPegColor(View pegView, int colorId) {
         var drawable = pegView.getBackground();
         var amended = drawable.mutate();
         var color = getColor(colorId);
@@ -196,42 +190,38 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public  void setPegColor(PegColor pegColor, int row, int index){
+    public void setPegColor(PegColor pegColor, int row, int index) {
         var pegView = getPegViewAt(row, index);
         setPegColor(pegView, pegColor.getColorId());
     }
 
 
-    private View getPegViewAt(int row, int index){
+    private View getPegViewAt(int row, int index) {
         var pegLayout = (ViewGroup) getPegRow(row).getChildAt(index);
         return pegLayout.getChildAt(0);
     }
 
 
     @Override
-    public void highlightRowBackground(int rowIndex){
+    public void highlightRowBackground(int rowIndex) {
         int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
         getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
     }
 
-    private ViewGroup getRow(int index){
-        int rowIndex = game.getNumberOfRows() - index -1;
+
+    private ViewGroup getRow(int index) {
+        int rowIndex = game.getNumberOfRows() - index - 1;
         return (ViewGroup) gameLayout.getChildAt(rowIndex);
     }
 
 
-    private ViewGroup getPegRow(int index){
+    private ViewGroup getPegRow(int index) {
         return (ViewGroup) getRow(index).getChildAt(0);
     }
 
 
-    private ViewGroup getCluesRow(int index){
+    private ViewGroup getCluesRow(int index) {
         return (ViewGroup) getRow(index).getChildAt(1);
-    }
-
-
-    private int getColorIdOf(PegColor pegColor){
-        return getColor(pegColor.getColorId());
     }
 
 }

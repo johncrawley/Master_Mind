@@ -33,11 +33,10 @@
         app:layout_constraintTop_toBottomOf="@id/gameOverTitleText"/>
 
 
-
     <include android:id="@+id/solutionPegsLayout"
         layout="@layout/peg_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_margin="@dimen/peg_layout_margin"
         android:paddingStart="0dp"
         android:paddingEnd="18dp"
