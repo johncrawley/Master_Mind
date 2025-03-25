@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        hideActionBar();
         setupLayout();
         game = new Game(this);
         gameLayout = findViewById(R.id.gameGridLayout);
@@ -42,6 +44,14 @@ public class MainActivity extends AppCompatActivity implements GameView {
         game.resetGame();
 
     }
+
+    private void hideActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.hide();
+        }
+    }
+
 
 
     private void setupLayout() {
