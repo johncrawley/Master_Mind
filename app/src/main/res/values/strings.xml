@@ -5,4 +5,13 @@
     <string name="number_of_tries_one"> Wow! You found the solution on your first guess!</string>
     <string name="game_over_message_fail"> The correct answer was: </string>
     <string name="game_over_title_success"> WELL DONE!</string>
+
+    <string name="button_image_desc_yellow">Yellow</string>
+    <string name="button_image_desc_blue">Blue</string>
+    <string name="button_image_desc_red">Red</string>
+    <string name="button_image_desc_green">Green</string>
+    <string name="button_image_desc_pink">Pink</string>
+    <string name="button_image_desc_purple">Purple</string>
+    <string name="button_image_desc_brown">Brown</string>
+    <string name="button_image_desc_orange">Orange</string>
 </resources>

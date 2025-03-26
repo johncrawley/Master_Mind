@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:id="@+id/buttonLayout">
+
+    <LinearLayout
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/redButton"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_red"
+            android:src="@color/game_red" />
+
+        <ImageButton
+            android:id="@+id/blueButton"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_blue"
+            android:src="@color/game_blue" />
+
+        <ImageButton
+            android:id="@+id/greenButton"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_green"
+            android:src="@color/game_green" />
+
+        <ImageButton
+            android:id="@+id/yellowButton"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_yellow"
+            android:src="@color/game_yellow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="4"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/brownButton"
+            android:layout_weight="1"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_brown"
+            android:src="@color/game_brown" />
+
+        <ImageButton
+            android:id="@+id/orangeButton"
+            android:layout_weight="1"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_orange"
+            android:src="@color/game_orange" />
+
+        <ImageButton
+            android:id="@+id/pinkButton"
+            android:layout_weight="1"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_pink"
+            android:src="@color/game_pink" />
+
+        <ImageButton
+            android:id="@+id/purpleButton"
+            android:layout_weight="1"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:contentDescription="@string/button_image_desc_purple"
+            android:src="@color/game_purple" />
+    </LinearLayout>
+
+
+</LinearLayout>
