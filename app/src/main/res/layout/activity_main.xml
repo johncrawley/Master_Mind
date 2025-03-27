@@ -8,105 +8,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <include layout="@layout/game_grid"
+        android:id="@+id/gameGridInclude"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:layout_margin="18dp"
-        android:weightSum="10"
-        android:id="@+id/gameGridLayout"
-        android:orientation="vertical"
+        android:layout_margin="@dimen/button_panel_margin"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonPanelInclude"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
-        >
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_10"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_9"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_8"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_7"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_6"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_5"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_4"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_3"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <include layout="@layout/grid_row"
-            android:id="@+id/row_1"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-    </LinearLayout>
-
-
-
-   <include layout="@layout/button_panel"
+    <include layout="@layout/button_panel"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_margin="@dimen/button_panel_margin"
-       app:layout_constraintTop_toBottomOf="@id/gameGridLayout"
+       android:id="@+id/buttonPanelInclude"
+       app:layout_constraintTop_toBottomOf="@id/gameGridInclude"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintBottom_toBottomOf="parent"/>
 
-
     <include layout="@layout/game_over_panel"
         android:id="@+id/gameOverPanelInclude"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/game_over_panel_height"
+        android:visibility="visible"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/game_over_panel_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

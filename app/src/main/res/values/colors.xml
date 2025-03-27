@@ -22,6 +22,7 @@
     <color name="clue_cow">#B8B7B7</color>
     <color name="clue_bull">#E63131</color>
     <color name="peg_default_background">#1F1E1E</color>
-    <color name="game_over_panel_background">#A69B9B</color>
-    <color name="game_over_text">#2F2323</color>
+    <color name="game_over_panel_background">#494848</color>
+    <color name="game_over_panel_edge">#BAB8B8</color>
+    <color name="game_over_text">#FF8F00</color>
 </resources>

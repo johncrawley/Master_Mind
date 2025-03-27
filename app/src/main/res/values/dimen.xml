@@ -6,6 +6,9 @@
 
     <dimen name="game_over_panel_margin">18dp</dimen>
     <dimen name="game_over_panel_padding">12dp</dimen>
+    <dimen name="game_over_panel_corner_radius">28dp</dimen>
+    <dimen name="game_over_message_text_padding">18dp</dimen>
+    <dimen name="game_over_panel_edge_width">4dp</dimen>
     <dimen name="game_over_panel_height">400dp</dimen>
     <dimen name="peg_padding">5dp</dimen>
     <dimen name="peg_view_margin">4dp</dimen>
