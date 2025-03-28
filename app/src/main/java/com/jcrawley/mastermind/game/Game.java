@@ -17,13 +17,26 @@ public class Game {
     private Random random;
     PegColor[] possibleColors = PegColor.values();
     List<PegColor> solution = new ArrayList<>(pegsPerRow);
+    private GameGrid gameGrid = new GameGrid(numberOfRows);
 
 
     private GameView gameView;
 
 
-    public Game(GameView gameView){
+    public void setView(GameView gameView){
         this.gameView = gameView;
+        updateViewWithGameGrid();
+    }
+
+    private void updateViewWithGameGrid(){
+        for(int i = 0; i < numberOfRows; i++){
+            gameView.update(i, gameGrid.getCluesAtRow(i));
+        }
+    }
+
+
+    public int getPegsPerRow(){
+        return pegsPerRow;
     }
 
 
@@ -61,11 +74,6 @@ public class Game {
     }
 
 
-    public int getPegsPerRow(){
-        return pegsPerRow;
-    }
-
-
     public void moveToNextRow(){
         currentIndex = 0;
         numberOfTries++;
@@ -82,6 +90,7 @@ public class Game {
         currentIndex = 0;
         pegsPlaced = 0;
         currentAnswer.clear();
+        gameGrid.init();
         setupRandomAnswer();
         highlightCurrentBackgroundRow();
     }

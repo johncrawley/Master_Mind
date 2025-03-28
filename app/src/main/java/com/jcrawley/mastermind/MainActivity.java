@@ -25,7 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements GameView {
 
     ViewGroup gameLayout;
-    private Game game;
+    private final Game game = new Game();
     private ViewGroup gameOverPanel;
     private TextView gameOverTitleText, gameOverMessageText;
 
@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setContentView(R.layout.activity_main);
         hideActionBar();
         setupLayout();
-        game = new Game(this);
+        game.setView(this);
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
         setupGameOverScreen();
         game.resetGame();
-
     }
+
 
     private void hideActionBar(){
         ActionBar actionBar = getSupportActionBar();
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
             actionBar.hide();
         }
     }
-
 
 
     private void setupLayout() {
@@ -90,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private void setupButton(int buttonId, PegColor pegColor) {
         ImageButton button = findViewById(buttonId);
         button.setOnClickListener((v -> game.addPegColorAtCurrentIndex(pegColor)));
-
     }
 
 
@@ -151,6 +149,24 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
+    private void update(int rowIndex, List<PegColor> pegColors) {
+        var pegLayout = getPegRow(rowIndex);
+        for(int i = 0; i < pegLayout.getChildCount(); i++){
+            if(pegColors.size() >= i){
+
+            }
+            var pegColor = pegColors.size() <= i ? PegColor.EMPTY : pegColors.get(i);
+            setPegColor(pegColor, rowIndex, i);
+        }
+    }
+
+
+    @Override
+    public void updateRow(int rowIndex, List<PegColor> pegColors, List<Clue> clues) {
+        update(rowIndex, clues);
+    }
+
+
     private List<View> getClueViewsIn(ViewGroup row) {
         return List.of(row.findViewById(R.id.clue1),
                 row.findViewById(R.id.clue2),
@@ -175,17 +191,15 @@ public class MainActivity extends AppCompatActivity implements GameView {
         for (int i = 0; i < game.getNumberOfRows(); i++) {
             var row = getRow(i);
             row.setBackgroundColor(defaultBackgroundColor);
-            resetAllPegsIn(getPegRow(i));
+            resetAllPegsIn(i);
             resetAllCluesIn(getCluesRow(i));
         }
     }
 
 
-    private void resetAllPegsIn(ViewGroup row) {
-        ViewGroup pegRow = row.findViewById(R.id.pegRowLayout);
-        for (int i = 0; i < pegRow.getChildCount(); i++) {
-            var pegLayout = (ViewGroup) row.getChildAt(i);
-            setPegColor(pegLayout.getChildAt(0), R.color.peg_default_background);
+    private void resetAllPegsIn(int rowIndex) {
+        for (int i = 0; i < game.getPegsPerRow(); i++) {
+            setPegColor(PegColor.EMPTY, rowIndex, i);
         }
     }
 

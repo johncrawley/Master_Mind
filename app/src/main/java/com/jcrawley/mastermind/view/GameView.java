@@ -9,7 +9,9 @@ public interface GameView {
 
     void showGoodGameOver(int numberOfTries);
     void showBadGameOver();
-    void update(int row, List<Clue> clues);
+
+    void update(int rowIndex, List<Clue> clues);
+    void updateRow(int row, List<PegColor> pegColors, List<Clue> clues);
     void setPegColor(PegColor pegColor, int row, int index);
     void highlightRowBackground(int rowIndex);
     void resetAllRows();
