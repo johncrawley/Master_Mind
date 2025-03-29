@@ -17,7 +17,7 @@ public class Game {
     private Random random;
     PegColor[] possibleColors = PegColor.values();
     List<PegColor> solution = new ArrayList<>(pegsPerRow);
-    private GameGrid gameGrid = new GameGrid(numberOfRows);
+    private final GameGrid gameGrid = new GameGrid(numberOfRows, pegsPerRow);
 
 
     private GameView gameView;
@@ -30,7 +30,8 @@ public class Game {
 
     private void updateViewWithGameGrid(){
         for(int i = 0; i < numberOfRows; i++){
-            gameView.update(i, gameGrid.getCluesAtRow(i));
+            gameView.updateClues(i, gameGrid.getCluesAtRow(i));
+            gameView.updateRow(i, gameGrid.getPegColorsAtRow(i), gameGrid.getCluesAtRow(i));
         }
     }
 
@@ -42,7 +43,8 @@ public class Game {
 
     public void checkCurrentAnswer() {
         var clues = GameUtils.generateClues(currentAnswer, solution);
-        gameView.update(currentRow, clues);
+        gameGrid.setClues(currentRow, clues);
+        gameView.updateClues(currentRow, clues);
         if (isAnswerCorrect(clues)) {
             gameView.showGoodGameOver(numberOfTries);
             return;
@@ -64,8 +66,8 @@ public class Game {
         if(pegsPlaced > MAX_PEGS){
             return;
         }
-
-        gameView.setPegColor(pegColor, currentRow, currentIndex);
+        gameGrid.setPegColor(currentRow, currentIndex, pegColor);
+        gameView.setPegColor(currentRow, currentIndex, pegColor);
         currentAnswer.add(pegColor);
         if(++currentIndex >= pegsPerRow){
             checkCurrentAnswer();

@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setContentView(R.layout.activity_main);
         hideActionBar();
         setupLayout();
-        game.setView(this);
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
         setupGameOverScreen();
+        game.setView(this);
         game.resetGame();
     }
 
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void update(int rowIndex, List<Clue> clues) {
+    public void updateClues(int rowIndex, List<Clue> clues) {
         var rowLayout = getRow(rowIndex);
         var clueLayouts = getClueViewsIn(rowLayout);
         for (int i = 0; i < clueLayouts.size(); i++) {
@@ -149,21 +149,22 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void update(int rowIndex, List<PegColor> pegColors) {
+    private void updatePegColors(int rowIndex, List<PegColor> pegColors) {
         var pegLayout = getPegRow(rowIndex);
         for(int i = 0; i < pegLayout.getChildCount(); i++){
             if(pegColors.size() >= i){
 
             }
             var pegColor = pegColors.size() <= i ? PegColor.EMPTY : pegColors.get(i);
-            setPegColor(pegColor, rowIndex, i);
+            setPegColor(rowIndex, i, pegColor);
         }
     }
 
 
     @Override
     public void updateRow(int rowIndex, List<PegColor> pegColors, List<Clue> clues) {
-        update(rowIndex, clues);
+        updateClues(rowIndex, clues);
+        updatePegColors(rowIndex, pegColors);
     }
 
 
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void resetAllPegsIn(int rowIndex) {
         for (int i = 0; i < game.getPegsPerRow(); i++) {
-            setPegColor(PegColor.EMPTY, rowIndex, i);
+            setPegColor(rowIndex, i, PegColor.EMPTY);
         }
     }
 
@@ -214,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void setPegColor(PegColor pegColor, int row, int index) {
+    public void setPegColor(int row, int index, PegColor pegColor) {
         var pegView = getPegViewAt(row, index);
         setPegColor(pegView, pegColor.getColorId());
     }

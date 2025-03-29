@@ -6,14 +6,16 @@ import java.util.List;
 public class GameGrid {
     private List<GameRow> gameRows;
     private final int numberOfRows;
+    private final int pegsPerRow;
 
-    public GameGrid(int numberOfRows){
+    public GameGrid(int numberOfRows, int pegsPerRow){
         this.numberOfRows = numberOfRows;
+        this.pegsPerRow = pegsPerRow;
         init();
     }
 
 
-    public void setClues(List<Clue> clues, int rowIndex){
+    public void setClues(int rowIndex, List<Clue> clues){
         gameRows.get(rowIndex).setClues(clues);
     }
 
@@ -23,8 +25,13 @@ public class GameGrid {
     }
 
 
-    public void addPegColor(PegColor pegColor, int rowIndex){
-        gameRows.get(rowIndex).addPegColor(pegColor);
+    public List<PegColor> getPegColorsAtRow(int rowIndex){
+        return gameRows.get(rowIndex).getPegColors();
+    }
+
+
+    public void setPegColor(int rowIndex, int pegIndex, PegColor pegColor){
+        gameRows.get(rowIndex).setPegColor(pegIndex, pegColor);
     }
 
 
@@ -36,7 +43,7 @@ public class GameGrid {
     public void init(){
         gameRows = new ArrayList<>(numberOfRows);
         for(int i = 0; i < numberOfRows; i++){
-            gameRows.add(new GameRow());
+            gameRows.add(new GameRow(pegsPerRow));
         }
     }
 
