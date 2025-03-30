@@ -1,10 +1,10 @@
 package com.jcrawley.mastermind.game;
 
+import com.jcrawley.mastermind.game.model.GameGrid;
 import com.jcrawley.mastermind.view.GameView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Game {
 
@@ -14,12 +14,8 @@ public class Game {
     private final int MAX_PEGS = pegsPerRow * numberOfRows;
     private final List<PegColor> currentAnswer = new ArrayList<>();
     private int numberOfTries;
-    private Random random;
-    PegColor[] possibleColors = PegColor.values();
-    List<PegColor> solution = new ArrayList<>(pegsPerRow);
+    private final GameSolution gameSolution = new GameSolution(pegsPerRow);
     private final GameGrid gameGrid = new GameGrid(numberOfRows, pegsPerRow);
-
-
     private GameView gameView;
 
 
@@ -28,11 +24,13 @@ public class Game {
         updateViewWithGameGrid();
     }
 
+
     private void updateViewWithGameGrid(){
         for(int i = 0; i < numberOfRows; i++){
             gameView.updateClues(i, gameGrid.getCluesAtRow(i));
             gameView.updateRow(i, gameGrid.getPegColorsAtRow(i), gameGrid.getCluesAtRow(i));
         }
+        gameView.setupSolutionPegs(gameGrid.getSolutionPegs());
     }
 
 
@@ -42,7 +40,7 @@ public class Game {
 
 
     public void checkCurrentAnswer() {
-        var clues = GameUtils.generateClues(currentAnswer, solution);
+        var clues = GameUtils.generateClues(currentAnswer, gameSolution.get());
         gameGrid.setClues(currentRow, clues);
         gameView.updateClues(currentRow, clues);
         if (isAnswerCorrect(clues)) {
@@ -103,25 +101,17 @@ public class Game {
     }
 
 
+    private void setupRandomAnswer(){
+        var solution = gameSolution.generate();
+        gameView.setupSolutionPegs(solution);
+        gameGrid.setSolutionPegs(solution);
+    }
+
+
     private void highlightCurrentBackgroundRow(){
         if(currentRow < numberOfRows){
             gameView.highlightRowBackground(currentRow);
         }
     }
 
-
-    private void setupRandomAnswer(){
-        random = new Random(System.currentTimeMillis());
-        solution.clear();
-        for(int i = 0; i < pegsPerRow; i++ ){
-            solution.add(getRandomPegColor());
-        }
-        gameView.setupSolutionPegs(solution);
-    }
-
-
-    private PegColor getRandomPegColor(){
-        int randomIndex = random.nextInt(possibleColors.length);
-        return possibleColors[randomIndex];
-    }
 }

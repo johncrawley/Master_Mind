@@ -1,4 +1,7 @@
-package com.jcrawley.mastermind.game;
+package com.jcrawley.mastermind.game.model;
+
+import com.jcrawley.mastermind.game.Clue;
+import com.jcrawley.mastermind.game.PegColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,16 +10,31 @@ public class GameGrid {
     private List<GameRow> gameRows;
     private final int numberOfRows;
     private final int pegsPerRow;
+    private List<PegColor> solutionPegs;
 
     public GameGrid(int numberOfRows, int pegsPerRow){
         this.numberOfRows = numberOfRows;
         this.pegsPerRow = pegsPerRow;
+        initSolutionPegs();
         init();
+    }
+
+
+    private void initSolutionPegs(){
+        solutionPegs = new ArrayList<>();
+        for(int i = 0; i < pegsPerRow; i++){
+            solutionPegs.add(PegColor.EMPTY);
+        }
     }
 
 
     public void setClues(int rowIndex, List<Clue> clues){
         gameRows.get(rowIndex).setClues(clues);
+    }
+
+
+    public void setSolutionPegs(List<PegColor> solutionPegs){
+        this.solutionPegs = new ArrayList<>(solutionPegs);
     }
 
 
@@ -37,6 +55,11 @@ public class GameGrid {
 
     public PegColor getPegColorAt(int rowIndex, int columnIndex){
         return gameRows.get(rowIndex).getPegColors().get(columnIndex);
+    }
+
+
+    public List<PegColor> getSolutionPegs(){
+        return new ArrayList<>(solutionPegs);
     }
 
 
