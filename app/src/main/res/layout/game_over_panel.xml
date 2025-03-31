@@ -14,7 +14,7 @@
         android:textAlignment="center"
         android:textColor="@color/game_over_text"
         android:shadowColor="@color/black"
-        android:shadowRadius="20"
+        android:shadowRadius="5"
         android:textSize="@dimen/game_over_title_text_size"
         app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
         app:layout_constraintEnd_toEndOf="parent"

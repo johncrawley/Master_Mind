@@ -17,6 +17,18 @@ public class Game {
     private final GameSolution gameSolution = new GameSolution(pegsPerRow);
     private final GameGrid gameGrid = new GameGrid(numberOfRows, pegsPerRow);
     private GameView gameView;
+    private boolean isGameInProgress;
+
+    public Game(){
+        System.out.println("^^^ Game:  entered Game()");
+    }
+
+
+    public void init(){
+        if(!isGameInProgress){
+            setupNewGame();
+        }
+    }
 
 
     public void setView(GameView gameView){
@@ -60,6 +72,7 @@ public class Game {
 
 
     public void addPegColorAtCurrentIndex(PegColor pegColor){
+        isGameInProgress = true;
         pegsPlaced++;
         if(pegsPlaced > MAX_PEGS){
             return;
@@ -83,7 +96,7 @@ public class Game {
     }
 
 
-    public void resetGame(){
+    public void setupNewGame(){
         gameView.resetAllRows();
         numberOfTries = 1;
         currentRow = 0;
@@ -93,6 +106,7 @@ public class Game {
         gameGrid.init();
         setupRandomAnswer();
         highlightCurrentBackgroundRow();
+        isGameInProgress = false;
     }
 
 

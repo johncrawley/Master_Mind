@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setupButtons();
         setupGameOverScreen();
         game.setView(this);
-        game.resetGame();
+        game.init();
     }
 
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         gameOverMessageText = findViewById(R.id.gameOverMessageText);
 
         gameOverPanel.setOnClickListener(v -> {
-            game.resetGame();
+            game.setupNewGame();
             AnimationHelper.hidePanel(gameOverPanel);
         });
     }

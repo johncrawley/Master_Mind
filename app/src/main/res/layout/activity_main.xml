@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
     <include layout="@layout/game_grid"
@@ -30,7 +31,7 @@
 
     <include layout="@layout/game_over_panel"
         android:id="@+id/gameOverPanelInclude"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.8"
         android:layout_height="wrap_content"

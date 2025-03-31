@@ -8,21 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="game_red">#C62828</color>
-    <color name="game_blue">#2035CA</color>
-    <color name="game_green">#2E7D32</color>
-    <color name="game_orange">#D56204</color>
-    <color name="game_purple">#6A1B9A</color>
-    <color name="game_yellow">#E6C30F</color>
-    <color name="game_pink">#E05D96</color>
-    <color name="game_brown">#622E04</color>
+    <color name="game_blue">#2F3DA6</color>
+    <color name="game_green">#29902F</color>
+    <color name="game_orange">#EF6C00</color>
+    <color name="game_purple">#7116A8</color>
+    <color name="game_yellow">#FAD53D</color>
+    <color name="game_pink">#E16DFF</color>
+    <color name="game_brown">#6F3B13</color>
 
     <color name="pane_background">#5B5757</color>
     <color name="highlighted_row_background">#8E8C8C</color>
-    <color name="clue_default_background">#1F1E1E</color>
+    <color name="clue_default_background">#000000</color>
     <color name="clue_cow">#B8B7B7</color>
-    <color name="clue_bull">#E63131</color>
-    <color name="peg_default_background">#1F1E1E</color>
-    <color name="game_over_panel_background">#494848</color>
+    <color name="clue_bull">#C31717</color>
+    <color name="peg_default_background">#000000</color>
+    <color name="game_over_panel_background">#717070</color>
     <color name="game_over_panel_edge">#BAB8B8</color>
-    <color name="game_over_text">#FF8F00</color>
+    <color name="game_over_text">#FFB300</color>
 </resources>
