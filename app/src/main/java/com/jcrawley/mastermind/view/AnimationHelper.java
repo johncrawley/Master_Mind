@@ -18,7 +18,7 @@ public class AnimationHelper {
     }
 
 
-    public static void hidePanel(View panel){
+    public static void hidePanel(View panel, Runnable onFinish){
         var animation = new AlphaAnimation(1f, 0f);
         animation.setDuration(300);
         animation.setFillAfter(true);
@@ -28,6 +28,7 @@ public class AnimationHelper {
             @Override
             public void onAnimationEnd(Animation animation) {
                 panel.setVisibility(GONE);
+                onFinish.run();
             }
         });
         panel.startAnimation(animation);

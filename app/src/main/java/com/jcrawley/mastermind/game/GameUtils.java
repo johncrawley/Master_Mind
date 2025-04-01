@@ -8,7 +8,6 @@ public class GameUtils {
 
 
     public static List<Clue> generateClues(List<PegColor> currentAnswer, List<PegColor> solution){
-        log("generate clues current answer size: " + currentAnswer.size());
         var clues = new ArrayList<Clue>(solution.size());
         List<PegColor> solutionCopy = new ArrayList<>(solution);
 
@@ -36,12 +35,7 @@ public class GameUtils {
         for(var ignored : answerRemainders){
             clues.add(Clue.WRONG);
         }
-        log("generateClues() generated clues: " + clues.get(0) + " " + clues.get(1) + " " +  clues.get(2) + " " + clues.get(3));
         return clues;
-    }
-
-    private static void log(String msg){
-        System.out.println("^^^ GameUtils: " + msg);
     }
 
 }

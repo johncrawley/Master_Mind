@@ -1,5 +1,8 @@
 package com.jcrawley.mastermind.view;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.jcrawley.mastermind.game.Clue;
 import com.jcrawley.mastermind.game.PegColor;
 
@@ -16,4 +19,7 @@ public interface GameView {
     void highlightRowBackground(int rowIndex);
     void resetAllRows();
     void setupSolutionPegs(List<PegColor> pegs);
+
+    void resetRowBackground(int index);
+    void resetAllCluesIn(int index);
 }

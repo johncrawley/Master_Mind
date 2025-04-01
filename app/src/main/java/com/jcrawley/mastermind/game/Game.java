@@ -5,6 +5,7 @@ import com.jcrawley.mastermind.view.GameView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Game {
 
@@ -18,6 +19,8 @@ public class Game {
     private final GameGrid gameGrid = new GameGrid(numberOfRows, pegsPerRow);
     private GameView gameView;
     private boolean isGameInProgress;
+    private final AtomicBoolean isUserInputEnabled = new AtomicBoolean(false);
+
 
     public Game(){
         System.out.println("^^^ Game:  entered Game()");
@@ -56,10 +59,12 @@ public class Game {
         gameGrid.setClues(currentRow, clues);
         gameView.updateClues(currentRow, clues);
         if (isAnswerCorrect(clues)) {
+            disableUserInput();
             gameView.showGoodGameOver(numberOfTries);
             return;
         }
         if (pegsPlaced >= MAX_PEGS) {
+            disableUserInput();
             gameView.showBadGameOver();
         }
     }
@@ -72,6 +77,9 @@ public class Game {
 
 
     public void addPegColorAtCurrentIndex(PegColor pegColor){
+        if(!isUserInputEnabled()){
+            return;
+        }
         isGameInProgress = true;
         pegsPlaced++;
         if(pegsPlaced > MAX_PEGS){
@@ -105,13 +113,28 @@ public class Game {
         currentAnswer.clear();
         gameGrid.init();
         setupRandomAnswer();
-        highlightCurrentBackgroundRow();
         isGameInProgress = false;
+        enableUserInput();
     }
 
 
     public int getNumberOfRows(){
         return numberOfRows;
+    }
+
+
+    public void enableUserInput(){
+        isUserInputEnabled.set(true);
+    }
+
+
+    public void disableUserInput(){
+        isUserInputEnabled.set(false);
+    }
+
+
+    public boolean isUserInputEnabled(){
+        return isUserInputEnabled.get();
     }
 
 

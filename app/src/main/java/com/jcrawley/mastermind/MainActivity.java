@@ -19,6 +19,7 @@ import com.jcrawley.mastermind.game.Game;
 import com.jcrawley.mastermind.game.PegColor;
 import com.jcrawley.mastermind.view.AnimationHelper;
 import com.jcrawley.mastermind.view.GameView;
+import com.jcrawley.mastermind.view.GridWiper;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private final Game game = new Game();
     private ViewGroup gameOverPanel;
     private TextView gameOverTitleText, gameOverMessageText;
+    private GridWiper gridWiper;
 
 
     @Override
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         hideActionBar();
+        gridWiper = new GridWiper(this, game);
         setupLayout();
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
@@ -68,8 +71,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         gameOverMessageText = findViewById(R.id.gameOverMessageText);
 
         gameOverPanel.setOnClickListener(v -> {
-            game.setupNewGame();
-            AnimationHelper.hidePanel(gameOverPanel);
+            AnimationHelper.hidePanel(gameOverPanel, game::setupNewGame);
         });
     }
 
@@ -118,12 +120,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void resetAllCluesIn(ViewGroup row) {
-        for (var clueView : getClueViewsIn(row)) {
-            clueView.setBackgroundColor(getColor(R.color.clue_default_background));
-        }
-    }
-
 
     public void setupSolutionPegs(List<PegColor> solution) {
         ViewGroup solutionPegsLayout = findViewById(R.id.solutionPegsLayout);
@@ -149,12 +145,15 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void updatePegColors(int rowIndex, List<PegColor> pegColors) {
-        var pegLayout = getPegRow(rowIndex);
-        for(int i = 0; i < pegLayout.getChildCount(); i++){
-            if(pegColors.size() >= i){
+    @Override
+    public void updateRow(int rowIndex, List<PegColor> pegColors, List<Clue> clues) {
+        updateClues(rowIndex, clues);
+        updatePegColors(rowIndex, pegColors);
+    }
 
-            }
+
+    private void updatePegColors(int rowIndex, List<PegColor> pegColors) {
+        for(int i = 0; i < game.getPegsPerRow(); i++){
             var pegColor = pegColors.size() <= i ? PegColor.EMPTY : pegColors.get(i);
             setPegColor(rowIndex, i, pegColor);
         }
@@ -162,9 +161,11 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void updateRow(int rowIndex, List<PegColor> pegColors, List<Clue> clues) {
-        updateClues(rowIndex, clues);
-        updatePegColors(rowIndex, pegColors);
+    public void resetAllCluesIn(int index) {
+        ViewGroup row = getCluesRow(index);
+        for (var clueView : getClueViewsIn(row)) {
+            clueView.setBackgroundColor(getColor(R.color.clue_default_background));
+        }
     }
 
 
@@ -173,6 +174,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
                 row.findViewById(R.id.clue2),
                 row.findViewById(R.id.clue3),
                 row.findViewById(R.id.clue4));
+    }
+
+
+    @Override
+    public void resetRowBackground(int index){
+        int defaultBackground = getColor(R.color.pane_background);
+        getRow(index).setBackgroundColor(defaultBackground);
     }
 
 
@@ -187,21 +195,8 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void resetAllRows() {
-        int defaultBackgroundColor = getColor(R.color.pane_background);
-        for (int i = 0; i < game.getNumberOfRows(); i++) {
-            var row = getRow(i);
-            row.setBackgroundColor(defaultBackgroundColor);
-            resetAllPegsIn(i);
-            resetAllCluesIn(getCluesRow(i));
-        }
-    }
-
-
-    private void resetAllPegsIn(int rowIndex) {
-        for (int i = 0; i < game.getPegsPerRow(); i++) {
-            setPegColor(rowIndex, i, PegColor.EMPTY);
-        }
+    public void resetAllRows(){
+        gridWiper.resetAllRows();
     }
 
 
