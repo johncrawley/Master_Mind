@@ -36,11 +36,10 @@ public class Game {
 
     public void setView(GameView gameView){
         this.gameView = gameView;
-        updateViewWithGameGrid();
     }
 
 
-    private void updateViewWithGameGrid(){
+    public void updateViewWithGameGrid(){
         for(int i = 0; i < numberOfRows; i++){
             gameView.updateClues(i, gameGrid.getCluesAtRow(i));
             gameView.updateRow(i, gameGrid.getPegColorsAtRow(i), gameGrid.getCluesAtRow(i));

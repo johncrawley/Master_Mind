@@ -1,8 +1,5 @@
 package com.jcrawley.mastermind.view;
 
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.jcrawley.mastermind.game.Clue;
 import com.jcrawley.mastermind.game.PegColor;
 

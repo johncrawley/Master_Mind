@@ -1,7 +1,11 @@
 package com.jcrawley.mastermind;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -17,19 +21,49 @@ import androidx.core.view.WindowInsetsCompat;
 import com.jcrawley.mastermind.game.Clue;
 import com.jcrawley.mastermind.game.Game;
 import com.jcrawley.mastermind.game.PegColor;
+import com.jcrawley.mastermind.service.GameService;
 import com.jcrawley.mastermind.view.AnimationHelper;
 import com.jcrawley.mastermind.view.GameView;
 import com.jcrawley.mastermind.view.GridWiper;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity implements GameView {
 
     ViewGroup gameLayout;
-    private final Game game = new Game();
+    private Game game;
     private ViewGroup gameOverPanel;
     private TextView gameOverTitleText, gameOverMessageText;
     private GridWiper gridWiper;
+    private GameService gameService;
+    private int numberOfRows;
+    private int pegsPerRow;
+    private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
+
+
+    private final ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            GameService.LocalBinder binder = (GameService.LocalBinder) service;
+            gameService = binder.getService();
+            gameService.setActivity(MainActivity.this);
+            isServiceConnected.set(true);
+            game = gameService.getGame();
+            numberOfRows = game.getNumberOfRows();
+            pegsPerRow = game.getPegsPerRow();
+            game.init();
+            gridWiper = new GridWiper(MainActivity.this, game);
+            game.updateViewWithGameGrid();
+
+        }
+
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            isServiceConnected.set(false);
+        }
+    };
 
 
     @Override
@@ -38,13 +72,18 @@ public class MainActivity extends AppCompatActivity implements GameView {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         hideActionBar();
-        gridWiper = new GridWiper(this, game);
         setupLayout();
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
         setupGameOverScreen();
-        game.setView(this);
-        game.init();
+        setupGameService();
+    }
+
+
+    private void setupGameService() {
+        Intent intent = new Intent(getApplicationContext(), GameService.class);
+        getApplicationContext().startService(intent);
+        getApplicationContext().bindService(intent, connection, 0);
     }
 
 
@@ -90,7 +129,11 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupButton(int buttonId, PegColor pegColor) {
         ImageButton button = findViewById(buttonId);
-        button.setOnClickListener((v -> game.addPegColorAtCurrentIndex(pegColor)));
+        button.setOnClickListener((v -> {
+            if(game != null){
+                game.addPegColorAtCurrentIndex(pegColor);
+            }
+        }));
     }
 
 
@@ -153,7 +196,10 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private void updatePegColors(int rowIndex, List<PegColor> pegColors) {
-        for(int i = 0; i < game.getPegsPerRow(); i++){
+        if(game == null){
+            return;
+        }
+        for(int i = 0; i < pegsPerRow; i++){
             var pegColor = pegColors.size() <= i ? PegColor.EMPTY : pegColors.get(i);
             setPegColor(rowIndex, i, pegColor);
         }
@@ -196,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void resetAllRows(){
+
         gridWiper.resetAllRows();
     }
 
@@ -230,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private ViewGroup getRow(int index) {
-        int rowIndex = game.getNumberOfRows() - index - 1;
+        int rowIndex = numberOfRows - index - 1;
         return (ViewGroup) gameLayout.getChildAt(rowIndex);
     }
 
