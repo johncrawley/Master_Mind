@@ -45,6 +45,7 @@ public class Game {
             gameView.updateRow(i, gameGrid.getPegColorsAtRow(i), gameGrid.getCluesAtRow(i));
         }
         gameView.setupSolutionPegs(gameGrid.getSolutionPegs());
+        gameView.highlightAllRowsUpToAndIncluding(currentRow);
     }
 
 

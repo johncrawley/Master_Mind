@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
             numberOfRows = game.getNumberOfRows();
             pegsPerRow = game.getPegsPerRow();
             game.init();
-            gridWiper = new GridWiper(MainActivity.this, game);
             game.updateViewWithGameGrid();
 
         }
@@ -64,6 +63,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
             isServiceConnected.set(false);
         }
     };
+
+
+    private void initGridWiper(){
+        if(gridWiper == null){
+            gridWiper = new GridWiper(MainActivity.this, game);
+        }
+    }
 
 
     @Override
@@ -163,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-
     public void setupSolutionPegs(List<PegColor> solution) {
         ViewGroup solutionPegsLayout = findViewById(R.id.solutionPegsLayout);
 
@@ -242,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void resetAllRows(){
-
+        initGridWiper();
         gridWiper.resetAllRows();
     }
 
@@ -273,6 +278,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
     public void highlightRowBackground(int rowIndex) {
         int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
         getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
+    }
+
+
+    public void highlightAllRowsUpToAndIncluding(int rowNumber){
+        for(int i = 0; i <= rowNumber; i++){
+            highlightRowBackground(i);
+        }
     }
 
 
