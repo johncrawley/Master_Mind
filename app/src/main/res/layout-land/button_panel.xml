@@ -3,85 +3,113 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:gravity="center"
     android:id="@+id/buttonLayout">
+
 
     <LinearLayout
         android:weightSum="10"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/redButton"
+            android:backgroundTint="@color/game_red"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_red"
-            android:src="@color/game_red" />
-
-        <ImageButton
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/blueButton"
+            android:backgroundTint="@color/game_blue"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_blue"
-            android:src="@color/game_blue" />
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/greenButton"
+            android:backgroundTint="@color/game_green"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_green"
-            android:src="@color/game_green" />
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/yellowButton"
+            android:backgroundTint="@color/game_yellow"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_yellow"
-            android:src="@color/game_yellow" />
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
     </LinearLayout>
 
     <LinearLayout
-        android:weightSum="4"
-        android:gravity="center"
+        android:weightSum="10"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/brownButton"
-            android:layout_weight="1"
+            android:backgroundTint="@color/game_brown"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_brown"
-            android:src="@color/game_brown" />
-
-        <ImageButton
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/orangeButton"
-            android:layout_weight="1"
+            android:backgroundTint="@color/game_orange"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_orange"
-            android:src="@color/game_orange" />
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/pinkButton"
-            android:layout_weight="1"
+            android:backgroundTint="@color/game_pink"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_pink"
-            android:src="@color/game_pink" />
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/purpleButton"
-            android:layout_weight="1"
+            android:backgroundTint="@color/game_purple"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:contentDescription="@string/button_image_desc_purple"
-            android:src="@color/game_purple" />
+            app:cornerRadius="@dimen/color_button_corner"
+            android:layout_margin="@dimen/color_button_margin"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:scaleType="centerInside" />
     </LinearLayout>
 
-
 </LinearLayout>
+

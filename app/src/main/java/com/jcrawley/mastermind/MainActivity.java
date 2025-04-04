@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -122,19 +122,19 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private void setupButtons() {
-        setupButton(R.id.redButton, PegColor.RED);
-        setupButton(R.id.blueButton, PegColor.BLUE);
-        setupButton(R.id.greenButton, PegColor.GREEN);
-        setupButton(R.id.yellowButton, PegColor.YELLOW);
-        setupButton(R.id.orangeButton, PegColor.ORANGE);
-        setupButton(R.id.purpleButton, PegColor.PURPLE);
-        setupButton(R.id.brownButton, PegColor.BROWN);
-        setupButton(R.id.pinkButton, PegColor.PINK);
+        setupColorButton(R.id.redButton, PegColor.RED);
+        setupColorButton(R.id.blueButton, PegColor.BLUE);
+        setupColorButton(R.id.greenButton, PegColor.GREEN);
+        setupColorButton(R.id.yellowButton, PegColor.YELLOW);
+        setupColorButton(R.id.orangeButton, PegColor.ORANGE);
+        setupColorButton(R.id.purpleButton, PegColor.PURPLE);
+        setupColorButton(R.id.brownButton, PegColor.BROWN);
+        setupColorButton(R.id.pinkButton, PegColor.PINK);
     }
 
 
-    private void setupButton(int buttonId, PegColor pegColor) {
-        ImageButton button = findViewById(buttonId);
+    private void setupColorButton(int buttonId, PegColor pegColor) {
+        Button button = findViewById(buttonId);
         button.setOnClickListener((v -> {
             if(game != null){
                 game.addPegColorAtCurrentIndex(pegColor);
