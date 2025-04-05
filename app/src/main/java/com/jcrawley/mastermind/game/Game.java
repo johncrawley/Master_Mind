@@ -20,6 +20,8 @@ public class Game {
     private GameView gameView;
     private boolean isGameInProgress;
     private final AtomicBoolean isUserInputEnabled = new AtomicBoolean(false);
+    private enum GamePhase { RUNNING, GAME_OVER_GOOD, GAME_OVER_BAD }
+    private GamePhase gamePhase = GamePhase.RUNNING;
 
 
     public Game(){
@@ -39,13 +41,24 @@ public class Game {
     }
 
 
-    public void updateViewWithGameGrid(){
+    public void updateViewWithGameState(){
         for(int i = 0; i < numberOfRows; i++){
             gameView.updateClues(i, gameGrid.getCluesAtRow(i));
             gameView.updateRow(i, gameGrid.getPegColorsAtRow(i), gameGrid.getCluesAtRow(i));
         }
         gameView.setupSolutionPegs(gameGrid.getSolutionPegs());
         gameView.highlightAllRowsUpToAndIncluding(currentRow);
+        updateViewWithGamePhase();
+    }
+
+
+    private void updateViewWithGamePhase(){
+        if(gamePhase == GamePhase.GAME_OVER_GOOD){
+            gameView.showGoodGameOver(numberOfTries);
+        }
+        else if(gamePhase == GamePhase.GAME_OVER_BAD){
+            gameView.showBadGameOver();
+        }
     }
 
 
@@ -60,11 +73,13 @@ public class Game {
         gameView.updateClues(currentRow, clues);
         if (isAnswerCorrect(clues)) {
             disableUserInput();
+            gamePhase = GamePhase.GAME_OVER_GOOD;
             gameView.showGoodGameOver(numberOfTries);
             return;
         }
         if (pegsPlaced >= MAX_PEGS) {
             disableUserInput();
+            gamePhase = GamePhase.GAME_OVER_BAD;
             gameView.showBadGameOver();
         }
     }
@@ -115,6 +130,7 @@ public class Game {
         setupRandomAnswer();
         isGameInProgress = false;
         enableUserInput();
+        gamePhase = GamePhase.RUNNING;
     }
 
 

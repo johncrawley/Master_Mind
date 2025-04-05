@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
             numberOfRows = game.getNumberOfRows();
             pegsPerRow = game.getPegsPerRow();
             game.init();
-            game.updateViewWithGameGrid();
-
+            game.updateViewWithGameState();
         }
 
 
@@ -274,17 +273,18 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
+    public void highlightAllRowsUpToAndIncluding(int rowNumber){
+        var limit = Math.min(game.getNumberOfRows() - 1, rowNumber);
+        for(int i = 0; i <= limit; i++){
+            highlightRowBackground(i);
+        }
+    }
+
+
     @Override
     public void highlightRowBackground(int rowIndex) {
         int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
         getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
-    }
-
-
-    public void highlightAllRowsUpToAndIncluding(int rowNumber){
-        for(int i = 0; i <= rowNumber; i++){
-            highlightRowBackground(i);
-        }
     }
 
 
