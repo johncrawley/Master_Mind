@@ -1,54 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/game_over_background"
+    android:background="@drawable/popup_panel_background"
     android:layout_width="match_parent"
-    android:padding="@dimen/game_over_panel_padding"
+    android:textColor="@color/game_over_text"
+
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/gameOverTitleText"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/game_over_title"
-        android:textAlignment="center"
-        android:textColor="@color/game_over_text"
-        android:shadowColor="@color/black"
-        android:shadowRadius="5"
-        android:textSize="@dimen/game_over_title_text_size"
-        app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:padding="@dimen/game_over_panel_padding"
+        android:background="@drawable/popup_panel_inner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
 
 
-    <TextView
-        android:id="@+id/gameOverMessageText"
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:textColor="@color/game_over_text"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/game_over_message_text_padding"
-        android:maxLines="2"
-        android:textSize="@dimen/game_over_message_text_size"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowRadius="12"
-        android:text="@string/game_over_message_fail"
-        app:layout_constraintBottom_toTopOf="@id/solutionPegsLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gameOverTitleText"/>
+
+        <TextView
+            android:id="@+id/gameOverTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/game_over_title"
+            android:textAlignment="center"
+            android:textColor="@color/game_over_text"
+            android:shadowColor="@color/black"
+            android:shadowRadius="5"
+            android:textSize="@dimen/game_over_title_text_size"
+            app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <include android:id="@+id/solutionPegsLayout"
-        layout="@layout/peg_row"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/peg_layout_margin"
-        android:paddingStart="0dp"
-        android:paddingEnd="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gameOverMessageText"
-        />
+        <TextView
+            android:id="@+id/gameOverMessageText"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:textColor="@color/game_over_text"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/game_over_message_text_padding"
+            android:maxLines="2"
+            android:textSize="@dimen/game_over_message_text_size"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowRadius="12"
+            android:text="@string/game_over_message_fail"
+            app:layout_constraintBottom_toTopOf="@id/solutionPegsLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gameOverTitleText"/>
+
+
+        <include android:id="@+id/solutionPegsLayout"
+            layout="@layout/peg_row"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="@dimen/peg_layout_margin"
+            android:paddingStart="0dp"
+            android:paddingEnd="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gameOverMessageText"
+            />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
