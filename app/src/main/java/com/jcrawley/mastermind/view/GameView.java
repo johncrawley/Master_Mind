@@ -20,4 +20,5 @@ public interface GameView {
     void resetRowBackground(int index);
     void resetAllCluesIn(int index);
     void highlightAllRowsUpToAndIncluding(int rowNumber);
+    void notifyInitializationComplete();
 }

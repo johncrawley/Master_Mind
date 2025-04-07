@@ -49,16 +49,6 @@ public class GameService extends Service {
     }
 
 
-    @Override
-    public boolean onUnbind(Intent intent) {
-        return false;
-    }
-
-
-    @Override
-    public void onRebind(Intent intent) {
-    }
-
 
     @Override
     public void onDestroy() {

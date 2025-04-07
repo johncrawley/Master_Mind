@@ -26,6 +26,7 @@ public class GridWiper {
     private void resetRowAfterDelay(int index){
         if(index < 0){
             gameView.highlightRowBackground(0);
+            gameView.notifyInitializationComplete();
             game.enableUserInput();
             return;
         }
@@ -38,13 +39,13 @@ public class GridWiper {
 
 
     private void resetRow(int index){
-        resetAllPegsIn(index);
+        resetAllPegsInRow(index);
         gameView.resetAllCluesIn(index);
         gameView.resetRowBackground(index);
     }
 
 
-    private void resetAllPegsIn(int rowIndex) {
+    private void resetAllPegsInRow(int rowIndex) {
         for (int i = 0; i < game.getPegsPerRow(); i++) {
             gameView.setPegColor(rowIndex, i, PegColor.EMPTY);
         }

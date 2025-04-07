@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private int numberOfRows;
     private int pegsPerRow;
     private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
+    private boolean isInitialized;
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
             game.init();
             game.updateViewWithGameState();
         }
-
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
@@ -82,6 +82,12 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setupButtons();
         setupGameOverScreen();
         setupGameService();
+    }
+
+
+    @Override
+    public void notifyInitializationComplete(){
+        isInitialized = true;
     }
 
 
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private void setupColorButton(int buttonId, PegColor pegColor) {
         Button button = findViewById(buttonId);
         button.setOnClickListener((v -> {
-            if(game != null){
+            if(game != null && isInitialized){
                 game.addPegColorAtCurrentIndex(pegColor);
             }
         }));
@@ -246,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void resetAllRows(){
+        isInitialized = false;
         initGridWiper();
         gridWiper.resetAllRows();
     }

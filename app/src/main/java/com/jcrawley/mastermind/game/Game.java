@@ -24,11 +24,6 @@ public class Game {
     private GamePhase gamePhase = GamePhase.RUNNING;
 
 
-    public Game(){
-        System.out.println("^^^ Game:  entered Game()");
-    }
-
-
     public void init(){
         if(!isGameInProgress){
             setupNewGame();
@@ -150,7 +145,7 @@ public class Game {
 
 
     public boolean isUserInputEnabled(){
-        return isUserInputEnabled.get();
+        return isUserInputEnabled.get() && gamePhase == GamePhase.RUNNING;
     }
 
 
