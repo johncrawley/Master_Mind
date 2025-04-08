@@ -15,6 +15,7 @@ public interface GameView {
     void setPegColor(int row, int index, PegColor pegColor);
     void highlightRowBackground(int rowIndex);
     void resetAllRows();
+    void resetAllRowsInstantly();
     void setupSolutionPegs(List<PegColor> pegs);
 
     void resetRowBackground(int index);

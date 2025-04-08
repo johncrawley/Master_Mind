@@ -19,11 +19,16 @@ public class GridWiper {
 
 
     public void resetAllRows(){
-        resetRowAfterDelay(numberOfRows - 1);
+        resetRowAfterDelay(numberOfRows - 1, 90);
     }
 
 
-    private void resetRowAfterDelay(int index){
+    public void resetAllRowsInstantly(){
+        resetRowAfterDelay(numberOfRows - 1, 1);
+    }
+
+
+    private void resetRowAfterDelay(int index, int delayPerRow){
         if(index < 0){
             gameView.highlightRowBackground(0);
             gameView.notifyInitializationComplete();
@@ -33,8 +38,8 @@ public class GridWiper {
         new Handler(Looper.getMainLooper())
                 .postDelayed(()->{
                     resetRow(index);
-                    resetRowAfterDelay(index - 1);
-                }, 90);
+                    resetRowAfterDelay(index - 1, delayPerRow);
+                }, delayPerRow);
     }
 
 

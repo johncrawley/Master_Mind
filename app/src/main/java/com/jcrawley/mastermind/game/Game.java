@@ -26,7 +26,12 @@ public class Game {
 
     public void init(){
         if(!isGameInProgress){
+            gameView.resetAllRowsInstantly();
             setupNewGame();
+        }
+        else{
+            updateViewWithGameState();
+            gameView.notifyInitializationComplete();
         }
     }
 
@@ -115,7 +120,6 @@ public class Game {
 
 
     public void setupNewGame(){
-        gameView.resetAllRows();
         numberOfTries = 1;
         currentRow = 0;
         currentIndex = 0;

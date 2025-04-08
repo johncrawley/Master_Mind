@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private ViewGroup gameOverPanel;
     private TextView gameOverTitleText, gameOverMessageText;
     private GridWiper gridWiper;
-    private GameService gameService;
     private int numberOfRows;
     private int pegsPerRow;
     private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
@@ -47,14 +46,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
             GameService.LocalBinder binder = (GameService.LocalBinder) service;
-            gameService = binder.getService();
+            GameService gameService = binder.getService();
             gameService.setActivity(MainActivity.this);
             isServiceConnected.set(true);
             game = gameService.getGame();
             numberOfRows = game.getNumberOfRows();
             pegsPerRow = game.getPegsPerRow();
             game.init();
-            game.updateViewWithGameState();
         }
 
         @Override
@@ -120,9 +118,12 @@ public class MainActivity extends AppCompatActivity implements GameView {
         gameOverTitleText = findViewById(R.id.gameOverTitleText);
         gameOverMessageText = findViewById(R.id.gameOverMessageText);
 
-        gameOverPanel.setOnClickListener(v -> {
-            AnimationHelper.hidePanel(gameOverPanel, game::setupNewGame);
-        });
+        gameOverPanel.setOnClickListener(v ->
+            AnimationHelper.hidePanel(gameOverPanel, ()->{
+                resetAllRows();
+                game.setupNewGame();
+            })
+        );
     }
 
 
@@ -256,6 +257,15 @@ public class MainActivity extends AppCompatActivity implements GameView {
         initGridWiper();
         gridWiper.resetAllRows();
     }
+
+
+    @Override
+    public void resetAllRowsInstantly(){
+        isInitialized = false;
+        initGridWiper();
+        gridWiper.resetAllRowsInstantly();
+    }
+
 
 
     private void setPegColor(View pegView, int colorId) {
