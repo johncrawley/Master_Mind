@@ -11,6 +11,7 @@ public class AnimationHelper {
 
     public static void showPanel(View panel){
         var animation = new AlphaAnimation(0.0f, 1.0f);
+        panel.setZ(100);
         animation.setDuration(450);
         animation.setFillAfter(true);
         panel.setVisibility(VISIBLE);

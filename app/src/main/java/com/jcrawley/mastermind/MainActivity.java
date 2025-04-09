@@ -1,5 +1,7 @@
 package com.jcrawley.mastermind;
 
+import static android.view.View.VISIBLE;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -118,12 +120,17 @@ public class MainActivity extends AppCompatActivity implements GameView {
         gameOverTitleText = findViewById(R.id.gameOverTitleText);
         gameOverMessageText = findViewById(R.id.gameOverMessageText);
 
-        gameOverPanel.setOnClickListener(v ->
+        gameOverPanel.setOnClickListener(v -> {
+            if(gameOverPanel.getVisibility() != VISIBLE) {
+                return;
+            }
             AnimationHelper.hidePanel(gameOverPanel, ()->{
                 resetAllRows();
+                gameOverPanel.setZ(-1);
                 game.setupNewGame();
-            })
-        );
+            });
+        });
+
     }
 
 
