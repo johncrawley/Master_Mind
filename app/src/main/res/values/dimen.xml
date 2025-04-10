@@ -12,6 +12,7 @@
     <dimen name="game_over_panel_corner_radius">28dp</dimen>
     <dimen name="game_over_message_text_padding">18dp</dimen>
     <dimen name="game_over_panel_edge_width">4dp</dimen>
+    <dimen name="popup_panel_margin">12dp</dimen>
     <dimen name="game_over_panel_height">400dp</dimen>
     <dimen name="peg_padding">5dp</dimen>
     <dimen name="peg_view_margin">4dp</dimen>
@@ -25,5 +26,6 @@
     <dimen name="solution_peg_size">60dp</dimen>
     <dimen name="solution_peg_margin">8dp</dimen>
     <dimen name="solution_pegs_layout_margin">18dp</dimen>
+    <dimen name="clue_wrapper_padding">1dp</dimen>
 
 </resources>
