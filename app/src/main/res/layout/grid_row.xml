@@ -22,6 +22,7 @@
         />
 
     <include
+        layout="@layout/clue_row"
         android:id="@+id/cluesGrid"
         android:layout_width="0dp"
         android:layout_margin="@dimen/peg_layout_margin"
@@ -29,7 +30,6 @@
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        layout="@layout/clue_grid"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/pegRowLayout"

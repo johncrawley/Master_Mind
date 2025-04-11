@@ -234,10 +234,16 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private List<View> getClueViewsIn(ViewGroup row) {
-        return List.of(row.findViewById(R.id.clue1),
-                row.findViewById(R.id.clue2),
-                row.findViewById(R.id.clue3),
-                row.findViewById(R.id.clue4));
+        return List.of(getClueLayout(row,R.id.clue1),
+                getClueLayout(row, R.id.clue2),
+                getClueLayout(row, R.id.clue3),
+                getClueLayout(row, R.id.clue4));
+    }
+
+
+    private ViewGroup getClueLayout(ViewGroup row, int parentId){
+        ViewGroup parent = row.findViewById(parentId);
+        return parent.findViewById(R.id.clue);
     }
 
 

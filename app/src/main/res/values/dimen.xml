@@ -27,5 +27,6 @@
     <dimen name="solution_peg_margin">8dp</dimen>
     <dimen name="solution_pegs_layout_margin">18dp</dimen>
     <dimen name="clue_wrapper_padding">1dp</dimen>
+    <dimen name="clue_margin">1dp</dimen>
 
 </resources>
