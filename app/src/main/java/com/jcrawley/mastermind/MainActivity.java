@@ -1,7 +1,5 @@
 package com.jcrawley.mastermind;
 
-import static android.view.View.VISIBLE;
-
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -11,7 +9,6 @@ import android.os.IBinder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
@@ -24,7 +21,7 @@ import com.jcrawley.mastermind.game.Clue;
 import com.jcrawley.mastermind.game.Game;
 import com.jcrawley.mastermind.game.PegColor;
 import com.jcrawley.mastermind.service.GameService;
-import com.jcrawley.mastermind.view.AnimationHelper;
+import com.jcrawley.mastermind.view.GameOverHelper;
 import com.jcrawley.mastermind.view.GameView;
 import com.jcrawley.mastermind.view.GridWiper;
 
@@ -35,13 +32,12 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     ViewGroup gameLayout;
     private Game game;
-    private ViewGroup gameOverPanel;
-    private TextView gameOverTitleText, gameOverMessageText;
     private GridWiper gridWiper;
     private int numberOfRows;
     private int pegsPerRow;
     private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
     private boolean isInitialized;
+    private GameOverHelper gameOverHelper;
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -80,8 +76,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setupLayout();
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
-        setupGameOverScreen();
+        gameOverHelper = new GameOverHelper(this);
         setupGameService();
+    }
+
+
+    public Game getGame(){
+        return game;
     }
 
 
@@ -115,25 +116,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupGameOverScreen() {
-        gameOverPanel = findViewById(R.id.gameOverPanelInclude);
-        gameOverTitleText = findViewById(R.id.gameOverTitleText);
-        gameOverMessageText = findViewById(R.id.gameOverMessageText);
-
-        gameOverPanel.setOnClickListener(v -> {
-            if(gameOverPanel.getVisibility() != VISIBLE) {
-                return;
-            }
-            AnimationHelper.hidePanel(gameOverPanel, ()->{
-                resetAllRows();
-                gameOverPanel.setZ(-1);
-                game.setupNewGame();
-            });
-        });
-
-    }
-
-
     private void setupButtons() {
         setupColorButton(R.id.redButton, PegColor.RED);
         setupColorButton(R.id.blueButton, PegColor.BLUE);
@@ -158,27 +140,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void showBadGameOver() {
-        gameOverMessageText.setText(R.string.game_over_message_fail);
-        gameOverTitleText.setText(R.string.game_over_title);
-        AnimationHelper.showPanel(gameOverPanel);
+        gameOverHelper.showBadGameOver();
     }
 
 
     @Override
     public void showGoodGameOver(int numberOfTries) {
-        gameOverTitleText.setText(R.string.game_over_title_success);
-        showSuccessMessage(numberOfTries);
-        AnimationHelper.showPanel(gameOverPanel);
-    }
-
-
-    private void showSuccessMessage(int numberOfTries) {
-        if (numberOfTries == 1) {
-            gameOverMessageText.setText(R.string.number_of_tries_one);
-        } else {
-            var msg = getString(R.string.number_of_tries, numberOfTries);
-            gameOverMessageText.setText(msg);
-        }
+        gameOverHelper.showGoodGameOver(numberOfTries);
     }
 
 
