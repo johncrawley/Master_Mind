@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Turbo Master Mind</string>
+    <string name="created_by">Created by John Crawley, 2025</string>
+    <string name="clues_tip_green">a peg is the correct colour and the correct place</string>
+    <string name="clues_tip_yellow">a peg is the correct colour but the incorrect place</string>
+    <string name="colors_tip">Tip: the solution might contain more than one peg of the same colour</string>
     <string name="game_over_title"> GAME OVER </string>
     <string name="number_of_tries"> You found the solution in %1$d tries!</string>
     <string name="number_of_tries_one"> Wow! You found the solution on your first guess!</string>
