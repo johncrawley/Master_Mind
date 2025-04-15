@@ -29,4 +29,9 @@
     <dimen name="clue_wrapper_padding">1dp</dimen>
     <dimen name="clue_margin">1dp</dimen>
 
+
+    <dimen name="about_game_name_text_size">24sp</dimen>
+    <dimen name="about_create_by_text_size">22sp</dimen>
+    <dimen name="about_tip_text_size">18sp</dimen>
+
 </resources>

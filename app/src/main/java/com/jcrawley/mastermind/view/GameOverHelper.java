@@ -41,7 +41,7 @@ public class GameOverHelper {
     private void setupGameOverScreen() {
         gameOverPanel = mainActivity.findViewById(R.id.gameOverPanelInclude);
         gameOverTitleText = mainActivity.findViewById(R.id.gameOverTitleText);
-        gameOverMessageText = mainActivity.findViewById(R.id.gameOverMessageText);
+        gameOverMessageText = mainActivity.findViewById(R.id.createdByText);
         if(gameOverPanel == null){
             return;
         }
