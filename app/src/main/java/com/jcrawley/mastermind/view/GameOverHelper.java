@@ -8,6 +8,10 @@ import android.widget.TextView;
 import com.jcrawley.mastermind.MainActivity;
 import com.jcrawley.mastermind.R;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GameOverHelper {
@@ -16,15 +20,19 @@ public class GameOverHelper {
     private TextView gameOverTitleText, gameOverMessageText;
     private final MainActivity mainActivity;
     private final AtomicBoolean hasGameOverBeenDismissed = new AtomicBoolean(false);
+    private final AtomicBoolean isDismissTimerActive = new AtomicBoolean(false);
+    private ScheduledExecutorService executor;
 
 
     public GameOverHelper(MainActivity mainActivity){
         this.mainActivity = mainActivity;
         setupGameOverScreen();
+        executor = Executors.newSingleThreadScheduledExecutor();
     }
 
 
     public void showBadGameOver() {
+        startDismissTimer();
         gameOverMessageText.setText(R.string.game_over_message_fail);
         gameOverTitleText.setText(R.string.game_over_title);
         AnimationHelper.showPanel(gameOverPanel);
@@ -32,9 +40,16 @@ public class GameOverHelper {
 
 
     public void showGoodGameOver(int numberOfTries) {
+        startDismissTimer();
         gameOverTitleText.setText(R.string.game_over_title_success);
         showSuccessMessage(numberOfTries);
         AnimationHelper.showPanel(gameOverPanel);
+    }
+
+
+    private void startDismissTimer(){
+        isDismissTimerActive.set(true);
+        executor.schedule(()-> isDismissTimerActive.set(false), 1, TimeUnit.SECONDS);
     }
 
 
@@ -50,7 +65,9 @@ public class GameOverHelper {
 
 
     private void dismissGameOver(){
-        if(hasGameOverBeenDismissed.get() || gameOverPanel.getVisibility() != VISIBLE){
+        if(hasGameOverBeenDismissed.get()
+                || gameOverPanel.getVisibility() != VISIBLE
+                || isDismissTimerActive.get()){
             return;
         }
         hasGameOverBeenDismissed.set(true);
