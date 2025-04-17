@@ -5,10 +5,11 @@ import static android.view.View.VISIBLE;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
+
 import com.jcrawley.mastermind.MainActivity;
 import com.jcrawley.mastermind.R;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -21,13 +22,26 @@ public class GameOverHelper {
     private final MainActivity mainActivity;
     private final AtomicBoolean hasGameOverBeenDismissed = new AtomicBoolean(false);
     private final AtomicBoolean isDismissTimerActive = new AtomicBoolean(false);
-    private ScheduledExecutorService executor;
+    private final ScheduledExecutorService executor;
+    private OnBackPressedCallback dismissPanelOnBackPressedCallback;
 
 
     public GameOverHelper(MainActivity mainActivity){
         this.mainActivity = mainActivity;
         setupGameOverScreen();
         executor = Executors.newSingleThreadScheduledExecutor();
+        setupDismissSearchOnBackPressed();
+    }
+
+
+    private void setupDismissSearchOnBackPressed(){
+        dismissPanelOnBackPressedCallback = new OnBackPressedCallback(false) {
+            @Override
+            public void handleOnBackPressed() {
+                dismissGameOver();
+            }
+        };
+        mainActivity.getOnBackPressedDispatcher().addCallback(mainActivity, dismissPanelOnBackPressedCallback);
     }
 
 
@@ -36,6 +50,7 @@ public class GameOverHelper {
         gameOverMessageText.setText(R.string.game_over_message_fail);
         gameOverTitleText.setText(R.string.game_over_title);
         AnimationHelper.showPanel(gameOverPanel);
+        dismissPanelOnBackPressedCallback.setEnabled(true);
     }
 
 
@@ -44,6 +59,7 @@ public class GameOverHelper {
         gameOverTitleText.setText(R.string.game_over_title_success);
         showSuccessMessage(numberOfTries);
         AnimationHelper.showPanel(gameOverPanel);
+        dismissPanelOnBackPressedCallback.setEnabled(true);
     }
 
 
@@ -79,6 +95,7 @@ public class GameOverHelper {
                 game.setupNewGame();
             }
             hasGameOverBeenDismissed.set(false);
+            dismissPanelOnBackPressedCallback.setEnabled(false);
         });
 
     }
