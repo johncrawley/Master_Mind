@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -79,6 +80,17 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setupButtons();
         gameOverHelper = new GameOverHelper(this);
         setupGameService();
+    }
+
+    private void setupInfoButton(){
+        ImageButton infoButton = findViewById(R.id.infoButton);
+        infoButton.setOnClickListener((v)->{
+            showInfoPanel();
+        });
+    }
+
+    private void showInfoPanel(){
+
     }
 
 

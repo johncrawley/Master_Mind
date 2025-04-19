@@ -43,9 +43,11 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/infoButton"
+        android:contentDescription="@string/button_image_desc_info"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_margin="@dimen/info_button_margin_portrait"
         android:backgroundTint="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

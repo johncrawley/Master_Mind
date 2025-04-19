@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Classic Mastermind</string>
-    <string name="about_game_name_and_version">Classic Mastermind V1.0</string>
+    <string name="app_name">Classic Master Mind</string>
+    <string name="about_game_name_and_version">Classic Master Mind V1.0</string>
     <string name="about_created_by">Created by John Crawley, 2025</string>
     <string name="clues_tip_green">a peg is the correct colour and the correct place</string>
     <string name="clues_tip_yellow">a peg is the correct colour but the incorrect place</string>
@@ -19,4 +19,6 @@
     <string name="button_image_desc_purple">Purple</string>
     <string name="button_image_desc_brown">Brown</string>
     <string name="button_image_desc_orange">Orange</string>
+
+    <string name="button_image_desc_info">About Classic Master Mind</string>
 </resources>
