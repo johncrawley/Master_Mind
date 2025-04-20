@@ -42,6 +42,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+
+    <include layout="@layout/about_panel"
+        android:id="@+id/infoPanelInclude"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <ImageButton
         android:id="@+id/infoButton"
         android:contentDescription="@string/button_image_desc_info"

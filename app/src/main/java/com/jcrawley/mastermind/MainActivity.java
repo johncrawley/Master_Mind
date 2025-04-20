@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -26,6 +25,7 @@ import com.jcrawley.mastermind.service.GameService;
 import com.jcrawley.mastermind.view.GameOverHelper;
 import com.jcrawley.mastermind.view.GameView;
 import com.jcrawley.mastermind.view.GridWiper;
+import com.jcrawley.mastermind.view.InfoPanelHelper;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
     private boolean isInitialized;
     private GameOverHelper gameOverHelper;
+    private InfoPanelHelper infoPanelHelper;
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -79,19 +80,17 @@ public class MainActivity extends AppCompatActivity implements GameView {
         gameLayout = findViewById(R.id.gameGridLayout);
         setupButtons();
         gameOverHelper = new GameOverHelper(this);
+        infoPanelHelper = new InfoPanelHelper(this);
         setupGameService();
+        setupInfoButton();
     }
+
 
     private void setupInfoButton(){
         ImageButton infoButton = findViewById(R.id.infoButton);
-        infoButton.setOnClickListener((v)->{
-            showInfoPanel();
-        });
+        infoButton.setOnClickListener((v)-> infoPanelHelper.showPanel());
     }
 
-    private void showInfoPanel(){
-
-    }
 
 
     public Game getGame(){

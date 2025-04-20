@@ -17,10 +17,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GameOverHelper {
 
-    private ViewGroup gameOverPanel;
+    private ViewGroup panel;
     private TextView gameOverTitleText, gameOverMessageText;
     private final MainActivity mainActivity;
-    private final AtomicBoolean hasGameOverBeenDismissed = new AtomicBoolean(false);
+    private final AtomicBoolean hasPanelBeenDismissed = new AtomicBoolean(false);
     private final AtomicBoolean isDismissTimerActive = new AtomicBoolean(false);
     private final ScheduledExecutorService executor;
     private OnBackPressedCallback dismissPanelOnBackPressedCallback;
@@ -38,7 +38,7 @@ public class GameOverHelper {
         dismissPanelOnBackPressedCallback = new OnBackPressedCallback(false) {
             @Override
             public void handleOnBackPressed() {
-                dismissGameOver();
+                dismissPanel();
             }
         };
         mainActivity.getOnBackPressedDispatcher().addCallback(mainActivity, dismissPanelOnBackPressedCallback);
@@ -49,7 +49,7 @@ public class GameOverHelper {
         startDismissTimer();
         gameOverMessageText.setText(R.string.game_over_message_fail);
         gameOverTitleText.setText(R.string.game_over_title);
-        AnimationHelper.showPanel(gameOverPanel);
+        AnimationHelper.showPanel(panel);
         dismissPanelOnBackPressedCallback.setEnabled(true);
     }
 
@@ -58,7 +58,7 @@ public class GameOverHelper {
         startDismissTimer();
         gameOverTitleText.setText(R.string.game_over_title_success);
         showSuccessMessage(numberOfTries);
-        AnimationHelper.showPanel(gameOverPanel);
+        AnimationHelper.showPanel(panel);
         dismissPanelOnBackPressedCallback.setEnabled(true);
     }
 
@@ -70,34 +70,36 @@ public class GameOverHelper {
 
 
     private void setupGameOverScreen() {
-        gameOverPanel = mainActivity.findViewById(R.id.gameOverPanelInclude);
+        panel = mainActivity.findViewById(R.id.gameOverPanelInclude);
         gameOverTitleText = mainActivity.findViewById(R.id.gameOverTitleText);
         gameOverMessageText = mainActivity.findViewById(R.id.createdByText);
-        if(gameOverPanel == null){
+        if(panel == null){
             return;
         }
-        gameOverPanel.setOnClickListener(v -> dismissGameOver());
+        panel.setOnClickListener(v -> dismissPanel());
     }
 
 
-    private void dismissGameOver(){
-        if(hasGameOverBeenDismissed.get()
-                || gameOverPanel.getVisibility() != VISIBLE
+    private void dismissPanel(){
+        if(hasPanelBeenDismissed.get()
+                || panel.getVisibility() != VISIBLE
                 || isDismissTimerActive.get()){
             return;
         }
-        hasGameOverBeenDismissed.set(true);
-        AnimationHelper.hidePanel(gameOverPanel, ()->{
-            mainActivity.resetAllRows();
-            gameOverPanel.setZ(-1);
-            var game = mainActivity.getGame();
-            if(game != null){
-                game.setupNewGame();
-            }
-            hasGameOverBeenDismissed.set(false);
-            dismissPanelOnBackPressedCallback.setEnabled(false);
-        });
+        hasPanelBeenDismissed.set(true);
+        AnimationHelper.hidePanel(panel, this::afterDismissed);
+    }
 
+
+    private void afterDismissed(){
+        mainActivity.resetAllRows();
+        panel.setZ(-1);
+        var game = mainActivity.getGame();
+        if(game != null){
+            game.setupNewGame();
+        }
+        hasPanelBeenDismissed.set(false);
+        dismissPanelOnBackPressedCallback.setEnabled(false);
     }
 
 
