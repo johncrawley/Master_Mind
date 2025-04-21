@@ -36,5 +36,7 @@
     <dimen name="about_game_name_text_size">24sp</dimen>
     <dimen name="about_create_by_text_size">22sp</dimen>
     <dimen name="about_tip_text_size">18sp</dimen>
+    <dimen name="clue_tip_text_size">14sp</dimen>
+    <dimen name="clue_tip_padding">12dp</dimen>
 
 </resources>

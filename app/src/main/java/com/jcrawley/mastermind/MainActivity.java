@@ -22,10 +22,10 @@ import com.jcrawley.mastermind.game.Clue;
 import com.jcrawley.mastermind.game.Game;
 import com.jcrawley.mastermind.game.PegColor;
 import com.jcrawley.mastermind.service.GameService;
-import com.jcrawley.mastermind.view.GameOverHelper;
+import com.jcrawley.mastermind.view.panel.GameOverHelper;
 import com.jcrawley.mastermind.view.GameView;
 import com.jcrawley.mastermind.view.GridWiper;
-import com.jcrawley.mastermind.view.InfoPanelHelper;
+import com.jcrawley.mastermind.view.panel.InfoPanelHelper;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

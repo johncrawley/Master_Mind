@@ -1,4 +1,4 @@
-package com.jcrawley.mastermind.view;
+package com.jcrawley.mastermind.view.panel;
 
 import static android.view.View.VISIBLE;
 
@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback;
 
 import com.jcrawley.mastermind.MainActivity;
 import com.jcrawley.mastermind.R;
+import com.jcrawley.mastermind.view.AnimationHelper;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

@@ -58,7 +58,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gameOverTitleText"/>
 
-
             <include android:id="@+id/solutionPegsLayout"
                 layout="@layout/peg_row"
                 android:layout_width="wrap_content"

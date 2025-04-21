@@ -54,22 +54,34 @@
                 android:shadowDx="2"
                 android:shadowRadius="12"
                 android:text="@string/about_created_by"
-                app:layout_constraintBottom_toTopOf="@id/solutionPegsLayout"
+                app:layout_constraintBottom_toTopOf="@id/clueTip1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gameText"/>
 
 
-            <include android:id="@+id/solutionPegsLayout"
-                layout="@layout/peg_row"
+            <include android:id="@+id/clueTip1"
+                layout="@layout/about_clue_tip"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/peg_layout_margin"
-                android:paddingStart="0dp"
-                android:paddingEnd="18dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="@dimen/clue_tip_padding"
+                app:layout_constraintBottom_toTopOf="@id/clueTip2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/createdByText"
+                />
+
+
+            <include android:id="@+id/clueTip2"
+                layout="@layout/about_clue_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/peg_layout_margin"
+                android:padding="@dimen/clue_tip_padding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clueTip1"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
