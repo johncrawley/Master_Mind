@@ -31,33 +31,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_game_name_and_version"
+                android:padding="@dimen/panel_text_padding"
                 android:textAlignment="center"
                 android:textColor="@color/game_over_text"
                 android:shadowColor="@color/black"
                 android:shadowRadius="5"
-                android:textSize="@dimen/game_over_title_text_size"
+                android:textSize="@dimen/about_app_name_text_size"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/createdByText"
+                app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/createdByText"
+                android:id="@+id/gameOverMessageText"
                 android:layout_width="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/game_over_text"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/game_over_message_text_padding"
                 android:maxLines="2"
-                android:textSize="@dimen/game_over_message_text_size"
+                android:padding="@dimen/panel_text_padding"
                 android:shadowColor="@color/black"
                 android:shadowDx="2"
                 android:shadowRadius="12"
                 android:text="@string/about_created_by"
+                android:textAlignment="center"
+                android:textColor="@color/game_over_text"
+                android:textSize="@dimen/about_created_by_text_size"
                 app:layout_constraintBottom_toTopOf="@id/clueTip1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gameText"/>
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gameText" />
 
             <include android:id="@+id/clueTip1"
                 layout="@layout/about_clue_tip"
@@ -68,9 +69,8 @@
                 app:layout_constraintBottom_toTopOf="@id/clueTip2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/createdByText"
+                app:layout_constraintTop_toBottomOf="@id/gameOverMessageText"
                 />
-
 
             <include android:id="@+id/clueTip2"
                 layout="@layout/about_clue_tip"

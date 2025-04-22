@@ -37,12 +37,12 @@
                 android:shadowRadius="5"
                 android:textSize="@dimen/game_over_title_text_size"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/createdByText"
+                app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/createdByText"
+                android:id="@+id/gameOverMessageText"
                 android:layout_width="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/game_over_text"
@@ -54,22 +54,32 @@
                 android:shadowDx="2"
                 android:shadowRadius="12"
                 android:text="@string/game_over_message_fail"
-                app:layout_constraintBottom_toTopOf="@id/solutionPegsLayout"
+                app:layout_constraintBottom_toTopOf="@id/solutionWrapper"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gameOverTitleText"/>
 
-            <include android:id="@+id/solutionPegsLayout"
-                layout="@layout/peg_row"
+            <LinearLayout
+                android:id="@+id/solutionWrapper"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_margin="@dimen/peg_layout_margin"
-                android:paddingStart="0dp"
-                android:paddingEnd="18dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/solution_wrapper_padding"
+                android:orientation="horizontal"
+                android:background="@drawable/solution_wrapper"
+                android:layout_margin="@dimen/solution_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/createdByText"
-                />
+                app:layout_constraintTop_toBottomOf="@id/gameOverMessageText">
+
+                <include android:id="@+id/solutionPegsLayout"
+                    layout="@layout/peg_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/solution_height"
+                    />
+
+            </LinearLayout>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

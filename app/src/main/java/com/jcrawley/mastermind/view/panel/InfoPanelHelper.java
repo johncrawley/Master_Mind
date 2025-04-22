@@ -37,10 +37,31 @@ public class InfoPanelHelper {
 
 
     private void setupPanelDetails(){
-        ViewGroup clueTip1= mainActivity.findViewById(R.id.clueTip1);
-        TextView clueText = clueTip1.findViewById(R.id.clueTipText);
-        clueText.setText(R.string.clues_tip_green);
+        setupClueTip(R.id.clueTip1, R.string.clues_tip_green, R.color.clue_bull);
+        setupClueTip(R.id.clueTip2, R.string.clues_tip_yellow, R.color.clue_cow);
     }
+
+
+    private void setupClueTip(int parentId, int strId, int colorId){
+        ViewGroup parent = mainActivity.findViewById(parentId);
+        setupClueTipColor(parent, colorId);
+        setupClueTipText(parent, strId);
+    }
+
+
+    private void setupClueTipColor(ViewGroup parent, int colorId){
+        ViewGroup clue = parent.findViewById(R.id.clue);
+        int color = mainActivity.getColor(colorId);
+        clue.setBackgroundColor(color);
+    }
+
+
+    private void setupClueTipText(ViewGroup parent, int strId){
+        TextView clueText = parent.findViewById(R.id.clueTipText);
+        String str = mainActivity.getString(strId);
+        clueText.setText(str);
+    }
+
 
     public void showPanel() {
         startDismissTimer();

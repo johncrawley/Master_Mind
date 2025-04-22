@@ -11,21 +11,23 @@
     <color name="game_blue">#3343BC</color>
     <color name="game_green">#29902F</color>
     <color name="game_orange">#EF6C00</color>
-    <color name="game_purple">#7116A8</color>
+    <color name="game_purple">#7C1BB6</color>
     <color name="game_yellow">#FAD53D</color>
     <color name="game_pink">#E16DFF</color>
-    <color name="game_brown">#6F3B13</color>
+    <color name="game_brown">#7C4115</color>
 
     <color name="pane_background">#5B5757</color>
     <color name="background">#000</color>
+    <color name="solution_background">#757474</color>
     <color name="highlighted_row_background">#8E8C8C</color>
     <color name="clue_default_background">#000000</color>
     <color name="clue_cow">#C7C52B</color>
     <color name="clue_bull">#2E7D32</color>
     <color name="peg_default_background">#000000</color>
-    <color name="game_over_panel_background">#717070</color>
+    <color name="panel_background">#353434</color>
     <color name="game_over_panel_edge">#BAB8B8</color>
     <color name="game_over_text">#FFB300</color>
+    <color name="clue_tip_text">#D1BC6E</color>
 
     <color name="popup_background">#77000000</color>
 </resources>
