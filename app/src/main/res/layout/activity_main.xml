@@ -4,65 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
     android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:layout_marginBottom="12dp"
+    android:layout_gravity="center"
     android:background="@color/background"
     tools:context=".MainActivity">
 
-    <include layout="@layout/game_grid"
+    <include
         android:id="@+id/gameGridInclude"
+        layout="@layout/game_grid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.80"
+        app:layout_constraintBottom_toTopOf="@id/buttonPanelInclude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/infoButton" />
+
+    <include
+        android:id="@+id/buttonPanelInclude"
+        layout="@layout/button_panel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/game_grid_margin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/buttonPanelInclude"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <include layout="@layout/button_panel"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/button_panel_margin_horizontal"
         android:layout_marginTop="@dimen/button_panel_margin_top"
         android:layout_marginBottom="@dimen/button_panel_margin_bottom"
-       android:id="@+id/buttonPanelInclude"
-       app:layout_constraintTop_toBottomOf="@id/gameGridInclude"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent"/>
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameGridInclude"
+        />
 
-    <include layout="@layout/game_over_panel"
+    <include
         android:id="@+id/gameOverPanelInclude"
-        android:visibility="gone"
+        layout="@layout/game_over_panel"
         android:layout_width="match_parent"
-        app:layout_constraintWidth_percent="0.8"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
 
 
-    <include layout="@layout/about_panel"
+    <include
         android:id="@+id/infoPanelInclude"
-        android:visibility="gone"
+        layout="@layout/about_panel"
         android:layout_width="match_parent"
-        app:layout_constraintWidth_percent="0.8"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
 
     <ImageButton
         android:id="@+id/infoButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:backgroundTint="@color/transparent"
         android:contentDescription="@string/button_image_desc_info"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="@dimen/info_button_margin_portrait"
-        android:backgroundTint="@color/background"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

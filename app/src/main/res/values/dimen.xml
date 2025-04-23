@@ -3,7 +3,7 @@
     <dimen name="peg_layout_margin">8dp</dimen>
 
     <dimen name="game_grid_margin">4dp</dimen>
-    <dimen name="button_panel_margin_horizontal">12dp</dimen>
+    <dimen name="button_panel_margin_horizontal">18dp</dimen>
     <dimen name="button_panel_margin_top">4dp</dimen>
     <dimen name="button_panel_margin_bottom">12dp</dimen>
 
@@ -13,17 +13,12 @@
     <dimen name="game_over_message_text_padding">18dp</dimen>
     <dimen name="game_over_panel_edge_width">4dp</dimen>
     <dimen name="popup_panel_margin">12dp</dimen>
-    <dimen name="game_over_panel_height">400dp</dimen>
     <dimen name="peg_padding">5dp</dimen>
     <dimen name="peg_view_margin">4dp</dimen>
 
     <dimen name="game_over_title_text_size">48sp</dimen>
     <dimen name="game_over_message_text_size">26sp</dimen>
-    <dimen name="button_width">64dp</dimen>
-    <dimen name="button_height">64dp</dimen>
-    <dimen name="color_button_corner">32dp</dimen>
     <dimen name="color_button_margin">4dp</dimen>
-    <dimen name="solution_peg_size">60dp</dimen>
     <dimen name="solution_peg_margin">8dp</dimen>
     <dimen name="solution_wrapper_padding">4dp</dimen>
     <dimen name="solution_margin">12dp</dimen>
@@ -32,7 +27,6 @@
     <dimen name="solution_height">60dp</dimen>
     <dimen name="clue_wrapper_padding">1dp</dimen>
     <dimen name="clue_margin">1dp</dimen>
-
 
     <dimen name="info_button_margin_portrait">8dp</dimen>
     <dimen name="info_button_margin_landscape">12dp</dimen>
@@ -43,5 +37,12 @@
     <dimen name="about_tip_text_size">18sp</dimen>
     <dimen name="clue_tip_text_size">14sp</dimen>
     <dimen name="clue_tip_padding">12dp</dimen>
+
+
+    <!-- Non dynamic -->
+    <dimen name="button_width">0dp</dimen>
+    <dimen name="button_height">0dp</dimen>
+    <dimen name="color_button_corner">32dp</dimen>
+
 
 </resources>
