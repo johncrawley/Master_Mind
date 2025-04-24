@@ -1,115 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/buttonLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:id="@+id/buttonLayout">
+    android:layout_gravity="center"
+    android:background="@color/background">
 
 
-    <LinearLayout
-        android:weightSum="10"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/redButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="@dimen/color_button_margin"
+        android:backgroundTint="@color/game_red"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/blueButton"
+        app:layout_constraintEnd_toStartOf="@id/brownButton"
+        />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/redButton"
-            android:backgroundTint="@color/game_red"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/blueButton"
-            android:backgroundTint="@color/game_blue"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/blueButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="@dimen/color_button_margin"
+        app:layout_constraintDimensionRatio="1:1"
+        android:backgroundTint="@color/game_blue"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintBottom_toTopOf="@+id/greenButton"
+        app:layout_constraintEnd_toStartOf="@+id/orangeButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/redButton" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/greenButton"
-            android:backgroundTint="@color/game_green"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/greenButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:backgroundTint="@color/game_green"
+        android:layout_margin="@dimen/color_button_margin"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toTopOf="@+id/yellowButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/pinkButton"
+        app:layout_constraintTop_toBottomOf="@id/blueButton" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/yellowButton"
-            android:backgroundTint="@color/game_yellow"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
-    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/yellowButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:backgroundTint="@color/game_yellow"
+        android:layout_margin="@dimen/color_button_margin"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/purpleButton"
+        app:layout_constraintTop_toBottomOf="@id/greenButton" />
 
-    <LinearLayout
-        android:weightSum="10"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/brownButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:backgroundTint="@color/game_brown"
+        android:layout_margin="@dimen/color_button_margin"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/brownButton"
-            android:backgroundTint="@color/game_brown"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/orangeButton"
-            android:backgroundTint="@color/game_orange"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/orangeButton"
+        app:layout_constraintStart_toEndOf="@id/redButton" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/pinkButton"
-            android:backgroundTint="@color/game_pink"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/orangeButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="@dimen/color_button_margin"
+        android:backgroundTint="@color/game_orange"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toTopOf="@id/pinkButton"
+        app:layout_constraintTop_toBottomOf="@+id/brownButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/blueButton" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/purpleButton"
-            android:backgroundTint="@color/game_purple"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            app:cornerRadius="@dimen/color_button_corner"
-            android:layout_margin="@dimen/color_button_margin"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:scaleType="centerInside" />
-    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pinkButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="@dimen/color_button_margin"
+        android:backgroundTint="@color/game_pink"
+        android:contentDescription="@string/button_image_desc_pink"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/orangeButton"
+        app:layout_constraintStart_toEndOf="@+id/greenButton"
+        app:layout_constraintBottom_toTopOf="@id/purpleButton"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/purpleButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_margin="@dimen/color_button_margin"
+        android:backgroundTint="@color/game_purple"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:scaleType="centerInside"
+        app:cornerRadius="@dimen/color_button_corner"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/pinkButton"
+        app:layout_constraintStart_toEndOf="@id/yellowButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
