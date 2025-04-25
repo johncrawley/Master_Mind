@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="@dimen/_12sdp"
     android:layout_gravity="center"
     android:background="@color/background"
     tools:context=".MainActivity">
@@ -28,9 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/button_panel_margin_horizontal"
-        android:layout_marginTop="@dimen/button_panel_margin_top"
-        android:layout_marginBottom="@dimen/button_panel_margin_bottom"
-        android:padding="12dp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:padding="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.15"
@@ -65,8 +65,8 @@
 
     <ImageButton
         android:id="@+id/infoButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:backgroundTint="@color/transparent"
         android:contentDescription="@string/button_image_desc_info"
         app:layout_constraintStart_toStartOf="parent"

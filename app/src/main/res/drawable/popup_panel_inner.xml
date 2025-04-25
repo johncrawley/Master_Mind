@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="@dimen/game_over_panel_corner_radius" />
-    <stroke android:width="@dimen/game_over_panel_edge_width" android:color="@color/game_over_panel_edge"/>
+    <corners android:radius="@dimen/_28sdp" />
+    <stroke android:width="@dimen/_4sdp" android:color="@color/game_over_panel_edge"/>
 
     <solid android:color="@color/panel_background" />
 </shape>

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:layout_margin="18dp"
+        android:layout_margin="@dimen/_12sdp"
         android:weightSum="10"
         android:id="@+id/gameGridLayout"
         android:orientation="vertical"

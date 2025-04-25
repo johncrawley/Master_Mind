@@ -27,6 +27,7 @@
     <dimen name="solution_height">60dp</dimen>
     <dimen name="clue_wrapper_padding">1dp</dimen>
     <dimen name="clue_margin">1dp</dimen>
+    <dimen name="clue_layout_margin">2dp</dimen>
 
     <dimen name="info_button_margin_portrait">8dp</dimen>
     <dimen name="info_button_margin_landscape">12dp</dimen>
