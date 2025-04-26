@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Master Mind Classique</string>
+    <string name="about_game_name_and_version">Master Mind Classique v1.0</string>
+    <string name="about_created_by">Créé par Jim Cranley, 2025</string>
+    <string name="clues_tip_green">l\'une des sélections a la bonne couleur et la bonne position</string>
+    <string name="clues_tip_yellow">l\'une des sélections a la bonne couleur mais est à la mauvaise position</string>
+    <string name="colors_tip">Astuce : la solution peut contenir plusieurs pions de la même couleur</string>
+    <string name="game_over_title">PARTIE TERMINÉE</string>
+    <string name="number_of_tries">Vous avez trouvé la solution en %1$d essais !</string>
+    <string name="number_of_tries_one">Chanceux ! Vous avez trouvé la solution dès votre première tentative !</string>
+    <string name="game_over_message_fail">La bonne réponse était :</string>
+    <string name="game_over_title_success">BRAVO !</string>
+    <string name="button_image_desc_yellow">Jaune</string>
+    <string name="button_image_desc_blue">Bleu</string>
+    <string name="button_image_desc_red">Rouge</string>
+    <string name="button_image_desc_green">Vert</string>
+    <string name="button_image_desc_pink">Rose</string>
+    <string name="button_image_desc_purple">Violet</string>
+    <string name="button_image_desc_brown">Marron</string>
+    <string name="button_image_desc_orange">Orange</string>
+    <string name="button_image_desc_info">À propos de Master Mind Classique</string>
+</resources>

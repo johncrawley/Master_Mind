@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Master Mind Clásico</string>
+    <string name="about_game_name_and_version">Master Mind Clásico v1.0</string>
+    <string name="about_created_by">Creado por Jim Cranley, 2025</string>
+    <string name="clues_tip_green">una de las elecciones tiene el color correcto y la posición correcta</string>
+    <string name="clues_tip_yellow">una de las elecciones tiene el color correcto pero está en la posición incorrecta</string>
+    <string name="colors_tip">Consejo: la solución puede contener más de una ficha del mismo color</string>
+    <string name="game_over_title">FIN DEL JUEGO</string>
+    <string name="number_of_tries">¡Encontraste la solución en %1$d intentos!</string>
+    <string name="number_of_tries_one">¡Suerte! ¡Encontraste la solución en tu primer intento!</string>
+    <string name="game_over_message_fail">La respuesta correcta era:</string>
+    <string name="game_over_title_success">¡BIEN HECHO!</string>
+    <string name="button_image_desc_yellow">Amarillo</string>
+    <string name="button_image_desc_blue">Azul</string>
+    <string name="button_image_desc_red">Rojo</string>
+    <string name="button_image_desc_green">Verde</string>
+    <string name="button_image_desc_pink">Rosa</string>
+    <string name="button_image_desc_purple">Morado</string>
+    <string name="button_image_desc_brown">Marrón</string>
+    <string name="button_image_desc_orange">Naranja</string>
+    <string name="button_image_desc_info">Acerca de Master Mind Clásico</string>
+</resources>

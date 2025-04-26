@@ -53,11 +53,6 @@ public class GameGrid {
     }
 
 
-    public PegColor getPegColorAt(int rowIndex, int columnIndex){
-        return gameRows.get(rowIndex).getPegColors().get(columnIndex);
-    }
-
-
     public List<PegColor> getSolutionPegs(){
         return new ArrayList<>(solutionPegs);
     }

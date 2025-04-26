@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Master Mind Classico</string>
+    <string name="about_game_name_and_version">Master Mind Classico v1.0</string>
+    <string name="about_created_by">Creato da Jim Cranley, 2025</string>
+    <string name="clues_tip_green">una delle scelte ha il colore corretto e la posizione corretta</string>
+    <string name="clues_tip_yellow">una delle scelte ha il colore corretto ma è nella posizione sbagliata</string>
+    <string name="colors_tip">Suggerimento: la soluzione potrebbe contenere più pioli dello stesso colore</string>
+    <string name="game_over_title">FINE DEL GIOCO</string>
+    <string name="number_of_tries">Hai trovato la soluzione in %1$d tentativi!</string>
+    <string name="number_of_tries_one">Fortunato! Hai trovato la soluzione al primo tentativo!</string>
+    <string name="game_over_message_fail">La risposta corretta era:</string>
+    <string name="game_over_title_success">BRAVO!</string>
+    <string name="button_image_desc_yellow">Giallo</string>
+    <string name="button_image_desc_blue">Blu</string>
+    <string name="button_image_desc_red">Rosso</string>
+    <string name="button_image_desc_green">Verde</string>
+    <string name="button_image_desc_pink">Rosa</string>
+    <string name="button_image_desc_purple">Viola</string>
+    <string name="button_image_desc_brown">Marrone</string>
+    <string name="button_image_desc_orange">Arancione</string>
+    <string name="button_image_desc_info">Informazioni su Master Mind Classico</string>
+</resources>

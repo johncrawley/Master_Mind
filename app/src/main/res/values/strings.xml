@@ -1,16 +1,15 @@
 <resources>
     <string name="app_name">Classic Master Mind</string>
     <string name="about_game_name_and_version">Classic Master Mind v1.0</string>
-    <string name="about_created_by">Created by John Crawley, 2025</string>
+    <string name="about_created_by">Created by Jim Cranley, 2025</string>
     <string name="clues_tip_green"> one of the choices has the correct colour and correct position</string>
     <string name="clues_tip_yellow">one of the choices has the correct colour but is in the wrong position</string>
     <string name="colors_tip">Tip: the solution might contain more than one peg of the same colour</string>
     <string name="game_over_title"> GAME OVER </string>
     <string name="number_of_tries"> You found the solution in %1$d tries!</string>
-    <string name="number_of_tries_one"> Wow! You found the solution on your first guess!</string>
+    <string name="number_of_tries_one"> Lucky! You found the solution on your first guess!</string>
     <string name="game_over_message_fail"> The correct answer was: </string>
     <string name="game_over_title_success"> WELL DONE!</string>
-
     <string name="button_image_desc_yellow">Yellow</string>
     <string name="button_image_desc_blue">Blue</string>
     <string name="button_image_desc_red">Red</string>
@@ -19,6 +18,5 @@
     <string name="button_image_desc_purple">Purple</string>
     <string name="button_image_desc_brown">Brown</string>
     <string name="button_image_desc_orange">Orange</string>
-
     <string name="button_image_desc_info">About Classic Master Mind</string>
 </resources>

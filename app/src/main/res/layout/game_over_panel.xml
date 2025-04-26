@@ -37,7 +37,6 @@
                 android:shadowRadius="5"
                 android:textSize="@dimen/_36sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +47,7 @@
                 android:textColor="@color/game_over_text"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_18sdp"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:textSize="@dimen/_20sdp"
                 android:shadowColor="@color/black"
                 android:shadowDx="2"
