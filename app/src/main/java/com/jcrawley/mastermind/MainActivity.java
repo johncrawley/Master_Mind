@@ -27,12 +27,14 @@ import com.jcrawley.mastermind.view.GameView;
 import com.jcrawley.mastermind.view.GridWiper;
 import com.jcrawley.mastermind.view.panel.InfoPanelHelper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity implements GameView {
 
-    ViewGroup gameLayout;
+    ViewGroup gridLayout, gridLayout2;
     private Game game;
     private GridWiper gridWiper;
     private int numberOfRows;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private boolean isInitialized;
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
+    private Map<Integer, Integer> gridLayoutMap = new HashMap<>();
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -77,12 +80,29 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setContentView(R.layout.activity_main);
         hideActionBar();
         setupLayout();
-        gameLayout = findViewById(R.id.gameGridLayout);
+        gridLayout = findViewById(R.id.gameGridLayout);
+        gridLayout2 = findViewById(R.id.gameGridLayout2);
         setupButtons();
+        setupLayoutMap();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
         setupGameService();
         setupInfoButton();
+    }
+
+
+    private void setupLayoutMap(){
+        gridLayoutMap.clear();
+        gridLayoutMap.put(1, R.id.row_1);
+        gridLayoutMap.put(2, R.id.row_2);
+        gridLayoutMap.put(3, R.id.row_3);
+        gridLayoutMap.put(4, R.id.row_4);
+        gridLayoutMap.put(5, R.id.row_5);
+        gridLayoutMap.put(6, R.id.row_6);
+        gridLayoutMap.put(7, R.id.row_7);
+        gridLayoutMap.put(8, R.id.row_8);
+        gridLayoutMap.put(9, R.id.row_9);
+        gridLayoutMap.put(10, R.id.row_10);
     }
 
 
@@ -300,7 +320,8 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private ViewGroup getRow(int index) {
         int rowIndex = numberOfRows - index - 1;
-        return (ViewGroup) gameLayout.getChildAt(rowIndex);
+
+        return (ViewGroup) gridLayout, gridLayout2.getChildAt(rowIndex);
     }
 
 
