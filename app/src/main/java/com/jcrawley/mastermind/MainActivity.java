@@ -6,10 +6,12 @@ import android.content.ServiceConnection;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
     private Map<Integer, Integer> gridLayoutMap = new HashMap<>();
+    private Map<Integer, ViewGroup> gridRowMap = new HashMap<>();
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -318,10 +321,53 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
+    private void addRowsToLayout(){
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        for(int i = 0; i < numberOfRows / 2; i++){
+            View gridRow = inflater.inflate(R.layout.grid_row, gridLayout);
+            gridRow.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    0,
+                    1.0f
+            ));
+            gridLayout.addView(gridRow);
+        }
+    }
+
+
+    private void addRowsToLayout(ViewGroup parent){
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        for(int i = 0; i < numberOfRows / 2; i++){
+            View gridRow = inflater.inflate(R.layout.grid_row, parent);
+            gridRow.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    0,
+                    1.0f
+            ));
+            parent.addView(gridRow);
+        }
+    }
+
+    private void addRowToLayout(ViewGroup parent, int rowNumber){
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        for(int i = 0; i < numberOfRows / 2; i++){
+            ViewGroup gridRow = (ViewGroup)inflater.inflate(R.layout.grid_row, parent);
+            gridRowMap.put(rowNumber, gridRow);
+            gridRow.setLayoutParams(new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    0,
+                    1.0f
+            ));
+            parent.addView(gridRow);
+        }
+    }
+
+
+
     private ViewGroup getRow(int index) {
         int rowIndex = numberOfRows - index - 1;
 
-        return (ViewGroup) gridLayout, gridLayout2.getChildAt(rowIndex);
+        return (ViewGroup) gridLayout.getChildAt(rowIndex);
     }
 
 
