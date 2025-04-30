@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setContentView(R.layout.activity_main);
         hideActionBar();
         setupLayout();
+        addGridRowsToLayout();
         gridLayout = findViewById(R.id.gameGridLayout);
         gridLayout2 = findViewById(R.id.gameGridLayout2);
         setupButtons();
@@ -96,16 +97,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupLayoutMap(){
         gridLayoutMap.clear();
-        gridLayoutMap.put(1, R.id.row_1);
-        gridLayoutMap.put(2, R.id.row_2);
-        gridLayoutMap.put(3, R.id.row_3);
-        gridLayoutMap.put(4, R.id.row_4);
-        gridLayoutMap.put(5, R.id.row_5);
-        gridLayoutMap.put(6, R.id.row_6);
-        gridLayoutMap.put(7, R.id.row_7);
-        gridLayoutMap.put(8, R.id.row_8);
-        gridLayoutMap.put(9, R.id.row_9);
-        gridLayoutMap.put(10, R.id.row_10);
     }
 
 
@@ -321,54 +312,35 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void addRowsToLayout(){
-        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        for(int i = 0; i < numberOfRows / 2; i++){
-            View gridRow = inflater.inflate(R.layout.grid_row, gridLayout);
-            gridRow.setLayoutParams(new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    0,
-                    1.0f
-            ));
-            gridLayout.addView(gridRow);
+    private void addGridRowsToLayout(){
+        for(int i = 9; i>4; i--){
+            addGridRowToLayout(gridLayout, i);
+            log("adding row to grid 1");
         }
-    }
-
-
-    private void addRowsToLayout(ViewGroup parent){
-        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        for(int i = 0; i < numberOfRows / 2; i++){
-            View gridRow = inflater.inflate(R.layout.grid_row, parent);
-            gridRow.setLayoutParams(new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    0,
-                    1.0f
-            ));
-            parent.addView(gridRow);
+        for(int i = 4; i >= 0; i--){
+            addGridRowToLayout(gridLayout2, i);
+            log("adding row to grid 2");
         }
+        log("gridRowMap size: " + gridRowMap.size());
     }
 
-    private void addRowToLayout(ViewGroup parent, int rowNumber){
+
+    private void log(String msg){
+        System.out.println("^^^ MainActivity: " + msg);
+    }
+
+
+    private void addGridRowToLayout(ViewGroup parent, int rowNumber){
         LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        for(int i = 0; i < numberOfRows / 2; i++){
-            ViewGroup gridRow = (ViewGroup)inflater.inflate(R.layout.grid_row, parent);
-            gridRowMap.put(rowNumber, gridRow);
-            gridRow.setLayoutParams(new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    0,
-                    1.0f
-            ));
-            parent.addView(gridRow);
-        }
+        ViewGroup gridRow = (ViewGroup)inflater.inflate(R.layout.grid_row, parent);
+        gridRowMap.put(rowNumber, gridRow);
+        gridRow.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                1.0f
+        ));
     }
 
-
-
-    private ViewGroup getRow(int index) {
-        int rowIndex = numberOfRows - index - 1;
-
-        return (ViewGroup) gridLayout.getChildAt(rowIndex);
-    }
 
 
     private ViewGroup getPegRow(int index) {
@@ -380,4 +352,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
         return (ViewGroup) getRow(index).getChildAt(1);
     }
 
+    private ViewGroup getRow(int index) {
+        var gridRow = gridRowMap.get(index);
+        log("getRow(" + index + ")");
+        log("getRow() gridRow child count: " + gridRow.getChildCount());
+        return gridRowMap.get(index);
+        //  int rowIndex = numberOfRows - index - 1;
+
+        //   return (ViewGroup) gridLayout.getChildAt(rowIndex);
+    }
 }
