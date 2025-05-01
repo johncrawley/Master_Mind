@@ -39,14 +39,12 @@ public class MainActivity extends AppCompatActivity implements GameView {
     ViewGroup gridLayout, gridLayout2;
     private Game game;
     private GridWiper gridWiper;
-    private int numberOfRows;
     private int pegsPerRow;
     private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
     private boolean isInitialized;
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
-    private Map<Integer, Integer> gridLayoutMap = new HashMap<>();
-    private Map<Integer, ViewGroup> gridRowMap = new HashMap<>();
+    private final Map<Integer, ViewGroup> gridRowMap = new HashMap<>();
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
             gameService.setActivity(MainActivity.this);
             isServiceConnected.set(true);
             game = gameService.getGame();
-            numberOfRows = game.getNumberOfRows();
             pegsPerRow = game.getPegsPerRow();
             game.init();
         }
@@ -83,20 +80,14 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setContentView(R.layout.activity_main);
         hideActionBar();
         setupLayout();
-        addGridRowsToLayout();
         gridLayout = findViewById(R.id.gameGridLayout);
         gridLayout2 = findViewById(R.id.gameGridLayout2);
+        setupGridMap();
         setupButtons();
-        setupLayoutMap();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
         setupGameService();
         setupInfoButton();
-    }
-
-
-    private void setupLayoutMap(){
-        gridLayoutMap.clear();
     }
 
 
@@ -322,6 +313,10 @@ public class MainActivity extends AppCompatActivity implements GameView {
             log("adding row to grid 2");
         }
         log("gridRowMap size: " + gridRowMap.size());
+        log("addGridRowsToLayout() after adding, gridLayout children: " + gridLayout.getChildCount());
+        ViewGroup child = (ViewGroup) gridLayout.getChildAt(0);
+
+        log("addGridRowsToLayout() first child height: " + child.getMeasuredHeight() + "," + child.getMeasuredWidth());
     }
 
 
@@ -342,6 +337,20 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
+    private void setupGridMap(){
+        gridRowMap.clear();
+        var rowIds = List.of(R.id.row_0, R.id.row_1, R.id.row_2,R.id.row_3, R.id.row_4,R.id.row_5, R.id.row_6,R.id.row_7, R.id.row_8,R.id.row_9);
+        for(int i = 0; i < rowIds.size(); i++){
+            addRowToMap(i, rowIds.get(i));
+        }
+    }
+
+    private void addRowToMap(int number, int id){
+        ViewGroup row = findViewById(id);
+        gridRowMap.put(number, row);
+    }
+
+
 
     private ViewGroup getPegRow(int index) {
         return (ViewGroup) getRow(index).getChildAt(0);
@@ -353,12 +362,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
     private ViewGroup getRow(int index) {
-        var gridRow = gridRowMap.get(index);
-        log("getRow(" + index + ")");
-        log("getRow() gridRow child count: " + gridRow.getChildCount());
         return gridRowMap.get(index);
-        //  int rowIndex = numberOfRows - index - 1;
-
-        //   return (ViewGroup) gridLayout.getChildAt(rowIndex);
     }
 }
