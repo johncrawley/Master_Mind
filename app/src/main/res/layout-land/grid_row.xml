@@ -11,13 +11,14 @@
         layout="@layout/peg_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:paddingVertical="@dimen/_8sdp"
         android:paddingStart="0dp"
-        android:paddingEnd="@dimen/_18sdp"
+        android:paddingEnd="@dimen/_1sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cluesGrid"
         />
 
     <include
@@ -31,7 +32,6 @@
         android:layout_marginEnd="@dimen/_8sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/pegRowLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintDimensionRatio="1:1"/>
 

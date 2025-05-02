@@ -13,10 +13,10 @@
     <ImageButton
         android:id="@+id/infoButton"
         android:contentDescription="@string/button_image_desc_info"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:backgroundTint="@color/background"
-        android:layout_margin="@dimen/_12sdp"
+        android:layout_margin="@dimen/_8sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_info" />
@@ -25,17 +25,19 @@
         android:id="@+id/gameGridInclude"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_4sdp"
+        android:layout_margin="@dimen/_1sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/infoButton"
         app:layout_constraintEnd_toStartOf="@id/buttonPanelInclude"/>
 
    <include layout="@layout/button_panel"
        android:id="@+id/buttonPanelInclude"
-       android:layout_width="wrap_content"
+       android:layout_width="0dp"
        android:layout_height="match_parent"
-       android:layout_margin="@dimen/_24sdp"
+       android:layout_margin="@dimen/_12sdp"
+       android:layout_marginVertical="@dimen/_12sdp"
+       app:layout_constraintWidth_percent="0.15"
        app:layout_constraintTop_toTopOf="parent"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintStart_toEndOf="@id/gameGridInclude"
@@ -45,9 +47,7 @@
         android:id="@+id/gameOverPanelInclude"
         android:visibility="gone"
         android:layout_width="match_parent"
-        app:layout_constraintWidth_percent="0.4"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_18sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

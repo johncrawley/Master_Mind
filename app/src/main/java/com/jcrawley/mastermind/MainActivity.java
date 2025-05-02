@@ -339,17 +339,26 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupGridMap(){
         gridRowMap.clear();
-        var rowIds = List.of(R.id.row_0, R.id.row_1, R.id.row_2,R.id.row_3, R.id.row_4,R.id.row_5, R.id.row_6,R.id.row_7, R.id.row_8,R.id.row_9);
+        var rowIds = List.of(R.id.row_0,
+                R.id.row_1,
+                R.id.row_2,
+                R.id.row_3,
+                R.id.row_4,
+                R.id.row_5,
+                R.id.row_6,
+                R.id.row_7,
+                R.id.row_8,
+                R.id.row_9);
         for(int i = 0; i < rowIds.size(); i++){
             addRowToMap(i, rowIds.get(i));
         }
     }
 
+
     private void addRowToMap(int number, int id){
         ViewGroup row = findViewById(id);
         gridRowMap.put(number, row);
     }
-
 
 
     private ViewGroup getPegRow(int index) {

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Master Mind Classico</string>
     <string name="about_game_name_and_version">Master Mind Classico v1.0</string>
-    <string name="about_created_by">Creato da Jim Cranley, 2025</string>
+    <string name="about_created_by">Creato da John Crawley, 2025</string>
     <string name="clues_tip_green">una delle scelte ha il colore corretto e la posizione corretta</string>
     <string name="clues_tip_yellow">una delle scelte ha il colore corretto ma è nella posizione sbagliata</string>
     <string name="colors_tip">Suggerimento: la soluzione potrebbe contenere più pioli dello stesso colore</string>

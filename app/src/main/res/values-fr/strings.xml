@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Master Mind Classique</string>
     <string name="about_game_name_and_version">Master Mind Classique v1.0</string>
-    <string name="about_created_by">Créé par Jim Cranley, 2025</string>
+    <string name="about_created_by">Créé par John Crawley, 2025</string>
     <string name="clues_tip_green">l\'une des sélections a la bonne couleur et la bonne position</string>
     <string name="clues_tip_yellow">l\'une des sélections a la bonne couleur mais est à la mauvaise position</string>
     <string name="colors_tip">Astuce : la solution peut contenir plusieurs pions de la même couleur</string>
