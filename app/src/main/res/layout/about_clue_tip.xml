@@ -20,7 +20,7 @@
     android:id="@+id/clueTipText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textSize="@dimen/_10sdp"
+    android:textSize="@dimen/_16sdp"
     android:textColor="@color/clue_tip_text"
     android:text="@string/clues_tip_green"/>
 
