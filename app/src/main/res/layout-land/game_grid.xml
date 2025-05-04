@@ -6,13 +6,14 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:gravity="center"
         android:layout_marginHorizontal="@dimen/_4sdp"
         android:layout_marginVertical="@dimen/_28sdp"
         android:weightSum="5"
         android:id="@+id/gameGridLayout"
         android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.70"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/gameGridLayout2"
@@ -51,13 +52,14 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:gravity="center"
         android:layout_marginHorizontal="@dimen/_4sdp"
         android:layout_marginVertical="@dimen/_28sdp"
         android:weightSum="5"
         android:id="@+id/gameGridLayout2"
         android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.70"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/gameGridLayout"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,12 +6,10 @@ import android.content.ServiceConnection;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
@@ -79,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         hideActionBar();
+        setNavBarColor();
         setupLayout();
         gridLayout = findViewById(R.id.gameGridLayout);
         gridLayout2 = findViewById(R.id.gameGridLayout2);
@@ -96,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements GameView {
         infoButton.setOnClickListener((v)-> infoPanelHelper.showPanel());
     }
 
+
+    private void setNavBarColor(){
+        var navBarColor = getResources().getColor(R.color.black, getTheme());
+        getWindow().setNavigationBarColor(navBarColor);
+    }
 
 
     public Game getGame(){
@@ -300,40 +304,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     public void highlightRowBackground(int rowIndex) {
         int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
         getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
-    }
-
-
-    private void addGridRowsToLayout(){
-        for(int i = 9; i>4; i--){
-            addGridRowToLayout(gridLayout, i);
-            log("adding row to grid 1");
-        }
-        for(int i = 4; i >= 0; i--){
-            addGridRowToLayout(gridLayout2, i);
-            log("adding row to grid 2");
-        }
-        log("gridRowMap size: " + gridRowMap.size());
-        log("addGridRowsToLayout() after adding, gridLayout children: " + gridLayout.getChildCount());
-        ViewGroup child = (ViewGroup) gridLayout.getChildAt(0);
-
-        log("addGridRowsToLayout() first child height: " + child.getMeasuredHeight() + "," + child.getMeasuredWidth());
-    }
-
-
-    private void log(String msg){
-        System.out.println("^^^ MainActivity: " + msg);
-    }
-
-
-    private void addGridRowToLayout(ViewGroup parent, int rowNumber){
-        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        ViewGroup gridRow = (ViewGroup)inflater.inflate(R.layout.grid_row, parent);
-        gridRowMap.put(rowNumber, gridRow);
-        gridRow.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                0,
-                1.0f
-        ));
     }
 
 

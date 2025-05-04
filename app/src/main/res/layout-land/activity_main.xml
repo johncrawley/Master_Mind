@@ -24,11 +24,11 @@
     <include layout="@layout/game_grid"
         android:id="@+id/gameGridInclude"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_1sdp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/infoButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonPanelInclude"/>
 
    <include layout="@layout/button_panel"
