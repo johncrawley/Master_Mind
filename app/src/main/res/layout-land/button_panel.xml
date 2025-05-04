@@ -20,9 +20,9 @@
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/blueButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/blueButton"
-        app:layout_constraintEnd_toStartOf="@id/brownButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -36,10 +36,10 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/greenButton"
-        app:layout_constraintEnd_toStartOf="@+id/orangeButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/redButton" />
+        app:layout_constraintEnd_toStartOf="@+id/greenButton"
+        app:layout_constraintStart_toEndOf="@id/redButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/greenButton"
@@ -52,10 +52,10 @@
         android:insetBottom="0dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toTopOf="@+id/yellowButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/pinkButton"
-        app:layout_constraintTop_toBottomOf="@id/blueButton" />
+        app:layout_constraintStart_toEndOf="@id/blueButton"
+        app:layout_constraintEnd_toStartOf="@id/yellowButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/yellowButton"
@@ -68,10 +68,10 @@
         android:insetBottom="0dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/purpleButton"
-        app:layout_constraintTop_toBottomOf="@id/greenButton" />
+        app:layout_constraintStart_toEndOf="@id/greenButton"
+        app:layout_constraintEnd_toStartOf="@id/brownButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/brownButton"
@@ -84,11 +84,10 @@
         android:insetBottom="0dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
-
+        app:layout_constraintStart_toEndOf="@id/yellowButton"
+        app:layout_constraintEnd_toStartOf="@id/orangeButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/orangeButton"
-        app:layout_constraintStart_toEndOf="@id/redButton" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/orangeButton"
@@ -101,10 +100,10 @@
         android:insetBottom="0dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toTopOf="@id/pinkButton"
-        app:layout_constraintTop_toBottomOf="@+id/brownButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/blueButton" />
+        app:layout_constraintStart_toEndOf="@+id/brownButton"
+        app:layout_constraintEnd_toStartOf="@id/pinkButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pinkButton"
@@ -118,10 +117,10 @@
         android:insetBottom="0dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toBottomOf="@id/orangeButton"
-        app:layout_constraintStart_toEndOf="@+id/greenButton"
-        app:layout_constraintBottom_toTopOf="@id/purpleButton"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/orangeButton"
+        app:layout_constraintEnd_toStartOf="@id/purpleButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/purpleButton"
@@ -134,8 +133,8 @@
         android:insetBottom="0dp"
         android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toBottomOf="@id/pinkButton"
-        app:layout_constraintStart_toEndOf="@id/yellowButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/pinkButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
