@@ -79,14 +79,24 @@ public class MainActivity extends AppCompatActivity implements GameView {
         hideActionBar();
         setNavBarColor();
         setupLayout();
-        gridLayout = findViewById(R.id.gameGridLayout);
-        gridLayout2 = findViewById(R.id.gameGridLayout2);
+        setupGrid();
         setupGridMap();
         setupButtons();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
         setupGameService();
         setupInfoButton();
+    }
+
+    private void setupGrid(){
+        gridLayout = findViewById(R.id.gameGridLayout);
+        gridLayout2 = findViewById(R.id.gameGridLayout2);
+    }
+
+
+    private void setRowTag(ViewGroup parent, int childIndex, int tag){
+        var child = parent.getChildAt(childIndex);
+        child.setTag(tag);
     }
 
 
@@ -309,24 +319,18 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupGridMap(){
         gridRowMap.clear();
-        var rowIds = List.of(R.id.row_0,
-                R.id.row_1,
-                R.id.row_2,
-                R.id.row_3,
-                R.id.row_4,
-                R.id.row_5,
-                R.id.row_6,
-                R.id.row_7,
-                R.id.row_8,
-                R.id.row_9);
-        for(int i = 0; i < rowIds.size(); i++){
-            addRowToMap(i, rowIds.get(i));
+        int rowNumber = 9;
+        for(int i = 0; i < 5; i++, rowNumber--){
+            addRowToMap(rowNumber, gridLayout, i);
+        }
+        for(int i = 0; i < 5; i++, rowNumber--){
+            addRowToMap(rowNumber, gridLayout2, i);
         }
     }
 
 
-    private void addRowToMap(int number, int id){
-        ViewGroup row = findViewById(id);
+    private void addRowToMap(int number, ViewGroup parent, int childIndex){
+        ViewGroup row =  (ViewGroup) parent.getChildAt(childIndex);
         gridRowMap.put(number, row);
     }
 
