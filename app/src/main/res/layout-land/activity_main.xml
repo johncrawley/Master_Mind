@@ -9,7 +9,6 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
-
     <ImageButton
         android:id="@+id/infoButton"
         android:contentDescription="@string/button_image_desc_info"
@@ -17,6 +16,7 @@
         android:layout_height="@dimen/_30sdp"
         android:backgroundTint="@color/background"
         android:layout_margin="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_info" />
@@ -52,7 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
     <include
         android:id="@+id/infoPanelInclude"
