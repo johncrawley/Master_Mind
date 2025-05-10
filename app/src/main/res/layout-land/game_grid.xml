@@ -8,25 +8,25 @@
         layout="@layout/grid_section"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/gameGridLayout"
+        android:id="@+id/gameGridLayout2"
         android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_marginVertical="@dimen/_28sdp"
         app:layout_constraintHeight_percent=".7"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/gameGridLayout2"
+        app:layout_constraintEnd_toStartOf="@id/gameGridLayout"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <include
         layout="@layout/grid_section"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/gameGridLayout2"
+        android:id="@+id/gameGridLayout"
         android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_marginVertical="@dimen/_28sdp"
         app:layout_constraintHeight_percent=".7"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/gameGridLayout"
+        app:layout_constraintStart_toEndOf="@id/gameGridLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
