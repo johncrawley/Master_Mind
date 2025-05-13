@@ -12,8 +12,8 @@
     <ImageButton
         android:id="@+id/infoButton"
         android:contentDescription="@string/button_image_desc_info"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
         android:backgroundTint="@color/background"
         android:layout_marginHorizontal="@dimen/_12sdp"
         app:layout_constraintTop_toTopOf="parent"
