@@ -20,6 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_info" />
 
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/button_image_desc_info"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
     <include layout="@layout/game_grid"
         android:id="@+id/gameGridInclude"
         android:layout_width="0dp"

@@ -13,10 +13,12 @@ public class GameGrid {
     private List<PegColor> solutionPegs;
 
     public GameGrid(int numberOfRows, int pegsPerRow){
+        System.out.println("Entering GameGrid()");
         this.numberOfRows = numberOfRows;
         this.pegsPerRow = pegsPerRow;
         initSolutionPegs();
         init();
+        System.out.println("exiting GameGrid()");
     }
 
 
@@ -24,6 +26,14 @@ public class GameGrid {
         solutionPegs = new ArrayList<>();
         for(int i = 0; i < pegsPerRow; i++){
             solutionPegs.add(PegColor.EMPTY);
+        }
+    }
+
+
+    public void init(){
+        gameRows = new ArrayList<>(numberOfRows);
+        for(int i = 0; i < numberOfRows; i++){
+            gameRows.add(new GameRow(pegsPerRow));
         }
     }
 
@@ -55,14 +65,6 @@ public class GameGrid {
 
     public List<PegColor> getSolutionPegs(){
         return new ArrayList<>(solutionPegs);
-    }
-
-
-    public void init(){
-        gameRows = new ArrayList<>(numberOfRows);
-        for(int i = 0; i < numberOfRows; i++){
-            gameRows.add(new GameRow(pegsPerRow));
-        }
     }
 
 

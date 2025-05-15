@@ -36,6 +36,22 @@ public class Game {
     }
 
 
+    public List<PegColor> getPegsAtRow(int row){
+        return gameGrid.getPegColorsAtRow(row);
+    }
+
+
+    public int getCurrentIndex(){
+        return currentIndex;
+    }
+
+
+    public int getCurrentRow(){
+        return currentRow;
+    }
+
+
+
     public void setView(GameView gameView){
         this.gameView = gameView;
     }
@@ -91,7 +107,7 @@ public class Game {
     }
 
 
-    public void addPegColorAtCurrentIndex(PegColor pegColor){
+    public void addPeg(PegColor pegColor){
         if(!isUserInputEnabled()){
             return;
         }
@@ -107,6 +123,21 @@ public class Game {
             checkCurrentAnswer();
             moveToNextRow();
         }
+    }
+
+
+    public void removePeg(){
+        if(currentIndex == 0){
+            return;
+        }
+        currentIndex--;
+        gameView.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
+        gameGrid.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
+    }
+
+
+    public PegColor getPegColorAt(int index){
+        return gameGrid.getPegColorsAtRow(currentRow).get(index);
     }
 
 

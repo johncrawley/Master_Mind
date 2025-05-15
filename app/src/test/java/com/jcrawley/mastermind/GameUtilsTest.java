@@ -3,7 +3,6 @@ package com.jcrawley.mastermind;
 import static com.jcrawley.mastermind.game.Clue.*;
 import static com.jcrawley.mastermind.game.PegColor.*;
 
-import static org.junit.Assert.assertTrue;
 
 import static org.junit.Assert.*;
 

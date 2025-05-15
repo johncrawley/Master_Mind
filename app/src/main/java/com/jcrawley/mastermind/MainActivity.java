@@ -81,12 +81,12 @@ public class MainActivity extends AppCompatActivity implements GameView {
         setupLayout();
         setupGrid();
         setupGridMap();
-        setupButtons();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
+        setupButtons();
         setupGameService();
-        setupInfoButton();
     }
+
 
     private void setupGrid(){
         gridLayout = findViewById(R.id.gameGridLayout);
@@ -94,15 +94,9 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setRowTag(ViewGroup parent, int childIndex, int tag){
-        var child = parent.getChildAt(childIndex);
-        child.setTag(tag);
-    }
-
-
-    private void setupInfoButton(){
-        ImageButton infoButton = findViewById(R.id.infoButton);
-        infoButton.setOnClickListener((v)-> infoPanelHelper.showPanel());
+    private void setupButton(int resId, Runnable runnable){
+        ImageButton button  = findViewById(resId);
+        button.setOnClickListener(v -> runnable.run());
     }
 
 
@@ -148,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private void setupButtons() {
+        setupButton(R.id.infoButton, ()-> infoPanelHelper.showPanel() );
+        setupButton(R.id.backButton, ()-> game.removePeg() );
+
         setupColorButton(R.id.redButton, PegColor.RED);
         setupColorButton(R.id.blueButton, PegColor.BLUE);
         setupColorButton(R.id.greenButton, PegColor.GREEN);
@@ -163,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         Button button = findViewById(buttonId);
         button.setOnClickListener((v -> {
             if(game != null && isInitialized){
-                game.addPegColorAtCurrentIndex(pegColor);
+                game.addPeg(pegColor);
             }
         }));
     }
