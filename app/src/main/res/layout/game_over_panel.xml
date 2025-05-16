@@ -73,16 +73,10 @@
                 <include android:id="@+id/solutionPegsLayout"
                     layout="@layout/peg_row"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_56sdp"
+                    android:layout_height="@dimen/_42sdp"
                     />
 
             </LinearLayout>
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

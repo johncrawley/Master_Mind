@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/peg_layout_margin"
-    android:background="@drawable/peg_drawable"
+    android:background="@drawable/peg"
     android:orientation="horizontal">
 
     <View
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:padding="@dimen/_5sdp"
         android:layout_margin="@dimen/_2sdp"
-        android:background="@drawable/peg_drawable"
+        android:background="@drawable/peg"
         />
 
 </LinearLayout>
