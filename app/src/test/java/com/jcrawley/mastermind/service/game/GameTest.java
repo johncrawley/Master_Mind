@@ -11,7 +11,7 @@ import com.jcrawley.mastermind.game.PegColor;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class GameTest {
 
@@ -30,24 +30,21 @@ public class GameTest {
 
     @Test
     public void canFillARowWithCorrectColors(){
-        var expectedPegs = List.of(BLUE, BROWN, RED, YELLOW);
-        expectedPegs.forEach(pegColor -> game.addPeg(pegColor));
-        var pegsPlaced = game.getPegsAtRow(0);
-        assertEquals(expectedPegs.size(), pegsPlaced.size());
+        var expectedPegs = new PegColor[]{BLUE, BROWN, RED, YELLOW};
 
-        for(int i = 0; i < expectedPegs.size(); i++){
-            assertEquals(expectedPegs.get(i), pegsPlaced.get(i));
-        }
+        Arrays.stream(expectedPegs)
+                .forEach(pegColor -> game.addPeg(pegColor));
+        assertPegsPlaced(0, expectedPegs);
     }
 
 
     @Test
     public void currentIndexAdvances(){
-        assertEquals(0, game.getCurrentIndex());
+        assertIndex(0);
         game.addPeg(PegColor.BLUE);
-        assertEquals(1, game.getCurrentIndex());
+        assertIndex(1);
         game.addPeg(BROWN);
-        assertEquals(2, game.getCurrentIndex());
+        assertIndex(2);
     }
 
 
@@ -57,13 +54,13 @@ public class GameTest {
         for(int i = 0; i < game.getPegsPerRow(); i++){
             game.addPeg(PegColor.BLUE);
         }
-        assertEquals(0, game.getCurrentIndex());
-        assertEquals(1, game.getCurrentRow());
+        assertIndex(0);
+        assertRow(1);
     }
 
 
     @Test
-    public void canRollBackChoice(){
+    public void canRemovePegFromCurrentRow(){
         assertIndex(0);
         game.addPeg(RED);
         assertIndex(1);
@@ -73,19 +70,64 @@ public class GameTest {
         assertViewPegColorChange(2);
         assertIndex(2);
         game.removePeg();
-        assertPegRemoved(3, 1);
+        assertPegRemoved(3, 1, 1);
 
         game.removePeg();
-        assertPegRemoved(4, 0);
+        assertPegRemoved(4, 0, 0);
+    }
 
+
+    @Test
+    public void cannotRemovePegFromPreviousRow(){
+        assertIndex(0);
+        game.addPeg(RED);
+        game.addPeg(BLUE);
+        game.addPeg(RED);
+        game.addPeg(BLUE);
+        assertRow(1);
+        assertIndex(0);
         game.removePeg();
+        assertRow(1);
         assertIndex(0);
     }
 
 
-    private void assertPegRemoved(int expectedCallsToView, int expectedIndex){
+    @Test
+    public void correctPegsArePlacedAfterRollback(){
+        assertIndex(0);
+        game.addPeg(RED);
+        game.addPeg(RED);
+        game.addPeg(RED);
+        assertPegsPlaced(0, RED, RED, RED ,EMPTY);
+        game.removePeg();
+        game.removePeg();
+        game.removePeg();
+        assertPegsPlaced(0, EMPTY, EMPTY, EMPTY,EMPTY);
+        game.addPeg(YELLOW);
+        game.addPeg(GREEN);
+        game.addPeg(PINK);
+        assertPegsPlaced(0, YELLOW, GREEN, PINK, EMPTY);
+        game.removePeg();
+        assertPegsPlaced(0, YELLOW, GREEN, EMPTY, EMPTY);
+        game.addPeg(BLUE);
+        assertPegsPlaced(0, YELLOW, GREEN, BLUE, EMPTY);
+    }
+
+
+    private void assertPegsPlaced(int rowIndex, PegColor... expected){
+        var pegsPlaced = game.getPegsAtRow(rowIndex);
+        assertEquals(expected.length, pegsPlaced.size());
+
+        for(int i = 0; i < expected.length; i++){
+            assertEquals(expected[i], pegsPlaced.get(i));
+        }
+    }
+
+
+    private void assertPegRemoved(int expectedCallsToView, int expectedIndex, int expectedPegsPlaced){
         assertIndex(expectedIndex);
         assertViewPegColorChange(expectedCallsToView);
+        assertEquals(expectedPegsPlaced, game.getPegCount());
         assertEquals(EMPTY, game.getPegColorAt(game.getCurrentIndex()));
     }
 
@@ -97,5 +139,10 @@ public class GameTest {
 
     private void assertIndex(int expected){
         assertEquals(expected, game.getCurrentIndex());
+    }
+
+
+    private void assertRow(int expected){
+        assertEquals(expected, game.getCurrentRow());
     }
 }

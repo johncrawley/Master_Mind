@@ -3,7 +3,6 @@ package com.jcrawley.mastermind.game;
 import com.jcrawley.mastermind.game.model.GameGrid;
 import com.jcrawley.mastermind.view.GameView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -13,7 +12,6 @@ public class Game {
     private int currentIndex, currentRow, pegsPlaced;
     private final int numberOfRows = 10;
     private final int MAX_PEGS = pegsPerRow * numberOfRows;
-    private final List<PegColor> currentAnswer = new ArrayList<>();
     private int numberOfTries;
     private final GameSolution gameSolution = new GameSolution(pegsPerRow);
     private final GameGrid gameGrid = new GameGrid(numberOfRows, pegsPerRow);
@@ -84,6 +82,7 @@ public class Game {
 
 
     public void checkCurrentAnswer() {
+        var currentAnswer = gameGrid.getPegColorsAtRow(currentRow);
         var clues = GameUtils.generateClues(currentAnswer, gameSolution.get());
         gameGrid.setClues(currentRow, clues);
         gameView.updateClues(currentRow, clues);
@@ -118,7 +117,7 @@ public class Game {
         }
         gameGrid.setPegColor(currentRow, currentIndex, pegColor);
         gameView.setPegColor(currentRow, currentIndex, pegColor);
-        currentAnswer.add(pegColor);
+       // currentAnswer.add(pegColor);
         if(++currentIndex >= pegsPerRow){
             checkCurrentAnswer();
             moveToNextRow();
@@ -131,6 +130,7 @@ public class Game {
             return;
         }
         currentIndex--;
+        pegsPlaced--;
         gameView.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
         gameGrid.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
     }
@@ -141,11 +141,15 @@ public class Game {
     }
 
 
+    public int getPegCount(){
+        return pegsPlaced;
+    }
+
+
     public void moveToNextRow(){
         currentIndex = 0;
         numberOfTries++;
         currentRow++;
-        currentAnswer.clear();
         highlightCurrentBackgroundRow();
     }
 
@@ -155,7 +159,6 @@ public class Game {
         currentRow = 0;
         currentIndex = 0;
         pegsPlaced = 0;
-        currentAnswer.clear();
         gameGrid.init();
         setupRandomAnswer();
         isGameInProgress = false;
