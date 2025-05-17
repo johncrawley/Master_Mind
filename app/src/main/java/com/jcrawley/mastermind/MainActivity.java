@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupButtons() {
         setupButton(R.id.infoButton, ()-> infoPanelHelper.showPanel() );
-        setupButton(R.id.backButton, ()-> game.removePeg() );
+        setupButton(R.id.undoButton, ()-> game.removePeg() );
 
         setupColorButton(R.id.redButton, PegColor.RED);
         setupColorButton(R.id.blueButton, PegColor.BLUE);

@@ -22,4 +22,7 @@ public interface GameView {
     void resetAllCluesIn(int index);
     void highlightAllRowsUpToAndIncluding(int rowNumber);
     void notifyInitializationComplete();
+
+    void disableUndoButton();
+    void enableUndoButton();
 }

@@ -9,10 +9,28 @@ import java.util.List;
 public class MockView implements GameView {
 
     private int callsToSetPegColor;
+    private boolean isUndoDisabled;
+
 
 
     public int getCallsToSetPegColor(){
         return callsToSetPegColor;
+    }
+
+    public boolean isUndoDisabled(){
+        return isUndoDisabled;
+    }
+
+
+    @Override
+    public void disableUndoButton() {
+        isUndoDisabled = true;
+    }
+
+
+    @Override
+    public void enableUndoButton() {
+        isUndoDisabled = false;
     }
 
 

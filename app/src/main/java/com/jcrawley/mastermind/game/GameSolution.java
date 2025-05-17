@@ -21,6 +21,14 @@ public class GameSolution {
     }
 
 
+    public void set(PegColor... pegColors){
+        solution.clear();
+        for(int i = 0; i < pegsPerRow; i++){
+            solution.add(pegColors[i]);
+        }
+    }
+
+
     private void setupPossibleColors(){
         possibleColors = Arrays.stream(PegColor.values())
                 .filter( pc -> pc != PegColor.EMPTY)

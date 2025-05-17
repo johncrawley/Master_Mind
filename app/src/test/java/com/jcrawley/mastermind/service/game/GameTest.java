@@ -26,6 +26,8 @@ public class GameTest {
         mockView = new MockView();
         game.setView(mockView);
         game.init();
+        // add a manual solution so that tests won't hit a random solution by accident
+        game.setSolution(PURPLE, PURPLE, PURPLE, PURPLE);
     }
 
     @Test
@@ -111,6 +113,16 @@ public class GameTest {
         assertPegsPlaced(0, YELLOW, GREEN, EMPTY, EMPTY);
         game.addPeg(BLUE);
         assertPegsPlaced(0, YELLOW, GREEN, BLUE, EMPTY);
+    }
+
+    @Test
+    public void undoButtonInViewIsDisabledOnNewRow(){
+        assertTrue(mockView.isUndoDisabled());
+        game.addPeg(BLUE);
+        assertFalse(mockView.isUndoDisabled());
+        game.addPeg(GREEN);
+        game.addPeg(GREEN);
+        game.addPeg(GREEN);
     }
 
 

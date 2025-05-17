@@ -125,6 +125,11 @@ public class Game {
     }
 
 
+    public  void setSolution(PegColor... solutionPegs){
+        gameSolution.set(solutionPegs);
+    }
+
+
     public void removePeg(){
         if(currentIndex == 0){
             return;

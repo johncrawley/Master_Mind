@@ -22,7 +22,7 @@
 
 
     <ImageButton
-        android:id="@+id/backButton"
+        android:id="@+id/undoButton"
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"

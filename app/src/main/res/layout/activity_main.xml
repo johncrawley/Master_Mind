@@ -73,7 +73,7 @@
 
 
     <ImageButton
-        android:id="@+id/backButton"
+        android:id="@+id/undoButton"
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
@@ -81,7 +81,7 @@
         android:contentDescription="@string/button_image_desc_info"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_back" />
+        app:srcCompat="@drawable/ic_undo_disabled" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

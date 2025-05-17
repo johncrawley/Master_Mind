@@ -30,5 +30,7 @@
     <color name="game_over_text">#FFB300</color>
     <color name="clue_tip_text">#D1BC6E</color>
 
+    <color name="disabled_button">#888</color>
+
     <color name="popup_background">#77000000</color>
 </resources>
