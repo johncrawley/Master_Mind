@@ -29,7 +29,9 @@ public class Game {
         }
         else{
             updateViewWithGameState();
+            updateViewWithGamePhase();
             gameView.notifyInitializationComplete();
+            setUndoButtonState();
         }
     }
 
@@ -62,7 +64,6 @@ public class Game {
         }
         gameView.setupSolutionPegs(gameGrid.getSolutionPegs());
         gameView.highlightAllRowsUpToAndIncluding(currentRow);
-        updateViewWithGamePhase();
     }
 
 
@@ -82,21 +83,35 @@ public class Game {
 
 
     public void checkCurrentAnswer() {
-        var currentAnswer = gameGrid.getPegColorsAtRow(currentRow);
-        var clues = GameUtils.generateClues(currentAnswer, gameSolution.get());
+        var clues = generateClues();
         gameGrid.setClues(currentRow, clues);
         gameView.updateClues(currentRow, clues);
         if (isAnswerCorrect(clues)) {
-            disableUserInput();
-            gamePhase = GamePhase.GAME_OVER_GOOD;
-            gameView.showGoodGameOver(numberOfTries);
-            return;
+            handleCorrectAnswer();
         }
-        if (pegsPlaced >= MAX_PEGS) {
-            disableUserInput();
-            gamePhase = GamePhase.GAME_OVER_BAD;
-            gameView.showBadGameOver();
+        else if (pegsPlaced >= MAX_PEGS) {
+            handleGameOver();
         }
+    }
+
+
+    private void handleCorrectAnswer(){
+        disableUserInput();
+        gamePhase = GamePhase.GAME_OVER_GOOD;
+        gameView.showGoodGameOver(numberOfTries);
+    }
+
+
+    private void handleGameOver(){
+        disableUserInput();
+        gamePhase = GamePhase.GAME_OVER_BAD;
+        gameView.showBadGameOver();
+    }
+
+
+    private List<Clue> generateClues(){
+        var currentAnswer = gameGrid.getPegColorsAtRow(currentRow);
+        return GameUtils.generateClues(currentAnswer, gameSolution.get());
     }
 
 
@@ -115,12 +130,42 @@ public class Game {
         if(pegsPlaced > MAX_PEGS){
             return;
         }
+        setPegColor(pegColor);
+        checkAnswerAtRowEnd();
+        updateUndoButtonState();
+    }
+
+
+    private void setPegColor(PegColor pegColor){
         gameGrid.setPegColor(currentRow, currentIndex, pegColor);
         gameView.setPegColor(currentRow, currentIndex, pegColor);
-       // currentAnswer.add(pegColor);
+    }
+
+
+    private void checkAnswerAtRowEnd(){
         if(++currentIndex >= pegsPerRow){
             checkCurrentAnswer();
             moveToNextRow();
+        }
+    }
+
+
+    private void updateUndoButtonState(){
+        if(currentIndex == 0){
+            gameView.disableUndoButton();
+        }
+        else if(currentIndex == 1){
+            gameView.enableUndoButton();
+        }
+    }
+
+
+    private void setUndoButtonState(){
+        if(currentIndex == 0){
+            gameView.disableUndoButton();
+        }
+        else {
+            gameView.enableUndoButton();
         }
     }
 
@@ -138,6 +183,7 @@ public class Game {
         pegsPlaced--;
         gameView.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
         gameGrid.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
+        setUndoButtonState();
     }
 
 

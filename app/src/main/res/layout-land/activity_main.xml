@@ -30,7 +30,7 @@
         android:contentDescription="@string/button_image_desc_info"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_back" />
+        app:srcCompat="@drawable/ic_undo" />
 
     <include layout="@layout/game_grid"
         android:id="@+id/gameGridInclude"

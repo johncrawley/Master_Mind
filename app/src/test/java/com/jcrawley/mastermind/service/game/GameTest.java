@@ -32,7 +32,7 @@ public class GameTest {
 
     @Test
     public void canFillARowWithCorrectColors(){
-        var expectedPegs = new PegColor[]{BLUE, BROWN, RED, YELLOW};
+        var expectedPegs = new PegColor[] { BLUE, BROWN, RED, YELLOW };
 
         Arrays.stream(expectedPegs)
                 .forEach(pegColor -> game.addPeg(pegColor));
@@ -123,6 +123,46 @@ public class GameTest {
         game.addPeg(GREEN);
         game.addPeg(GREEN);
         game.addPeg(GREEN);
+        assertRow(1);
+        assertIndex(0);
+        assertTrue(mockView.isUndoDisabled());
+    }
+
+
+    @Test
+    public void undoButtonStateIsCopiedWhenViewIsAssigned(){
+        game.addPeg(BLUE);
+        game.addPeg(GREEN);
+        game.addPeg(PINK);
+        game.addPeg(RED);
+        game.addPeg(YELLOW);
+        game.addPeg(BROWN);
+
+        assertRow(1);
+        assertIndex(2);
+        mockView = new MockView();
+        game.setView(mockView);
+        game.init();
+        assertUndoButtonState(true);
+    }
+
+
+    @Test
+    public void correctUndoButtonStateAfterPegRemoved(){
+        game.addPeg(BLUE);
+        game.addPeg(GREEN);
+        assertIndex(2);
+        assertUndoButtonState(true);
+        game.removePeg();
+        assertUndoButtonState(true);
+        game.removePeg();
+        assertIndex(0);
+        assertUndoButtonState(false);
+    }
+
+
+    private void assertUndoButtonState(boolean isEnabled){
+        assertEquals(isEnabled, mockView.isUndoEnabled());
     }
 
 

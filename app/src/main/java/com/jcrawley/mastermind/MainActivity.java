@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
     private final Map<Integer, ViewGroup> gridRowMap = new HashMap<>();
+    private ImageButton undoButton;
+
 
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -94,9 +97,10 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupButton(int resId, Runnable runnable){
+    private ImageButton setupButton(int resId, Runnable runnable){
         ImageButton button  = findViewById(resId);
         button.setOnClickListener(v -> runnable.run());
+        return button;
     }
 
 
@@ -116,6 +120,23 @@ public class MainActivity extends AppCompatActivity implements GameView {
         isInitialized = true;
     }
 
+
+    @Override
+    public void disableUndoButton(){
+        undoButton.setEnabled(false);
+    }
+
+
+    @Override
+    public void enableUndoButton(){
+        undoButton.setEnabled(true);
+        setUndoButtonDrawable(R.drawable.ic_undo);
+    }
+
+    private void setUndoButtonDrawable(int resId){
+        var drawable = AppCompatResources.getDrawable(getApplicationContext(), resId);
+        undoButton.setImageDrawable(drawable);
+    }
 
     private void setupGameService() {
         Intent intent = new Intent(getApplicationContext(), GameService.class);
@@ -143,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupButtons() {
         setupButton(R.id.infoButton, ()-> infoPanelHelper.showPanel() );
-        setupButton(R.id.undoButton, ()-> game.removePeg() );
+        undoButton = setupButton(R.id.undoButton, ()-> game.removePeg() );
 
         setupColorButton(R.id.redButton, PegColor.RED);
         setupColorButton(R.id.blueButton, PegColor.BLUE);
