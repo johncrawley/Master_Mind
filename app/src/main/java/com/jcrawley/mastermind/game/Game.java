@@ -25,7 +25,7 @@ public class Game {
     public void init(){
         if(!isGameInProgress){
             gameView.resetAllRowsInstantly();
-            setupNewGame();
+            setupFirstGame();
         }
         else{
             updateViewWithGameState();
@@ -121,6 +121,11 @@ public class Game {
     }
 
 
+    public List<PegColor> getSolution(){
+        return gameSolution.get();
+    }
+
+
     public void addPeg(PegColor pegColor){
         if(!isUserInputEnabled()){
             return;
@@ -205,7 +210,7 @@ public class Game {
     }
 
 
-    public void setupNewGame(){
+    public void setupFirstGame(){
         numberOfTries = 1;
         currentRow = 0;
         currentIndex = 0;
@@ -215,6 +220,13 @@ public class Game {
         isGameInProgress = false;
         enableUserInput();
         gamePhase = GamePhase.RUNNING;
+    }
+
+
+    public void startNewGame(){
+        setupFirstGame();
+        disableUserInput();
+        gameView.resetAllRows();
     }
 
 

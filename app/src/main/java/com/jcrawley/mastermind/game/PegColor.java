@@ -13,17 +13,29 @@ public enum PegColor {
     PURPLE(R.color.game_purple),
     BROWN(R.color.game_brown),
     PINK(R.color.game_pink),
-    EMPTY(R.color.peg_default_background);
+    EMPTY(R.color.peg_default_background, false),
+    TEST(R.color.teal_200, false);
 
 
     private final int colorId;
+    private final boolean canColorBePicked;
+
 
     PegColor(int colorId) {
+        this(colorId, true);
+    }
+
+    PegColor(int colorId, boolean canColorBePicked) {
+        this.canColorBePicked = canColorBePicked;
         this.colorId = colorId;
     }
 
 
     public int getColorId(){
         return colorId;
+    }
+
+    public boolean canColorBePicked(){
+        return canColorBePicked;
     }
 }

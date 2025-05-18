@@ -9,28 +9,15 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:contentDescription="@string/button_image_desc_info"
-        android:layout_width="@dimen/_38sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:backgroundTint="@color/background"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_info" />
 
-
-    <ImageButton
-        android:id="@+id/undoButton"
-        android:layout_width="@dimen/_38sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:backgroundTint="@color/transparent"
-        android:contentDescription="@string/button_image_desc_info"
-        app:layout_constraintTop_toTopOf="parent"
+    <include
+        android:id="@+id/topPanel"
+        layout="@layout/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_undo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include layout="@layout/game_grid"
         android:id="@+id/gameGridInclude"
@@ -38,7 +25,7 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_12sdp"
         app:layout_constraintHeight_percent="0.95"
-        app:layout_constraintTop_toBottomOf="@id/infoButton"
+        app:layout_constraintTop_toBottomOf="@id/topPanel"
         app:layout_constraintBottom_toTopOf="@id/buttonPanelInclude"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -27,7 +27,7 @@ public class GameTest {
         game.setView(mockView);
         game.init();
         // add a manual solution so that tests won't hit a random solution by accident
-        game.setSolution(PURPLE, PURPLE, PURPLE, PURPLE);
+        game.setSolution(TEST, TEST, TEST, TEST);
     }
 
     @Test
@@ -158,6 +158,35 @@ public class GameTest {
         game.removePeg();
         assertIndex(0);
         assertUndoButtonState(false);
+    }
+
+
+    @Test
+    public void newGameWipesAllData(){
+        addPegs(BLUE, GREEN, RED, BROWN, YELLOW);
+        game.startNewGame();
+        assertIndex(0);
+        assertRow(0);
+        assertPegsPlaced(0, EMPTY, EMPTY, EMPTY, EMPTY);
+        assertPegsPlaced(1, EMPTY, EMPTY, EMPTY, EMPTY);
+        assertTrue(mockView.haveAllRowsBeenReset());
+        assertEquals(0, game.getPegCount());
+    }
+
+
+    @Test
+    public void newGameRegeneratesSolution(){
+        game.startNewGame();
+        var solution = game.getSolution();
+        assertNotEquals(TEST, solution.get(0));
+
+    }
+
+
+    private void addPegs(PegColor... colors){
+        for(var pegColor : colors){
+            game.addPeg(pegColor);
+        }
     }
 
 

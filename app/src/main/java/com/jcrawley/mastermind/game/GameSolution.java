@@ -2,6 +2,7 @@ package com.jcrawley.mastermind.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -13,7 +14,6 @@ public class GameSolution {
     private final int pegsPerRow;
     private List<PegColor> possibleColors;
 
-
     public GameSolution(int pegsPerRow){
         this.pegsPerRow = pegsPerRow;
         solution = new ArrayList<>(pegsPerRow);
@@ -23,17 +23,17 @@ public class GameSolution {
 
     public void set(PegColor... pegColors){
         solution.clear();
-        for(int i = 0; i < pegsPerRow; i++){
-            solution.add(pegColors[i]);
-        }
+        Collections.addAll(solution, pegColors);
     }
 
 
     private void setupPossibleColors(){
         possibleColors = Arrays.stream(PegColor.values())
-                .filter( pc -> pc != PegColor.EMPTY)
+                .filter(PegColor::canColorBePicked)
                 .collect(Collectors.toList());
     }
+
+
 
 
     public List<PegColor> get(){

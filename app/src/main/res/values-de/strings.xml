@@ -20,4 +20,6 @@
     <string name="button_image_desc_brown">Braun</string>
     <string name="button_image_desc_orange">Orange</string>
     <string name="button_image_desc_info">Über Klassisches Master Mind</string>
+    <string name="button_image_desc_undo">Aufmachen</string>
+    <string name="button_image_desc_new_game">Neues Spiel</string>
 </resources>

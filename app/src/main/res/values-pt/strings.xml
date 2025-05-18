@@ -20,4 +20,6 @@
     <string name="button_image_desc_brown">Marrom</string>
     <string name="button_image_desc_orange">Laranja</string>
     <string name="button_image_desc_info">Sobre o Master Mind Clássico</string>
+    <string name="button_image_desc_undo">Desfazer</string>
+    <string name="button_image_desc_new_game">novo jogo</string>
 </resources>

@@ -10,6 +10,7 @@ public class MockView implements GameView {
 
     private int callsToSetPegColor;
     private boolean isUndoDisabled = true;
+    private boolean haveAllRowsBeenReset = false;
 
 
 
@@ -17,8 +18,14 @@ public class MockView implements GameView {
         return callsToSetPegColor;
     }
 
+
     public boolean isUndoDisabled(){
         return isUndoDisabled;
+    }
+
+
+    public boolean haveAllRowsBeenReset(){
+        return this.haveAllRowsBeenReset;
     }
 
 
@@ -71,8 +78,9 @@ public class MockView implements GameView {
 
     @Override
     public void resetAllRows() {
-
+        this.haveAllRowsBeenReset = true;
     }
+
 
     @Override
     public void resetAllRowsInstantly() {

@@ -97,7 +97,7 @@ public class GameOverHelper {
         panel.setZ(-1);
         var game = mainActivity.getGame();
         if(game != null){
-            game.setupNewGame();
+            game.setupFirstGame();
         }
         hasPanelBeenDismissed.set(false);
         dismissPanelOnBackPressedCallback.setEnabled(false);

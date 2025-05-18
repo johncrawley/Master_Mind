@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/infoButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/button_image_desc_info"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_info" />
+
+
+    <ImageButton
+        android:id="@+id/newGameButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/button_image_desc_new_game"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/infoButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_new_game" />
+
+
+    <ImageButton
+        android:id="@+id/undoButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/button_image_desc_undo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_undo" />
+</androidx.constraintlayout.widget.ConstraintLayout>

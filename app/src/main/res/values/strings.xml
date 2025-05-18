@@ -19,4 +19,6 @@
     <string name="button_image_desc_brown">Brown</string>
     <string name="button_image_desc_orange">Orange</string>
     <string name="button_image_desc_info">About Classic Master Mind</string>
+    <string name="button_image_desc_undo">Undo</string>
+    <string name="button_image_desc_new_game">New game</string>
 </resources>
