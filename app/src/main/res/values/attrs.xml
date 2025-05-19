@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background_color" format="reference" />
+    <attr name="row_color" format="reference" />
+    <attr name="highlighted_row_color" format="reference" />
+    <attr name="info_icon" format="reference" />
+    <attr name="new_game_icon" format="reference" />
+    <attr name="undo_icon" format="reference" />
+
+</resources>

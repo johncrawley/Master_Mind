@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_info" />
+        app:srcCompat="?attr/info_icon" />
 
 
     <ImageButton
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/infoButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_new_game" />
+        app:srcCompat="?attr/new_game_icon" />
 
 
     <ImageButton
@@ -40,5 +40,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_undo" />
+        app:srcCompat="?attr/undo_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

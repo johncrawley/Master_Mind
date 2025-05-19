@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
@@ -67,19 +66,11 @@ public class MainActivity extends AppCompatActivity implements GameView {
     };
 
 
-    private void initGridWiper(){
-        if(gridWiper == null){
-            gridWiper = new GridWiper(MainActivity.this, game);
-        }
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        hideActionBar();
         setNavBarColor();
         setupLayout();
         setupGrid();
@@ -88,6 +79,13 @@ public class MainActivity extends AppCompatActivity implements GameView {
         infoPanelHelper = new InfoPanelHelper(this);
         setupButtons();
         setupGameService();
+    }
+
+
+    private void initGridWiper(){
+        if(gridWiper == null){
+            gridWiper = new GridWiper(MainActivity.this, game);
+        }
     }
 
 
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setNavBarColor(){
         var navBarColor = getResources().getColor(R.color.black, getTheme());
-        getWindow().setNavigationBarColor(navBarColor);
+       // getWindow().setNavigationBarColor(navBarColor);
     }
 
 
@@ -142,14 +140,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         Intent intent = new Intent(getApplicationContext(), GameService.class);
         getApplicationContext().startService(intent);
         getApplicationContext().bindService(intent, connection, 0);
-    }
-
-
-    private void hideActionBar(){
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
-            actionBar.hide();
-        }
     }
 
 
