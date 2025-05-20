@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-   <include layout="@layout/button_panel"
+   <include layout="@layout/input_button_panel"
        android:id="@+id/buttonPanelInclude"
        android:layout_width="match_parent"
        android:layout_height="0dp"

@@ -17,11 +17,13 @@
     <color name="game_brown">#7C4115</color>
 
     <color name="pane_background">#5B5757</color>
+    <color name="pane_background_light">#969FAF</color>
     <color name="background">#000</color>
-    <color name="background_light">#B3B5B6</color>
+    <color name="background_light">#E7E6DA</color>
     <color name="transparent">#00000000</color>
     <color name="solution_background">#757474</color>
     <color name="highlighted_row_background">#8E8C8C</color>
+    <color name="highlighted_row_background_light">#D8D8E6</color>
     <color name="clue_default_background">#000000</color>
     <color name="clue_cow">#C7C52B</color>
     <color name="clue_bull">#2E7D32</color>
@@ -30,6 +32,10 @@
     <color name="game_over_panel_edge">#BAB8B8</color>
     <color name="game_over_text">#FFB300</color>
     <color name="clue_tip_text">#D1BC6E</color>
+    <color name="input_button_surround">#1B1B1B</color>
+    <color name="input_button_surround_light">#A89D7E</color>
+
+
 
     <color name="disabled_button">#888</color>
 

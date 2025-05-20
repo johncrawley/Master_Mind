@@ -19,5 +19,10 @@
             <item name="new_game_icon">@drawable/ic_new_game_light</item>
             <item name="undo_icon">@drawable/ic_undo_light</item>
             <item name="background_color">@color/background_light</item>
+
+            <item name="row_color">@color/pane_background_light</item>
+            <item name="highlighted_row_color">@color/highlighted_row_background_light</item>
+
+            <item name="input_button_surround">@color/input_button_surround_light</item>
         </style>
     </resources>

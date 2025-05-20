@@ -6,5 +6,6 @@
     <attr name="info_icon" format="reference" />
     <attr name="new_game_icon" format="reference" />
     <attr name="undo_icon" format="reference" />
+    <attr name="input_button_surround" format="reference" />
 
 </resources>

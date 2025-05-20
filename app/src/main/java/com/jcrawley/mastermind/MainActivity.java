@@ -1,17 +1,28 @@
 package com.jcrawley.mastermind;
 
+import static com.jcrawley.mastermind.game.PegColor.BLUE;
+import static com.jcrawley.mastermind.game.PegColor.BROWN;
+import static com.jcrawley.mastermind.game.PegColor.GREEN;
+import static com.jcrawley.mastermind.game.PegColor.ORANGE;
+import static com.jcrawley.mastermind.game.PegColor.PINK;
+import static com.jcrawley.mastermind.game.PegColor.PURPLE;
+import static com.jcrawley.mastermind.game.PegColor.RED;
+import static com.jcrawley.mastermind.game.PegColor.YELLOW;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
@@ -71,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        setNavBarColor();
         setupLayout();
         setupGrid();
         setupGridMap();
@@ -99,12 +109,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         ImageButton button  = findViewById(resId);
         button.setOnClickListener(v -> runnable.run());
         return button;
-    }
-
-
-    private void setNavBarColor(){
-        var navBarColor = getResources().getColor(R.color.black, getTheme());
-       // getWindow().setNavigationBarColor(navBarColor);
     }
 
 
@@ -157,14 +161,47 @@ public class MainActivity extends AppCompatActivity implements GameView {
         undoButton = setupButton(R.id.undoButton, ()-> game.removePeg() );
         setupButton(R.id.newGameButton, this::startNewGame);
 
-        setupColorButton(R.id.redButton, PegColor.RED);
-        setupColorButton(R.id.blueButton, PegColor.BLUE);
-        setupColorButton(R.id.greenButton, PegColor.GREEN);
-        setupColorButton(R.id.yellowButton, PegColor.YELLOW);
-        setupColorButton(R.id.orangeButton, PegColor.ORANGE);
-        setupColorButton(R.id.purpleButton, PegColor.PURPLE);
-        setupColorButton(R.id.brownButton, PegColor.BROWN);
-        setupColorButton(R.id.pinkButton, PegColor.PINK);
+        setupInputButtonRow(R.id.panel1, List.of(RED, BLUE, GREEN, YELLOW) );
+        setupInputButtonRow(R.id.panel2, List.of(BROWN, ORANGE, PINK, PURPLE) );
+    }
+
+
+    private void setupInputButtonRow(int panelId, List<PegColor> pegColors){
+        ViewGroup panel = findViewById(panelId);
+        for(int i = 0; i < pegColors.size(); i++){
+            setupInputButton(panel, i, pegColors.get(i));
+        }
+    }
+
+
+    private void setupInputButton(ViewGroup panel, int index, PegColor pegColor){
+        var buttonLayout = (ViewGroup) panel.getChildAt(index);
+        var button = buttonLayout.getChildAt(0);
+        setContentDescription(button, pegColor);
+        setColorTint(button, pegColor);
+        setClickListenerOn(button, pegColor);
+    }
+
+
+    private void setContentDescription(View view, PegColor pegColor){
+        var description = getString(pegColor.getContentDescriptionId());
+        view.setContentDescription(description);
+    }
+
+
+    private void setClickListenerOn(View view, PegColor pegColor){
+        view.setOnClickListener((v -> {
+            if(game != null && isInitialized){
+                game.addPeg(pegColor);
+            }
+        }));
+    }
+
+
+    private void setColorTint(View view, PegColor pegColor){
+        int color = getColor(pegColor.getColorId());
+        var colorStateList = ColorStateList.valueOf(color);
+        view.setBackgroundTintList(colorStateList);
     }
 
 
@@ -172,16 +209,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         if(game != null){
             game.startNewGame();
         }
-    }
-
-
-    private void setupColorButton(int buttonId, PegColor pegColor) {
-        Button button = findViewById(buttonId);
-        button.setOnClickListener((v -> {
-            if(game != null && isInitialized){
-                game.addPeg(pegColor);
-            }
-        }));
     }
 
 
@@ -198,16 +225,17 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     public void setupSolutionPegs(List<PegColor> solution) {
-        ViewGroup solutionPegsLayout = findViewById(R.id.solutionPegsLayout);
-
-        for (int i = 0; i < solution.size(); i++) {
-            if (i >= solutionPegsLayout.getChildCount()) {
-                return;
-            }
-            var pegColor = solution.get(i);
-            var pegLayout = (ViewGroup) solutionPegsLayout.getChildAt(i);
-            setPegColor(pegLayout.getChildAt(0), pegColor.getColorId());
+        ViewGroup layout = findViewById(R.id.solutionPegsLayout);
+        for (int i = 0; i < solution.size() && i < layout.getChildCount(); i++) {
+            setupSolutionPeg(layout, solution, i);
         }
+    }
+
+
+    private void setupSolutionPeg(ViewGroup solutionPegsLayout, List<PegColor> solution, int index){
+        var pegColor = solution.get(index);
+        var pegLayout = (ViewGroup) solutionPegsLayout.getChildAt(index);
+        setPegColor(pegLayout.getChildAt(0), pegColor.getColorId());
     }
 
 
@@ -327,9 +355,11 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     @Override
-    public void highlightRowBackground(int rowIndex) {
-        int highlightedBackgroundColor = getColor(R.color.highlighted_row_background);
-        getRow(rowIndex).setBackgroundColor(highlightedBackgroundColor);
+    public void highlightRowBackground(int rowIndex){
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(R.attr.highlighted_row_color, typedValue, true);
+        @ColorInt int color = typedValue.data;
+        getRow(rowIndex).setBackgroundColor(color);
     }
 
 
