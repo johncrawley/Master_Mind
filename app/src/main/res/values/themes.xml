@@ -24,5 +24,8 @@
             <item name="highlighted_row_color">@color/highlighted_row_background_light</item>
 
             <item name="input_button_surround">@color/input_button_surround_light</item>
+            <item name="input_button_surround_2">@color/input_button_surround_2_light</item>
+
+            <item name="game_grid_background">@color/game_grid_background_light</item>
         </style>
     </resources>

@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     @Override
     public void enableUndoButton(){
         undoButton.setEnabled(true);
-        setUndoButtonDrawable(R.drawable.ic_undo);
+        //setUndoButtonDrawable(R.drawable.ic_undo);
     }
 
     private void setUndoButtonDrawable(int resId){
@@ -292,8 +292,8 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void resetRowBackground(int index){
-        int defaultBackground = getColor(R.color.pane_background);
-        getRow(index).setBackgroundColor(defaultBackground);
+        var color = getThemedColor(R.attr.row_color);
+        getRow(index).setBackgroundColor(color);
     }
 
 
@@ -356,10 +356,16 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void highlightRowBackground(int rowIndex){
-        TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.highlighted_row_color, typedValue, true);
-        @ColorInt int color = typedValue.data;
+        var color = getThemedColor(R.attr.highlighted_row_color);
         getRow(rowIndex).setBackgroundColor(color);
+    }
+
+
+    private int getThemedColor(int attrId){
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(attrId, typedValue, true);
+        @ColorInt int color = typedValue.data;
+        return color;
     }
 
 
