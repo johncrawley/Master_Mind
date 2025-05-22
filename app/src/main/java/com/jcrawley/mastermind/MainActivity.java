@@ -45,7 +45,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity implements GameView {
 
-    ViewGroup gridLayout, gridLayout2;
     private Game game;
     private GridWiper gridWiper;
     private int pegsPerRow;
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         setupLayout();
-        setupGrid();
         setupGridMap();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
@@ -96,12 +94,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         if(gridWiper == null){
             gridWiper = new GridWiper(MainActivity.this, game);
         }
-    }
-
-
-    private void setupGrid(){
-        gridLayout = findViewById(R.id.gameGridLayout);
-        gridLayout2 = findViewById(R.id.gameGridLayout2);
     }
 
 
@@ -146,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         getApplicationContext().bindService(intent, connection, 0);
     }
 
-
     private void setupLayout() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -154,7 +145,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
             return insets;
         });
     }
-
 
     private void setupButtons() {
         setupButton(R.id.infoButton, ()-> infoPanelHelper.showPanel() );
@@ -371,18 +361,22 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupGridMap(){
         gridRowMap.clear();
-        int rowNumber = 9;
+        setupGridSection(R.id.gameGridLayout, 9);
+        setupGridSection(R.id.gameGridLayout2, 4);
+    }
+
+
+    private void setupGridSection(int parentLayoutId, int rowNumber){
+        var rowIds = List.of(R.id.row_a, R.id.row_b, R.id.row_c, R.id.row_d, R.id.row_e);
+        ViewGroup sectionLayout = findViewById(parentLayoutId);
         for(int i = 0; i < 5; i++, rowNumber--){
-            addRowToMap(rowNumber, gridLayout, i);
-        }
-        for(int i = 0; i < 5; i++, rowNumber--){
-            addRowToMap(rowNumber, gridLayout2, i);
+            addRowToMap(rowNumber, sectionLayout, rowIds.get(i));
         }
     }
 
 
-    private void addRowToMap(int number, ViewGroup parent, int childIndex){
-        ViewGroup row =  (ViewGroup) parent.getChildAt(childIndex);
+    private void addRowToMap(int number, ViewGroup parent, int rowId){
+        ViewGroup row = parent.findViewById(rowId);
         gridRowMap.put(number, row);
     }
 

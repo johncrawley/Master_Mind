@@ -33,13 +33,13 @@
     <color name="pane_background_light">#8096bc</color>
 
     <color name="highlighted_row_background">#8E8C8C</color>
-    <color name="highlighted_row_background_light">#B3B9C3</color>
+    <color name="highlighted_row_background_light">#BDCDE9</color>
 
     <color name="input_button_surround">#7C7979</color>
     <color name="input_button_surround_2">#434242</color>
 
     <color name="background">#000</color>
-    <color name="background_light">#9FE0E9</color>
+    <color name="background_light">#B2E4EB</color>
 
 
     <color name="game_grid_background">#000</color>
