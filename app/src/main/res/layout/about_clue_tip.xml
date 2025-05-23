@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:background="@color/panel_background"
+    android:background="?attr/panel_background"
     android:orientation="horizontal">
 
 <include android:id="@+id/clueExample"
@@ -20,7 +20,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="@dimen/_12sdp"
-    android:textColor="@color/clue_tip_text"
+    android:textColor="?attr/clue_tip_text"
     android:text="@string/clues_tip_green"/>
 
 </LinearLayout>

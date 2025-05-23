@@ -15,19 +15,25 @@
         <item name="android:fitsSystemWindows">false</item>
         <item name="android:windowLightStatusBar">false</item>
 
-
         <item name="info_icon">@drawable/ic_info</item>
         <item name="new_game_icon">@drawable/ic_new_game</item>
         <item name="undo_icon">@drawable/ic_undo</item>
         <item name="background_color">@color/background</item>
 
-        <item name="row_color">@color/pane_background</item>
+        <item name="row_color">@color/row_background</item>
         <item name="highlighted_row_color">@color/highlighted_row_background</item>
 
         <item name="input_button_surround">@color/input_button_surround</item>
         <item name="input_button_surround_2">@color/input_button_surround_2</item>
 
-
         <item name="game_grid_background">@color/game_grid_background</item>
+
+        <item name="panel_background">@color/panel_background</item>
+        <item name="panel_edge">@color/panel_edge</item>
+        <item name="panel_text">@color/panel_text</item>
+        <item name="panel_text_shadow">@color/panel_text_shadow</item>
+        <item name="clue_tip_text">@color/clue_tip_text</item>
+        <item name="solution_background">@color/solution_background</item>
+        <item name="popup_background">@color/popup_background</item>
     </style>
 </resources>

@@ -9,5 +9,12 @@
     <attr name="input_button_surround" format="reference" />
     <attr name="input_button_surround_2" format="reference" />
     <attr name="game_grid_background" format="reference" />
+    <attr name="panel_background" format="reference" />
+    <attr name="panel_edge" format="reference" />
+    <attr name="panel_text" format="reference" />
+    <attr name="panel_text_shadow" format="reference" />
+    <attr name="clue_tip_text" format="reference" />
+    <attr name="solution_background" format="reference" />
+    <attr name="popup_background" format="reference" />
 
 </resources>

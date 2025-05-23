@@ -3,5 +3,6 @@
     <corners android:radius="@dimen/_28sdp" />
     <stroke android:width="@dimen/_4sdp" android:color="@color/black"/>
 
-    <solid android:color="@color/panel_background" />
+    <solid android:color="?attr/panel_background" />
+    <padding android:left="@dimen/_2sdp" android:right="@dimen/_2sdp"/>
 </shape>

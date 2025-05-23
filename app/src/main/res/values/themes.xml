@@ -20,12 +20,20 @@
             <item name="undo_icon">@drawable/ic_undo_light</item>
             <item name="background_color">@color/background_light</item>
 
-            <item name="row_color">@color/pane_background_light</item>
+            <item name="row_color">@color/row_background_light</item>
             <item name="highlighted_row_color">@color/highlighted_row_background_light</item>
 
             <item name="input_button_surround">@color/input_button_surround_light</item>
             <item name="input_button_surround_2">@color/input_button_surround_2_light</item>
 
             <item name="game_grid_background">@color/game_grid_background_light</item>
+
+            <item name="panel_background">@color/panel_background_light</item>
+            <item name="panel_edge">@color/panel_edge_light</item>
+            <item name="panel_text">@color/panel_text_light</item>
+            <item name="panel_text_shadow">@color/panel_text_shadow_light</item>
+            <item name="clue_tip_text">@color/clue_tip_text_light</item>
+            <item name="solution_background">@color/solution_background_light</item>
+            <item name="popup_background">@color/popup_background_light</item>
         </style>
     </resources>
