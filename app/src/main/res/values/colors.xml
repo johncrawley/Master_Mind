@@ -57,7 +57,7 @@
     <color name="panel_text_shadow_light">#E3F0F4</color>
 
     <color name="clue_tip_text">#D1BC6E</color>
-    <color name="clue_tip_text_light">#806812</color>
+    <color name="clue_tip_text_light">#4E3F03</color>
 
     <color name="solution_background">#757474</color>
     <color name="solution_background_light">#A5B2C8</color>
