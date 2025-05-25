@@ -51,16 +51,16 @@
     <color name="panel_edge_light">#BAB8B8</color>
 
     <color name="panel_text">#FFB300</color>
-    <color name="panel_text_light">#994C0A</color>
+    <color name="panel_text_light">#E47A2D</color>
 
     <color name="panel_text_shadow">#0D0D0D</color>
-    <color name="panel_text_shadow_light">#E3F0F4</color>
+    <color name="panel_text_shadow_light">#000000</color>
 
     <color name="clue_tip_text">#D1BC6E</color>
     <color name="clue_tip_text_light">#4E3F03</color>
 
     <color name="solution_background">#757474</color>
-    <color name="solution_background_light">#A5B2C8</color>
+    <color name="solution_background_light">#BAB8B8</color>
 
     <color name="popup_background">#88000000</color>
     <color name="popup_background_light">#AA000000</color>
