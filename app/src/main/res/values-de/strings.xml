@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Klassisches Master Mind</string>
-    <string name="about_game_name_and_version">Klassisches Master Mind v1.01</string>
+    <string name="about_game_name_and_version">Klassisches Master Mind v1.1</string>
     <string name="about_created_by">Erstellt von John Crawley, 2025</string>
     <string name="clues_tip_green">Eine der Auswahlen hat die richtige Farbe und die richtige Position</string>
     <string name="clues_tip_yellow">Eine der Auswahlen hat die richtige Farbe, aber die falsche Position</string>
