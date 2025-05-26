@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">العقل المدبر الكلاسيكي</string>
+
+  <string name="about_created_by">صممها جون كراولي، 2025</string>
+      
+  <string name="clues_tip_green"> أحد الاختيارات له اللون الصحيح والموضع الصحيح</string>
+      
+  <string name="clues_tip_yellow">أحد الاختيارات له اللون الصحيح ولكنه في الموضع الخطأ</string>
+      
+  <string name="colors_tip">نصيحة: قد يحتوي المحلول على أكثر من ربط من نفس اللون</string>
+      
+  <string name="game_over_title"> انتهت اللعبة </string>
+      
+  <string name="number_of_tries"> لقد وجدت الحل في %1$d محاولة!</string>
+      
+  <string name="number_of_tries_one"> محظوظ! لقد وجدت الحل في تخمينك الأول!</string>
+      
+  <string name="game_over_message_fail"> الإجابة الصحيحة كانت: </string>
+      
+  <string name="game_over_title_success"> أحسنت!</string>
+      
+  <string name="button_image_desc_yellow">أصفر</string>
+      
+  <string name="button_image_desc_blue">أزرق</string>
+      
+  <string name="button_image_desc_red">أحمر</string>
+      
+  <string name="button_image_desc_green">أخضر</string>
+      
+  <string name="button_image_desc_pink">وردي</string>
+      
+  <string name="button_image_desc_purple">أرجواني</string>
+      
+  <string name="button_image_desc_brown">بني</string>
+      
+  <string name="button_image_desc_orange">برتقالي</string>
+      
+  <string name="button_image_desc_info">حول Classic Master Mind</string>
+      
+  <string name="button_image_desc_undo">تراجع</string>
+      
+  <string name="button_image_desc_new_game">لعبة جديدة</string>
+  
+</resources>

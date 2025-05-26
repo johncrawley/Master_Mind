@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">มาสเตอร์มายด์สุดคลาสสิก</string>
+
+    <string name="about_created_by">สร้างโดย John Crawley, 2025</string>
+      
+  <string name="clues_tip_green"> หนึ่งในตัวเลือกมีสีที่ถูกต้องและตำแหน่งที่ถูกต้อง</string>
+      
+  <string name="clues_tip_yellow">หนึ่งในตัวเลือกมีสีที่ถูกต้อง แต่อยู่ในตำแหน่งที่ไม่ถูกต้อง</string>
+      
+  <string name="colors_tip">เคล็ดลับ: วิธีแก้ปัญหาอาจมีหมุดที่มีสีเดียวกันมากกว่าหนึ่งหมุด</string>
+      
+  <string name="game_over_title"> จบเกม </string>
+      
+  <string name="number_of_tries"> คุณพบวิธีแก้ปัญหาในความพยายาม %1$d ครั้ง!</string>
+      
+  <string name="number_of_tries_one"> โชคดี! คุณพบวิธีแก้ปัญหาตั้งแต่เดาครั้งแรก!</string>
+      
+  <string name="game_over_message_fail"> คำตอบที่ถูกต้องคือ: </string>
+      
+  <string name="game_over_title_success"> ทำได้ดีมาก!</string>
+      
+  <string name="button_image_desc_yellow">สีเหลือง</string>
+      
+  <string name="button_image_desc_blue">สีน้ำเงิน</string>
+      
+  <string name="button_image_desc_red">สีแดง</string>
+      
+  <string name="button_image_desc_green">สีเขียว</string>
+      
+  <string name="button_image_desc_pink">สีชมพู</string>
+      
+  <string name="button_image_desc_purple">สีม่วง</string>
+      
+  <string name="button_image_desc_brown">สีน้ำตาล</string>
+      
+  <string name="button_image_desc_orange">ส้ม</string>
+      
+  <string name="button_image_desc_info">เกี่ยวกับ Classic Master Mind</string>
+      
+  <string name="button_image_desc_undo">เลิกทำ</string>
+      
+  <string name="button_image_desc_new_game">เกมใหม่</string>
+  
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">क्लासिक मास्टर माइंड</string>
+
+  <string name="about_created_by">जॉन क्रॉली द्वारा निर्मित, 2025</string>
+      
+  <string name="clues_tip_green"> विकल्पों में से एक में सही रंग और सही स्थिति है</string>
+      
+  <string name="clues_tip_yellow">विकल्पों में से एक का रंग सही है लेकिन वह गलत स्थिति में है</string>
+      
+  <string name="colors_tip">सलाह: घोल में एक ही रंग के एक से ज़्यादा पेग हो सकते हैं</string>
+      
+  <string name="game_over_title"> गेम खत्म </string>
+      
+  <string name="number_of_tries"> आपको %1$d कोशिशों में समाधान मिल गया!</string>
+      
+  <string name="number_of_tries_one"> लकी! आपको अपने पहले अनुमान पर ही समाधान मिल गया!</string>
+      
+  <string name="game_over_message_fail"> सही उत्तर था: </string>
+      
+  <string name="game_over_title_success"> शाबाश!</string>
+      
+  <string name="button_image_desc_yellow">पीला</string>
+      
+  <string name="button_image_desc_blue">नीला</string>
+      
+  <string name="button_image_desc_red">लाल</string>
+      
+  <string name="button_image_desc_green">हरा</string>
+      
+  <string name="button_image_desc_pink">गुलाबी</string>
+      
+  <string name="button_image_desc_purple">बैंगनी</string>
+      
+  <string name="button_image_desc_brown">भूरा</string>
+      
+  <string name="button_image_desc_orange">नारंगी</string>
+      
+  <string name="button_image_desc_info">क्लासिक मास्टर माइंड के बारे में</string>
+      
+  <string name="button_image_desc_undo">पूर्ववत करें</string>
+      
+  <string name="button_image_desc_new_game">नया गेम</string>
+  
+</resources>

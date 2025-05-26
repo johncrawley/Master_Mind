@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">Classic Master Mind</string>
+
+  <string name="about_created_by">Dibuat oleh John Crawley, 2025</string>
+      
+  <string name="clues_tip_green"> salah satu pilihan memiliki warna dan posisi yang benar</string>
+      
+  <string name="clues_tip_yellow">salah satu pilihan memiliki warna yang benar tetapi berada di posisi yang salah</string>
+      
+  <string name="colors_tip">Tip: solusinya mungkin berisi lebih dari satu pasak dengan warna yang sama</string>
+      
+  <string name="game_over_title"> GAME OVER </string>
+      
+  <string name="number_of_tries"> Kamu menemukan solusinya dalam %1$d percobaan!</string>
+      
+  <string name="number_of_tries_one"> Beruntung! Kamu menemukan solusinya pada tebakan pertamamu!</string>
+      
+  <string name="game_over_message_fail"> Jawaban yang benar adalah: </string>
+      
+  <string name="game_over_title_success"> BAGUS!</string>
+      
+  <string name="button_image_desc_yellow">Kuning</string>
+      
+  <string name="button_image_desc_blue">Biru</string>
+      
+  <string name="button_image_desc_red">Merah</string>
+      
+  <string name="button_image_desc_green">Hijau</string>
+      
+  <string name="button_image_desc_pink">Merah muda</string>
+      
+  <string name="button_image_desc_purple">Ungu</string>
+      
+  <string name="button_image_desc_brown">Coklat</string>
+      
+  <string name="button_image_desc_orange">Oranye</string>
+      
+  <string name="button_image_desc_info">Tentang Classic Master Mind</string>
+      
+  <string name="button_image_desc_undo">Urungkan</string>
+      
+  <string name="button_image_desc_new_game">Permainan baru</string>
+  
+</resources>

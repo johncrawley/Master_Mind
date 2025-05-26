@@ -34,14 +34,15 @@
                 android:textAlignment="center"
                 android:textColor="?attr/panel_text"
                 android:shadowColor="?attr/panel_text_shadow"
-                android:shadowRadius="4"
+                android:shadowRadius="2"
+                android:shadowDy="1"
                 android:textSize="@dimen/_36sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/gameOverMessageText"
+                android:id="@+id/createdByText"
                 android:layout_width="wrap_content"
                 android:textAlignment="center"
                 android:textColor="?attr/panel_text"
@@ -50,7 +51,6 @@
                 android:maxLines="3"
                 android:textSize="@dimen/_20sdp"
                 android:shadowColor="?attr/panel_text_shadow"
-                android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:text="@string/game_over_message_fail"
@@ -69,7 +69,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gameOverMessageText">
+                app:layout_constraintTop_toBottomOf="@id/createdByText">
 
                 <include android:id="@+id/solutionPegsLayout"
                     layout="@layout/peg_row"

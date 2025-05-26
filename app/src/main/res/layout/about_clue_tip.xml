@@ -18,9 +18,10 @@
 <TextView
     android:id="@+id/clueTipText"
     android:layout_width="wrap_content"
+    android:layout_marginHorizontal="@dimen/_16sdp"
     android:layout_height="wrap_content"
     android:textSize="@dimen/_12sdp"
     android:textColor="?attr/clue_tip_text"
-    android:text="@string/clues_tip_green"/>
+    android:text="@string/clues_tip_yellow"/>
 
 </LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">クラシックマスターマインド</string>
+
+  <string name="about_created_by">ジョン・クローリーが作成、2025</string>
+      
+  <string name="clues_tip_green">選択肢の 1 つが正しい色と正しい位置を持っています</string>
+      
+  <string name="clues_tip_yellow">選択肢の 1 つは正しい色をしていますが、間違った位置にあります</string>
+      
+  <string name="colors_tip">ヒント：ソリューションには同じ色のペグが複数含まれている場合があります</string>
+      
+  <string name="game_over_title">ゲームオーバー</string>
+      
+  <string name="number_of_tries">%1$d回の試行で解決策を見つけました！</string>
+      
+  <string name="number_of_tries_one">ラッキー！最初の推測で解決策を見つけました！</string>
+      
+  <string name="game_over_message_fail">正解は次のとおりです。</string>
+      
+  <string name="game_over_title_success">よくやった！</string>
+      
+  <string name="button_image_desc_yellow">黄色</string>
+      
+  <string name="button_image_desc_blue">ブルー</string>
+      
+  <string name="button_image_desc_red">赤</string>
+      
+  <string name="button_image_desc_green">緑</string>
+      
+  <string name="button_image_desc_pink">ピンク</string>
+      
+  <string name="button_image_desc_purple">パープル</string>
+      
+  <string name="button_image_desc_brown">ブラウン</string>
+      
+  <string name="button_image_desc_orange">オレンジ</string>
+      
+  <string name="button_image_desc_info">Classic Master Mind について</string>
+      
+  <string name="button_image_desc_undo">元に戻す</string>
+      
+  <string name="button_image_desc_new_game">新しいゲーム</string>
+  
+</resources>

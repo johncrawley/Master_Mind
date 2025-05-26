@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">Klasik Master Mind</string>
+
+  <string name="about_created_by">Oluşturan: John Crawley, 2025</string>
+      
+  <string name="clues_tip_green"> seçeneklerden biri doğru renge ve doğru konuma sahip</string>
+      
+  <string name="clues_tip_yellow">seçeneklerden biri doğru renkte ancak yanlış konumda</string>
+      
+  <string name="colors_tip">İpucu: Çözüm aynı renkten birden fazla çivi içerebilir</string>
+      
+  <string name="game_over_title"> OYUN BİTTİ </string>
+      
+  <string name="number_of_tries"> %1$d denemede çözümü buldunuz!</string>
+      
+  <string name="number_of_tries_one"> Şanslı! İlk tahmininizde çözümü buldunuz!</string>
+      
+  <string name="game_over_message_fail"> Doğru cevap şuydu: </string>
+      
+  <string name="game_over_title_success"> Aferin!</string>
+      
+  <string name="button_image_desc_yellow">Sarı</string>
+      
+  <string name="button_image_desc_blue">Mavi</string>
+      
+  <string name="button_image_desc_red">Kırmızı</string>
+      
+  <string name="button_image_desc_green">Yeşil</string>
+      
+  <string name="button_image_desc_pink">Pembe</string>
+      
+  <string name="button_image_desc_purple">Mor</string>
+      
+  <string name="button_image_desc_brown">Kahverengi</string>
+      
+  <string name="button_image_desc_orange">Turuncu</string>
+      
+  <string name="button_image_desc_info">Classic Master Mind Hakkında</string>
+      
+  <string name="button_image_desc_undo">Geri Al</string>
+      
+  <string name="button_image_desc_new_game">Yeni oyun</string>
+  
+</resources>

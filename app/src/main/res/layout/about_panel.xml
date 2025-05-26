@@ -27,11 +27,12 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/gameText"
+                android:id="@+id/gameNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/about_game_name_and_version"
-                android:padding="@dimen/_12sdp"
+                android:text="@string/app_name"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_4sdp"
                 android:textAlignment="center"
                 android:textColor="?attr/panel_text"
                 android:shadowColor="?attr/panel_text_shadow"
@@ -39,13 +40,30 @@
                 android:shadowDy="2"
                 android:textSize="@dimen/_20sdp"
                 android:fontFamily="sans-serif-black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/gameOverMessageText"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/versionText"/>
 
             <TextView
-                android:id="@+id/gameOverMessageText"
+                android:id="@+id/versionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/version_number"
+                android:textAlignment="center"
+                android:textColor="?attr/panel_text"
+                android:shadowColor="?attr/panel_text_shadow"
+                android:shadowRadius="1"
+                android:shadowDy="1"
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="sans-serif-black"
+                app:layout_constraintTop_toBottomOf="@id/gameNameText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/createdByText"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/createdByText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
@@ -58,20 +76,18 @@
                 android:textAlignment="center"
                 android:textColor="?attr/panel_text"
                 android:textSize="@dimen/_14sdp"
-                app:layout_constraintBottom_toTopOf="@id/clueTip1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gameText" />
+                app:layout_constraintTop_toBottomOf="@id/versionText" />
 
             <include android:id="@+id/clueTip1"
                 layout="@layout/about_clue_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
-                android:padding="@dimen/_12sdp"
                 app:layout_constraintBottom_toTopOf="@id/clueTip2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gameOverMessageText"
+                app:layout_constraintTop_toBottomOf="@id/createdByText"
                 />
 
             <include android:id="@+id/clueTip2"
@@ -79,7 +95,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8sdp"
-                android:padding="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/clueTip1"

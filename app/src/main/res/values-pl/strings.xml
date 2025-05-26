@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+      
+  <string name="app_name">Klasyczny Master Mind</string>
+
+    <string name="about_created_by">Stworzony przez Johna Crawleya, 2025</string>
+      
+  <string name="clues_tip_green"> jedna z opcji ma prawidłowy kolor i prawidłową pozycję</string>
+      
+  <string name="clues_tip_yellow">jedna z opcji ma prawidłowy kolor, ale znajduje się w niewłaściwej pozycji</string>
+      
+  <string name="colors_tip">Wskazówka: rozwiązanie może zawierać więcej niż jeden kołek tego samego koloru</string>
+      
+  <string name="game_over_title"> KONIEC GRY </string>
+      
+  <string name="number_of_tries"> Udało Ci się znaleźć rozwiązanie w %1$d próbach!</string>
+      
+  <string name="number_of_tries_one"> Na szczęście! Znalazłeś rozwiązanie za pierwszym razem!</string>
+      
+  <string name="game_over_message_fail"> Prawidłowa odpowiedź brzmiała: </string>
+      
+  <string name="game_over_title_success"> DOBRA ROBOTA!</string>
+      
+  <string name="button_image_desc_yellow">Żółty</string>
+      
+  <string name="button_image_desc_blue">Niebieski</string>
+      
+  <string name="button_image_desc_red">Czerwony</string>
+      
+  <string name="button_image_desc_green">Zielony</string>
+      
+  <string name="button_image_desc_pink">Różowy</string>
+      
+  <string name="button_image_desc_purple">Fioletowy</string>
+      
+  <string name="button_image_desc_brown">Brązowy</string>
+      
+  <string name="button_image_desc_orange">Pomarańczowy</string>
+      
+  <string name="button_image_desc_info">O Classic Master Mind</string>
+      
+  <string name="button_image_desc_undo">Cofnij</string>
+      
+  <string name="button_image_desc_new_game">Nowa gra</string>
+  
+</resources>

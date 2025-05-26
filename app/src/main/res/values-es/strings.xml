@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Master Mind Clásico</string>
-    <string name="about_game_name_and_version">Master Mind Clásico v1.1</string>
     <string name="about_created_by">Creado por John Crawley, 2025</string>
     <string name="clues_tip_green">una de las elecciones tiene el color correcto y la posición correcta</string>
     <string name="clues_tip_yellow">una de las elecciones tiene el color correcto pero está en la posición incorrecta</string>
