@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace 'com.jcrawley.mastermind'
-    compileSdk 36
+    namespace = 'com.jcrawley.mastermind'
+    compileSdk = 36
 
     defaultConfig {
         applicationId "com.jcrawley.mastermind"
-        minSdk 24
-        targetSdk 36
+        minSdk = 24
+        targetSdk = 36
         versionCode 4
         versionName "1.2"
 
