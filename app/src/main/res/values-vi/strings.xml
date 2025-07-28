@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?><resources>
-      
-  <string name="app_name">Trí tuệ bậc thầy cổ điển</string>
 
-  <string name="about_created_by">Được tạo bởi John Crawley, 2025</string>
-      
-  <string name="clues_tip_green"> một trong những lựa chọn có đúng màu sắc và vị trí chính xác</string>
-      
-  <string name="clues_tip_yellow">một trong những lựa chọn có màu đúng nhưng ở sai vị trí</string>
-      
-  <string name="colors_tip">Mẹo: giải pháp có thể chứa nhiều chốt cùng màu</string>
-      
-  <string name="game_over_title"> TRÒ CHƠI KẾT THÚC </string>
-      
-  <string name="number_of_tries"> Bạn đã tìm ra giải pháp sau %1$d lần thử!</string>
-      
-  <string name="number_of_tries_one"> Thật may mắn! Bạn đã tìm ra giải pháp ngay lần đoán đầu tiên!</string>
-      
-  <string name="game_over_message_fail"> Câu trả lời đúng là: </string>
-      
-  <string name="game_over_title_success"> LÀM TỐT!</string>
-      
-  <string name="button_image_desc_yellow">Vàng</string>
-      
-  <string name="button_image_desc_blue">Xanh lam</string>
-      
-  <string name="button_image_desc_red">Đỏ</string>
-      
-  <string name="button_image_desc_green">Màu xanh lá cây</string>
-      
-  <string name="button_image_desc_pink">Hồng</string>
-      
-  <string name="button_image_desc_purple">Tím</string>
-      
-  <string name="button_image_desc_brown">Nâu</string>
-      
-  <string name="button_image_desc_orange">Cam</string>
-      
-  <string name="button_image_desc_info">Về Classic Master Mind</string>
-      
-  <string name="button_image_desc_undo">Hoàn tác</string>
-      
-  <string name="button_image_desc_new_game">Trò chơi mới</string>
-  
+    <string name="app_name">Trí tuệ bậc thầy cổ điển</string>
+
+    <string name="about_created_by">Được tạo bởi John Crawley, 2025</string>
+
+    <string name="clues_tip_green"> một trong những lựa chọn có đúng màu sắc và vị trí chính xác</string>
+
+    <string name="clues_tip_yellow">một trong những lựa chọn có màu đúng nhưng ở sai vị trí</string>
+
+    <string name="colors_tip">Mẹo: giải pháp có thể chứa nhiều chốt cùng màu</string>
+
+    <string name="game_over_title"> TRÒ CHƠI KẾT THÚC </string>
+
+    <string name="number_of_tries"> Bạn đã tìm ra giải pháp sau %1$d lần thử!</string>
+
+    <string name="number_of_tries_one"> Thật may mắn! Bạn đã tìm ra giải pháp ngay lần đoán đầu tiên!</string>
+
+    <string name="game_over_message_fail"> Câu trả lời đúng là: </string>
+
+    <string name="game_over_title_success"> LÀM TỐT!</string>
+
+    <string name="button_image_desc_yellow">Vàng</string>
+
+    <string name="button_image_desc_blue">Xanh lam</string>
+
+    <string name="button_image_desc_red">Đỏ</string>
+
+    <string name="button_image_desc_green">Màu xanh lá cây</string>
+
+    <string name="button_image_desc_pink">Hồng</string>
+
+    <string name="button_image_desc_purple">Tím</string>
+
+    <string name="button_image_desc_brown">Nâu</string>
+
+    <string name="button_image_desc_orange">Cam</string>
+
+    <string name="button_image_desc_info">Về Classic Master Mind</string>
+
+    <string name="button_image_desc_undo">Hoàn tác</string>
+
+    <string name="button_image_desc_new_game">Trò chơi mới</string>
+
 </resources>

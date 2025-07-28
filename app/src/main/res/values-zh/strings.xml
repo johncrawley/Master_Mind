@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?><resources>
-      
-  <string name="app_name">经典大师头脑</string>
+
+    <string name="app_name">经典大师头脑</string>
 
     <string name="about_created_by">由约翰·克劳利创作，2025</string>
-      
-  <string name="clues_tip_green">其中一个选项具有正确的颜色和正确的位置</string>
-      
-  <string name="clues_tip_yellow">其中一个选项的颜色正确，但位置错误</string>
-      
-  <string name="colors_tip">提示：解决方案可能包含多个相同颜色的钉子</string>
-      
-  <string name="game_over_title">游戏结束</string>
-      
-  <string name="number_of_tries">您在%1$d次尝试中找到了答案！</string>
-      
-  <string name="number_of_tries_one">幸运！您在第一次猜测时找到了解决方案！</string>
-      
-  <string name="game_over_message_fail">正确答案是：</string>
-      
-  <string name="game_over_title_success">干得好！</string>
-      
-  <string name="button_image_desc_yellow">黄色</string>
-      
-  <string name="button_image_desc_blue">蓝色</string>
-      
-  <string name="button_image_desc_red">红色</string>
-      
-  <string name="button_image_desc_green">绿色</string>
-      
-  <string name="button_image_desc_pink">粉色</string>
-      
-  <string name="button_image_desc_purple">紫色</string>
-      
-  <string name="button_image_desc_brown">棕色</string>
-      
-  <string name="button_image_desc_orange">橙色</string>
-      
-  <string name="button_image_desc_info">关于经典大师头脑</string>
-      
-  <string name="button_image_desc_undo">撤消</string>
-      
-  <string name="button_image_desc_new_game">新游戏</string>
-  
+
+    <string name="clues_tip_green">其中一个选项具有正确的颜色和正确的位置</string>
+
+    <string name="clues_tip_yellow">其中一个选项的颜色正确，但位置错误</string>
+
+    <string name="colors_tip">提示：解决方案可能包含多个相同颜色的钉子</string>
+
+    <string name="game_over_title">游戏结束</string>
+
+    <string name="number_of_tries">您在%1$d次尝试中找到了答案！</string>
+
+    <string name="number_of_tries_one">幸运！您在第一次猜测时找到了解决方案！</string>
+
+    <string name="game_over_message_fail">正确答案是：</string>
+
+    <string name="game_over_title_success">干得好！</string>
+
+    <string name="button_image_desc_yellow">黄色</string>
+
+    <string name="button_image_desc_blue">蓝色</string>
+
+    <string name="button_image_desc_red">红色</string>
+
+    <string name="button_image_desc_green">绿色</string>
+
+    <string name="button_image_desc_pink">粉色</string>
+
+    <string name="button_image_desc_purple">紫色</string>
+
+    <string name="button_image_desc_brown">棕色</string>
+
+    <string name="button_image_desc_orange">橙色</string>
+
+    <string name="button_image_desc_info">关于经典大师头脑</string>
+
+    <string name="button_image_desc_undo">撤消</string>
+
+    <string name="button_image_desc_new_game">新游戏</string>
+
 </resources>
