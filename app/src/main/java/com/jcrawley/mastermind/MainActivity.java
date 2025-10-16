@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.jcrawley.mastermind.game.Clue;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         setupLayout();
+        configureNavAndStatusBarAppearance();
         setupGridMap();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
@@ -127,16 +129,19 @@ public class MainActivity extends AppCompatActivity implements GameView {
         //setUndoButtonDrawable(R.drawable.ic_undo);
     }
 
+
     private void setUndoButtonDrawable(int resId){
         var drawable = AppCompatResources.getDrawable(getApplicationContext(), resId);
         undoButton.setImageDrawable(drawable);
     }
+
 
     private void setupGameService() {
         Intent intent = new Intent(getApplicationContext(), GameService.class);
         getApplicationContext().startService(intent);
         getApplicationContext().bindService(intent, connection, 0);
     }
+
 
     private void setupLayout() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -145,6 +150,16 @@ public class MainActivity extends AppCompatActivity implements GameView {
             return insets;
         });
     }
+
+
+    private void configureNavAndStatusBarAppearance(){
+        var window = getWindow();
+        var insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
+        insetsController.setAppearanceLightNavigationBars(false);
+        insetsController.setAppearanceLightStatusBars(false);
+    }
+
+
 
     private void setupButtons() {
         setupButton(R.id.infoButton, ()-> infoPanelHelper.showPanel() );

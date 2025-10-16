@@ -17,9 +17,9 @@
             <item name="android:fitsSystemWindows">false</item>
             <item name="android:windowLightStatusBar">true</item>
 
-            <item name="info_icon">@drawable/ic_info_light</item>
-            <item name="new_game_icon">@drawable/ic_new_game_light</item>
-            <item name="undo_icon">@drawable/ic_undo_light</item>
+            <item name="info_icon">@drawable/ic_info</item>
+            <item name="new_game_icon">@drawable/ic_new_game</item>
+            <item name="undo_icon">@drawable/ic_undo</item>
             <item name="background_color">@color/background_light</item>
 
             <item name="row_color">@color/row_background_light</item>
