@@ -26,7 +26,7 @@
 
 
     <color name="background">#000</color>
-    <color name="background_light">#5EA8B3</color>
+    <color name="background_light">#5FABB6</color>
 
     <color name="row_background">#5B5757</color>
     <color name="row_background_light">#8096bc</color>
@@ -40,18 +40,18 @@
     <color name="game_grid_background">#000</color>
     <color name="game_grid_background_light">#515F76</color>
 
-    <color name="input_button_surround_light">#2E717A</color>
-    <color name="input_button_surround_2_light">#70ADB6</color>
+    <color name="input_button_surround_light">#246068</color>
+    <color name="input_button_surround_2_light">#599199</color>
 
 
     <color name="panel_background">#353434</color>
-    <color name="panel_background_light">#3797A4</color>
+    <color name="panel_background_light">#01636B</color>
 
     <color name="panel_edge">#BAB8B8</color>
     <color name="panel_edge_light">#BAB8B8</color>
 
     <color name="panel_text">#FFB300</color>
-    <color name="panel_text_light">#FBCD43</color>
+    <color name="panel_text_light">#FFC107</color>
 
     <color name="panel_text_shadow">#0D0D0D</color>
     <color name="panel_text_shadow_light">#000000</color>
@@ -60,7 +60,7 @@
     <color name="clue_tip_text_light">#DCDCDC</color>
 
     <color name="solution_background">#757474</color>
-    <color name="solution_background_light">#4E6C71</color>
+    <color name="solution_background_light">#BEC4C5</color>
 
     <color name="popup_background">#88000000</color>
     <color name="popup_background_light">#AA000000</color>
