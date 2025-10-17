@@ -23,6 +23,7 @@ public class Game {
 
 
     public void init(){
+        updateUndoButtonState();
         if(!isGameInProgress){
             gameView.resetAllRowsInstantly();
             setupFirstGame();
@@ -31,7 +32,6 @@ public class Game {
             updateViewWithGameState();
             updateViewWithGamePhase();
             gameView.notifyInitializationComplete();
-            setUndoButtonState();
         }
     }
 

@@ -9,7 +9,7 @@
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:backgroundTint="@color/transparent"
+        android:backgroundTint="?attr/option_button_background"
         android:contentDescription="@string/button_image_desc_info"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,20 +22,19 @@
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:backgroundTint="@color/transparent"
+        android:backgroundTint="?attr/option_button_background"
         android:contentDescription="@string/button_image_desc_new_game"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/infoButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="?attr/new_game_icon" />
 
-
     <ImageButton
         android:id="@+id/undoButton"
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:backgroundTint="@color/transparent"
+        android:backgroundTint="?attr/option_button_background"
         android:contentDescription="@string/button_image_desc_undo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

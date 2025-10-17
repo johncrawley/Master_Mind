@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     @Override
     public void enableUndoButton(){
         undoButton.setEnabled(true);
+        // not using this because it is too distracting
         //setUndoButtonDrawable(R.drawable.ic_undo);
     }
 

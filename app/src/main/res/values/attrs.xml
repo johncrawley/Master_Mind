@@ -16,5 +16,5 @@
     <attr name="clue_tip_text" format="reference" />
     <attr name="solution_background" format="reference" />
     <attr name="popup_background" format="reference" />
-
+    <attr name="option_button_background" format="reference"/>
 </resources>
