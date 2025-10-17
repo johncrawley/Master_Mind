@@ -8,12 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="game_red">#C62828</color>
+    <color name="game_red">#AF0A0A</color>
     <color name="game_blue">#3343BC</color>
     <color name="game_green">#29902F</color>
     <color name="game_orange">#EF6C00</color>
     <color name="game_purple">#7C1BB6</color>
-    <color name="game_yellow">#FAD53D</color>
+    <color name="game_yellow">#C8B702</color>
     <color name="game_pink">#E16DFF</color>
     <color name="game_brown">#7C4115</color>
 
