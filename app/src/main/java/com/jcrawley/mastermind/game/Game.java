@@ -1,95 +1,94 @@
 package com.jcrawley.mastermind.game;
 
-import com.jcrawley.mastermind.game.model.GameGrid;
+import static com.jcrawley.mastermind.game.GamePhase.GAME_OVER_BAD;
+import static com.jcrawley.mastermind.game.GamePhase.GAME_OVER_GOOD;
+
 import com.jcrawley.mastermind.view.GameView;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Game {
 
-    private final int pegsPerRow = 4;
-    private int currentIndex, currentRow, pegsPlaced;
-    private final int numberOfRows = 10;
-    private final int MAX_PEGS = pegsPerRow * numberOfRows;
-    private int numberOfTries;
-    private final GameSolution gameSolution = new GameSolution(pegsPerRow);
-    private final GameGrid gameGrid = new GameGrid(numberOfRows, pegsPerRow);
-    private GameView gameView;
-    private boolean isGameInProgress;
-    private final AtomicBoolean isUserInputEnabled = new AtomicBoolean(false);
-    private enum GamePhase { RUNNING, GAME_OVER_GOOD, GAME_OVER_BAD }
-    private GamePhase gamePhase = GamePhase.RUNNING;
+    private GameView view;
+    private final GameModel model;
+
+
+    public Game(GameModel gameModel, GameView gameView){
+        this.model = gameModel;
+        this.view = gameView;
+    }
 
 
     public void init(){
         updateUndoButtonState();
-        if(!isGameInProgress){
-            gameView.resetAllRowsInstantly();
+        if(!model.isGameInProgress()){
+            view.resetAllRowsInstantly();
             setupFirstGame();
         }
         else{
             updateViewWithGameState();
             updateViewWithGamePhase();
-            gameView.notifyInitializationComplete();
+            view.notifyInitializationComplete();
         }
     }
 
 
     public List<PegColor> getPegsAtRow(int row){
+        var gameGrid = model.getGrid();
         return gameGrid.getPegColorsAtRow(row);
     }
 
 
     public int getCurrentIndex(){
-        return currentIndex;
+        return model.getCurrentIndex();
     }
 
 
     public int getCurrentRow(){
-        return currentRow;
+        return model.getCurrentRow();
     }
 
 
 
     public void setView(GameView gameView){
-        this.gameView = gameView;
+        this.view = gameView;
     }
 
 
     public void updateViewWithGameState(){
-        for(int i = 0; i < numberOfRows; i++){
-            gameView.updateClues(i, gameGrid.getCluesAtRow(i));
-            gameView.updateRow(i, gameGrid.getPegColorsAtRow(i), gameGrid.getCluesAtRow(i));
+        var grid = model.getGrid();
+        for(int i = 0; i < model.getNumberOfRows(); i++){
+            view.updateClues(i, grid.getCluesAtRow(i));
+            view.updateRow(i, grid.getPegColorsAtRow(i), grid.getCluesAtRow(i));
         }
-        gameView.setupSolutionPegs(gameGrid.getSolutionPegs());
-        gameView.highlightAllRowsUpToAndIncluding(currentRow);
+        view.setupSolutionPegs(grid.getSolutionPegs());
+        view.highlightAllRowsUpToAndIncluding(model.getCurrentRow());
     }
 
 
     private void updateViewWithGamePhase(){
-        if(gamePhase == GamePhase.GAME_OVER_GOOD){
-            gameView.showGoodGameOver(numberOfTries);
+        var phase = model.getGamePhase();
+        if(phase == GAME_OVER_GOOD){
+            view.showGoodGameOver(model.getNumberOfTries());
         }
-        else if(gamePhase == GamePhase.GAME_OVER_BAD){
-            gameView.showBadGameOver();
+        else if(phase == GAME_OVER_BAD){
+            view.showBadGameOver();
         }
     }
 
 
     public int getPegsPerRow(){
-        return pegsPerRow;
+        return model.getPegsPerRow();
     }
 
 
     public void checkCurrentAnswer() {
-        var clues = generateClues();
-        gameGrid.setClues(currentRow, clues);
-        gameView.updateClues(currentRow, clues);
-        if (isAnswerCorrect(clues)) {
+        var clues = model.assignClues();
+        view.updateClues(model.getCurrentRow(), clues);
+        if (model.isAnswerCorrect(clues)) {
             handleCorrectAnswer();
         }
-        else if (pegsPlaced >= MAX_PEGS) {
+        else if (model.areAllPegsPlaced()) {
             handleGameOver();
         }
     }
@@ -97,169 +96,123 @@ public class Game {
 
     private void handleCorrectAnswer(){
         disableUserInput();
-        gamePhase = GamePhase.GAME_OVER_GOOD;
-        gameView.showGoodGameOver(numberOfTries);
+        model.setGamePhase(GAME_OVER_GOOD);
+        view.showGoodGameOver(model.getNumberOfTries());
     }
 
 
     private void handleGameOver(){
         disableUserInput();
-        gamePhase = GamePhase.GAME_OVER_BAD;
-        gameView.showBadGameOver();
-    }
-
-
-    private List<Clue> generateClues(){
-        var currentAnswer = gameGrid.getPegColorsAtRow(currentRow);
-        return GameUtils.generateClues(currentAnswer, gameSolution.get());
-    }
-
-
-    private boolean isAnswerCorrect(List<Clue> clues){
-        return clues.stream()
-                .allMatch(c -> c == Clue.BULL);
+        model.setGamePhase(GAME_OVER_BAD);
+        view.showBadGameOver();
     }
 
 
     public List<PegColor> getSolution(){
-        return gameSolution.get();
+        return model.getSolution();
     }
 
 
     public void addPeg(PegColor pegColor){
-        if(!isUserInputEnabled()){
-            return;
-        }
-        isGameInProgress = true;
-        pegsPlaced++;
-        if(pegsPlaced > MAX_PEGS){
-            return;
-        }
-        setPegColor(pegColor);
+        model.addPeg(pegColor);
+        setViewPeg(pegColor);
         checkAnswerAtRowEnd();
         updateUndoButtonState();
     }
 
 
-    private void setPegColor(PegColor pegColor){
-        gameGrid.setPegColor(currentRow, currentIndex, pegColor);
-        gameView.setPegColor(currentRow, currentIndex, pegColor);
-    }
-
-
     private void checkAnswerAtRowEnd(){
-        if(++currentIndex >= pegsPerRow){
+        model.incrementCurrentIndex();
+        if(model.isCurrentIndexAtEndOfRow()){
             checkCurrentAnswer();
-            moveToNextRow();
+            model.moveToNextRow();
+            highlightCurrentBackgroundRow();
         }
     }
 
 
     private void updateUndoButtonState(){
-        if(currentIndex == 0){
-            gameView.disableUndoButton();
+        int index = model.getCurrentIndex();
+        if(index == 0){
+            view.disableUndoButton();
         }
-        else if(currentIndex == 1){
-            gameView.enableUndoButton();
+        else if(index == 1){
+            view.enableUndoButton();
         }
     }
 
 
     private void setUndoButtonState(){
-        if(currentIndex == 0){
-            gameView.disableUndoButton();
+        if(model.getCurrentIndex() == 0){
+            view.disableUndoButton();
         }
         else {
-            gameView.enableUndoButton();
+            view.enableUndoButton();
         }
     }
 
 
-    public  void setSolution(PegColor... solutionPegs){
-        gameSolution.set(solutionPegs);
+    public void setSolution(PegColor... solutionPegs){
+       model.setSolution(solutionPegs);
     }
 
 
     public void removePeg(){
-        if(currentIndex == 0){
+        if(model.getCurrentIndex() == 0){
             return;
         }
-        currentIndex--;
-        pegsPlaced--;
-        gameView.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
-        gameGrid.setPegColor(currentRow, currentIndex, PegColor.EMPTY);
+        model.removePeg();
+        setViewPeg(PegColor.EMPTY);
         setUndoButtonState();
     }
 
 
+    private void setViewPeg(PegColor pegColor){
+        view.setPegColor(model.getCurrentRow(), model.getCurrentIndex(), pegColor);
+    }
+
+
     public PegColor getPegColorAt(int index){
-        return gameGrid.getPegColorsAtRow(currentRow).get(index);
+        return model.getPegColorAt(index);
     }
 
 
     public int getPegCount(){
-        return pegsPlaced;
-    }
-
-
-    public void moveToNextRow(){
-        currentIndex = 0;
-        numberOfTries++;
-        currentRow++;
-        highlightCurrentBackgroundRow();
-    }
-
-
-    public void setupFirstGame(){
-        numberOfTries = 1;
-        currentRow = 0;
-        currentIndex = 0;
-        pegsPlaced = 0;
-        gameGrid.init();
-        setupRandomAnswer();
-        isGameInProgress = false;
-        enableUserInput();
-        gamePhase = GamePhase.RUNNING;
+        return model.getPegCount();
     }
 
 
     public void startNewGame(){
         setupFirstGame();
         disableUserInput();
-        gameView.resetAllRows();
+        view.resetAllRows();
+    }
+
+
+    public void setupFirstGame(){
+        model.setupFirstGame();
+        view.setupSolutionPegs(model.getSolution());
     }
 
 
     public int getNumberOfRows(){
-        return numberOfRows;
+        return model.getNumberOfRows();
     }
 
 
     public void enableUserInput(){
-        isUserInputEnabled.set(true);
+        model.enableUserInput();
     }
 
 
     public void disableUserInput(){
-        isUserInputEnabled.set(false);
-    }
-
-
-    public boolean isUserInputEnabled(){
-        return isUserInputEnabled.get() && gamePhase == GamePhase.RUNNING;
-    }
-
-
-    private void setupRandomAnswer(){
-        var solution = gameSolution.generate();
-        gameView.setupSolutionPegs(solution);
-        gameGrid.setSolutionPegs(solution);
+        model.disableUserInput();
     }
 
 
     private void highlightCurrentBackgroundRow(){
-        if(currentRow < numberOfRows){
-            gameView.highlightRowBackground(currentRow);
+        if(model.isCurrentRowValid()){
+            view.highlightRowBackground(model.getCurrentRow());
         }
     }
 

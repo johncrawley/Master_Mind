@@ -1,21 +1,10 @@
 package com.jcrawley.mastermind;
 
-import static com.jcrawley.mastermind.game.PegColor.BLUE;
-import static com.jcrawley.mastermind.game.PegColor.BROWN;
-import static com.jcrawley.mastermind.game.PegColor.GREEN;
-import static com.jcrawley.mastermind.game.PegColor.ORANGE;
-import static com.jcrawley.mastermind.game.PegColor.PINK;
-import static com.jcrawley.mastermind.game.PegColor.PURPLE;
-import static com.jcrawley.mastermind.game.PegColor.RED;
-import static com.jcrawley.mastermind.game.PegColor.YELLOW;
+import static com.jcrawley.mastermind.game.PegColor.*;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +18,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.jcrawley.mastermind.game.Clue;
 import com.jcrawley.mastermind.game.Game;
 import com.jcrawley.mastermind.game.PegColor;
-import com.jcrawley.mastermind.service.GameService;
 import com.jcrawley.mastermind.view.panel.GameOverHelper;
 import com.jcrawley.mastermind.view.GameView;
 import com.jcrawley.mastermind.view.GridWiper;
@@ -42,55 +31,39 @@ import com.jcrawley.mastermind.view.panel.InfoPanelHelper;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity implements GameView {
 
     private Game game;
     private GridWiper gridWiper;
-    private int pegsPerRow;
-    private final AtomicBoolean isServiceConnected = new AtomicBoolean(false);
     private boolean isInitialized;
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
     private final Map<Integer, ViewGroup> gridRowMap = new HashMap<>();
     private ImageButton undoButton;
-
-
-
-    private final ServiceConnection connection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            GameService.LocalBinder binder = (GameService.LocalBinder) service;
-            GameService gameService = binder.getService();
-            gameService.setActivity(MainActivity.this);
-            isServiceConnected.set(true);
-            game = gameService.getGame();
-            pegsPerRow = game.getPegsPerRow();
-            game.init();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            isServiceConnected.set(false);
-        }
-    };
-
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        initViewModel();
         setupLayout();
         configureNavAndStatusBarAppearance();
         setupGridMap();
         gameOverHelper = new GameOverHelper(this);
         infoPanelHelper = new InfoPanelHelper(this);
         setupButtons();
-        setupGameService();
+        game = new Game(viewModel.gameModel, this);
+        game.init();
     }
 
+
+    private void initViewModel(){
+        viewModel  = new ViewModelProvider(this).get(MainViewModel.class);
+
+    }
 
     private void initGridWiper(){
         if(gridWiper == null){
@@ -137,12 +110,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupGameService() {
-        Intent intent = new Intent(getApplicationContext(), GameService.class);
-        getApplicationContext().startService(intent);
-        getApplicationContext().bindService(intent, connection, 0);
-    }
-
 
     private void setupLayout() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -159,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
         insetsController.setAppearanceLightNavigationBars(false);
         insetsController.setAppearanceLightStatusBars(false);
     }
-
 
 
     private void setupButtons() {
@@ -266,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         if(game == null){
             return;
         }
-        for(int i = 0; i < pegsPerRow; i++){
+        for(int i = 0; i < viewModel.gameModel.getPegsPerRow(); i++){
             var pegColor = pegColors.size() <= i ? PegColor.EMPTY : pegColors.get(i);
             setPegColor(rowIndex, i, pegColor);
         }

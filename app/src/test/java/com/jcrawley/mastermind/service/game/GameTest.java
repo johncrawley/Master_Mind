@@ -6,6 +6,7 @@ import static com.jcrawley.mastermind.game.PegColor.*;
 import static org.junit.Assert.*;
 
 import com.jcrawley.mastermind.game.Game;
+import com.jcrawley.mastermind.game.GameModel;
 import com.jcrawley.mastermind.game.PegColor;
 
 import org.junit.Before;
@@ -22,10 +23,9 @@ public class GameTest {
 
     @Before
     public void init(){
-        game = new Game();
+        var gameModel = new GameModel();
         mockView = new MockView();
-        game.setView(mockView);
-        game.init();
+        game = new Game(gameModel, mockView);
         // add a manual solution so that tests won't hit a random solution by accident
         game.setSolution(TEST, TEST, TEST, TEST);
     }
