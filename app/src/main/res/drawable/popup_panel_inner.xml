@@ -2,6 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="@dimen/_28sdp" />
     <stroke android:width="@dimen/_2sdp" android:color="?attr/panel_edge"/>
-
-    <solid android:color="?attr/panel_background" />
+    <gradient
+        android:startColor="?attr/panel_background_bottom_color"
+        android:endColor="?attr/panel_background_top_color"
+        android:angle="90"/>
 </shape>

@@ -26,6 +26,9 @@
         <item name="main_background_top_color">@color/background_top</item>
         <item name="main_background_bottom_color">@color/background_bottom</item>
 
+        <item name="panel_background_top_color">@color/panel_background_top</item>
+        <item name="panel_background_bottom_color">@color/panel_background_bottom</item>
+
         <item name="row_color">@color/row_background</item>
         <item name="highlighted_row_color">@color/highlighted_row_background</item>
 

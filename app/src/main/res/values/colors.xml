@@ -50,6 +50,12 @@
     <color name="panel_background">#353434</color>
     <color name="panel_background_light">#0E7078</color>
 
+    <color name="panel_background_top">#353434</color>
+    <color name="panel_background_bottom">#353434</color>
+
+    <color name="panel_background_top_light">#0E7078</color>
+    <color name="panel_background_bottom_light">#345D61</color>
+
     <color name="panel_edge">#BAB8B8</color>
     <color name="panel_edge_light">#BAB8B8</color>
 

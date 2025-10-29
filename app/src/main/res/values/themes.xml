@@ -34,6 +34,10 @@
             <item name="game_grid_background">@color/game_grid_background_light</item>
 
             <item name="panel_background">@color/panel_background_light</item>
+
+            <item name="panel_background_top_color">@color/panel_background_top_light</item>
+            <item name="panel_background_bottom_color">@color/panel_background_bottom_light</item>
+
             <item name="panel_edge">@color/panel_edge_light</item>
             <item name="panel_text">@color/panel_text_light</item>
             <item name="panel_text_shadow">@color/panel_text_shadow_light</item>
