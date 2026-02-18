@@ -1,4 +1,4 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.codebreaker;
 
 import android.content.Context;
 

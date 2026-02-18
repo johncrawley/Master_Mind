@@ -1,4 +1,4 @@
-package com.jcrawley.mastermind.view;
+package com.jcrawley.codebreaker.view;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;

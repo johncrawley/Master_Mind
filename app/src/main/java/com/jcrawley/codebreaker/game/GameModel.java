@@ -1,6 +1,6 @@
-package com.jcrawley.mastermind.game;
+package com.jcrawley.codebreaker.game;
 
-import com.jcrawley.mastermind.game.model.GameGrid;
+import com.jcrawley.codebreaker.game.model.GameGrid;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

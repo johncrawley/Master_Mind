@@ -1,6 +1,6 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.codebreaker;
 
-import static com.jcrawley.mastermind.game.PegColor.*;
+import static com.jcrawley.codebreaker.game.PegColor.*;
 
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -20,13 +20,13 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.jcrawley.mastermind.game.Clue;
-import com.jcrawley.mastermind.game.Game;
-import com.jcrawley.mastermind.game.PegColor;
-import com.jcrawley.mastermind.view.panel.GameOverHelper;
-import com.jcrawley.mastermind.view.GameView;
-import com.jcrawley.mastermind.view.GridWiper;
-import com.jcrawley.mastermind.view.panel.InfoPanelHelper;
+import com.jcrawley.codebreaker.game.Clue;
+import com.jcrawley.codebreaker.game.Game;
+import com.jcrawley.codebreaker.game.PegColor;
+import com.jcrawley.codebreaker.view.panel.GameOverHelper;
+import com.jcrawley.codebreaker.view.GameView;
+import com.jcrawley.codebreaker.view.GridWiper;
+import com.jcrawley.codebreaker.view.panel.InfoPanelHelper;
 
 import java.util.HashMap;
 import java.util.List;

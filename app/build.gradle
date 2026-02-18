@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = 'com.jcrawley.mastermind'
+    namespace = 'com.jcrawley.codebreaker'
     compileSdk = 36
 
     defaultConfig {
-        applicationId "com.jcrawley.mastermind"
+        applicationId "com.jcrawley.codebreaker"
         minSdk = 24
         targetSdk = 36
         versionCode 5

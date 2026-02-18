@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Classic Master Mind</string>
+    <string name="app_name">Colour Code Puzzle</string>
     <string name="version_number" translatable="false">v1.3</string>
     <string name="about_created_by">Created by John Crawley, 2025</string>
     <string name="clues_tip_green"> one of the choices has the correct colour and correct position</string>

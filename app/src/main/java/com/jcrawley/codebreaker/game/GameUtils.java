@@ -1,4 +1,4 @@
-package com.jcrawley.mastermind.game;
+package com.jcrawley.codebreaker.game;
 
 import java.util.ArrayList;
 import java.util.List;

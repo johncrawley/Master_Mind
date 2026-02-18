@@ -1,9 +1,9 @@
-package com.jcrawley.mastermind.game;
+package com.jcrawley.codebreaker.game;
 
-import static com.jcrawley.mastermind.game.GamePhase.GAME_OVER_BAD;
-import static com.jcrawley.mastermind.game.GamePhase.GAME_OVER_GOOD;
+import static com.jcrawley.codebreaker.game.GamePhase.GAME_OVER_BAD;
+import static com.jcrawley.codebreaker.game.GamePhase.GAME_OVER_GOOD;
 
-import com.jcrawley.mastermind.view.GameView;
+import com.jcrawley.codebreaker.view.GameView;
 
 import java.util.List;
 

@@ -1,8 +1,6 @@
-package com.jcrawley.mastermind.game;
+package com.jcrawley.codebreaker.game;
 
-import androidx.lifecycle.viewmodel.CreationExtras;
-
-import com.jcrawley.mastermind.R;
+import com.jcrawley.codebreaker.R;
 
 public enum PegColor {
     RED(R.color.game_red, R.string.button_image_desc_red),

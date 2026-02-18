@@ -1,13 +1,13 @@
-package com.jcrawley.mastermind.service.game;
+package com.jcrawley.codebreaker.service.game;
 
-import static com.jcrawley.mastermind.game.PegColor.*;
+import static com.jcrawley.codebreaker.game.PegColor.*;
 
 
 import static org.junit.Assert.*;
 
-import com.jcrawley.mastermind.game.Game;
-import com.jcrawley.mastermind.game.GameModel;
-import com.jcrawley.mastermind.game.PegColor;
+import com.jcrawley.codebreaker.game.Game;
+import com.jcrawley.codebreaker.game.GameModel;
+import com.jcrawley.codebreaker.game.PegColor;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.jcrawley.mastermind.view.panel;
+package com.jcrawley.codebreaker.view.panel;
 
 import static android.view.View.VISIBLE;
 
@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.jcrawley.mastermind.MainActivity;
-import com.jcrawley.mastermind.R;
-import com.jcrawley.mastermind.view.AnimationHelper;
+import com.jcrawley.codebreaker.MainActivity;
+import com.jcrawley.codebreaker.R;
+import com.jcrawley.codebreaker.view.AnimationHelper;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

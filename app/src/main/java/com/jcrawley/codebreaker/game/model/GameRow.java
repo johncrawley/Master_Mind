@@ -1,7 +1,7 @@
-package com.jcrawley.mastermind.game.model;
+package com.jcrawley.codebreaker.game.model;
 
-import com.jcrawley.mastermind.game.Clue;
-import com.jcrawley.mastermind.game.PegColor;
+import com.jcrawley.codebreaker.game.Clue;
+import com.jcrawley.codebreaker.game.PegColor;
 
 import java.util.ArrayList;
 import java.util.List;

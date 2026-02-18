@@ -1,8 +1,8 @@
-package com.jcrawley.mastermind.service.game;
+package com.jcrawley.codebreaker.service.game;
 
-import com.jcrawley.mastermind.game.Clue;
-import com.jcrawley.mastermind.game.PegColor;
-import com.jcrawley.mastermind.view.GameView;
+import com.jcrawley.codebreaker.game.Clue;
+import com.jcrawley.codebreaker.game.PegColor;
+import com.jcrawley.codebreaker.view.GameView;
 
 import java.util.List;
 

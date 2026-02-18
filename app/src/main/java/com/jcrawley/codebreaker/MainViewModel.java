@@ -1,8 +1,8 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.codebreaker;
 
 import androidx.lifecycle.ViewModel;
 
-import com.jcrawley.mastermind.game.GameModel;
+import com.jcrawley.codebreaker.game.GameModel;
 
 public class MainViewModel extends ViewModel {
 

@@ -1,14 +1,14 @@
-package com.jcrawley.mastermind;
+package com.jcrawley.codebreaker;
 
-import static com.jcrawley.mastermind.game.Clue.*;
-import static com.jcrawley.mastermind.game.PegColor.*;
+import static com.jcrawley.codebreaker.game.Clue.*;
+import static com.jcrawley.codebreaker.game.PegColor.*;
 
 
 import static org.junit.Assert.*;
 
-import com.jcrawley.mastermind.game.Clue;
-import com.jcrawley.mastermind.game.GameUtils;
-import com.jcrawley.mastermind.game.PegColor;
+import com.jcrawley.codebreaker.game.Clue;
+import com.jcrawley.codebreaker.game.GameUtils;
+import com.jcrawley.codebreaker.game.PegColor;
 
 import org.junit.Test;
 
