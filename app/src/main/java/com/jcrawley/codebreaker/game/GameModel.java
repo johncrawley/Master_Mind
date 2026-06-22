@@ -79,17 +79,9 @@ public class GameModel {
         }
         isGameInProgress = true;
         pegsPlaced++;
-        if(pegsPlaced > MAX_PEGS){
-            return;
+        if(pegsPlaced <= MAX_PEGS){
+            gameGrid.setPegColor(currentRow, currentIndex, pegColor);
         }
-        gameGrid.setPegColor(currentRow, currentIndex, pegColor);
-    }
-
-
-    public List<PegColor> generateSolution(){
-        var solution = gameSolution.generate();
-        gameGrid.setSolutionPegs(solution);
-        return solution;
     }
 
 
@@ -149,8 +141,6 @@ public class GameModel {
     }
 
 
-
-
     public int getNumberOfRows(){
         return numberOfRows;
     }
@@ -180,6 +170,5 @@ public class GameModel {
     public boolean isUserInputEnabled(){
         return isUserInputEnabled.get() && gamePhase == GamePhase.RUNNING;
     }
-
 
 }

@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     }
 
+
     private void initGridWiper(){
         if(gridWiper == null){
             gridWiper = new GridWiper(MainActivity.this, game);
@@ -110,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-
     private void setupLayout() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -130,8 +130,9 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     private void setupButtons() {
         setupButton(R.id.infoButton, ()-> infoPanelHelper.showPanel() );
-        undoButton = setupButton(R.id.undoButton, ()-> game.removePeg() );
         setupButton(R.id.newGameButton, this::startNewGame);
+
+        undoButton = setupButton(R.id.undoButton, ()-> game.removePeg() );
 
         setupInputButtonRow(R.id.panel1, List.of(RED, BLUE, GREEN, YELLOW) );
         setupInputButtonRow(R.id.panel2, List.of(BROWN, ORANGE, PINK, PURPLE) );
@@ -295,7 +296,6 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-
     private void setPegColor(View pegView, int colorId) {
         var drawable = pegView.getBackground();
         var amended = drawable.mutate();
@@ -371,6 +371,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
     private ViewGroup getCluesRow(int index) {
         return (ViewGroup) getRow(index).getChildAt(1);
     }
+
 
     private ViewGroup getRow(int index) {
         return gridRowMap.get(index);

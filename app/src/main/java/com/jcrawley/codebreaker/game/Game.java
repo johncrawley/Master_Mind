@@ -82,32 +82,6 @@ public class Game {
     }
 
 
-    public void checkCurrentAnswer() {
-        var clues = model.assignClues();
-        view.updateClues(model.getCurrentRow(), clues);
-        if (model.isAnswerCorrect(clues)) {
-            handleCorrectAnswer();
-        }
-        else if (model.areAllPegsPlaced()) {
-            handleGameOver();
-        }
-    }
-
-
-    private void handleCorrectAnswer(){
-        disableUserInput();
-        model.setGamePhase(GAME_OVER_GOOD);
-        view.showGoodGameOver(model.getNumberOfTries());
-    }
-
-
-    private void handleGameOver(){
-        disableUserInput();
-        model.setGamePhase(GAME_OVER_BAD);
-        view.showBadGameOver();
-    }
-
-
     public List<PegColor> getSolution(){
         return model.getSolution();
     }
@@ -125,9 +99,38 @@ public class Game {
         model.incrementCurrentIndex();
         if(model.isCurrentIndexAtEndOfRow()){
             checkCurrentAnswer();
+        }
+    }
+
+
+    private void checkCurrentAnswer() {
+        var clues = model.assignClues();
+        view.updateClues(model.getCurrentRow(), clues);
+
+        if (model.isAnswerCorrect(clues)) {
+            handleCorrectAnswer();
+        }
+        else if (model.areAllPegsPlaced()) {
+            handleGameOver();
+        }
+        else{
             model.moveToNextRow();
             highlightCurrentBackgroundRow();
         }
+    }
+
+
+    private void handleCorrectAnswer(){
+        disableUserInput();
+        model.setGamePhase(GAME_OVER_GOOD);
+        view.showGoodGameOver(model.getNumberOfTries());
+    }
+
+
+    private void handleGameOver(){
+        disableUserInput();
+        model.setGamePhase(GAME_OVER_BAD);
+        view.showBadGameOver();
     }
 
 
