@@ -21,4 +21,5 @@
     <attr name="main_background_bottom_color" format="reference"/>
     <attr name="panel_background_top_color" format="reference"/>
     <attr name="panel_background_bottom_color" format="reference"/>
+    <attr name="panel_background_middle_color" format="reference"/>
 </resources>

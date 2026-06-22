@@ -4,6 +4,7 @@
     <stroke android:width="@dimen/_2sdp" android:color="?attr/panel_edge"/>
     <gradient
         android:startColor="?attr/panel_background_bottom_color"
+        android:centerColor="?attr/panel_background_middle_color"
         android:endColor="?attr/panel_background_top_color"
-        android:angle="90"/>
+        android:angle="135"/>
 </shape>

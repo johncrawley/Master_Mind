@@ -21,6 +21,8 @@
     android:layout_height="wrap_content"
     android:textSize="@dimen/_12sdp"
     android:textColor="?attr/clue_tip_text"
+    android:shadowColor="#000"
+    android:shadowRadius="3"
     android:text="@string/clues_tip_yellow"/>
 
 </LinearLayout>
