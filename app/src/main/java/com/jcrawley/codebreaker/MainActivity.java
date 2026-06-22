@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.jcrawley.codebreaker.game.Clue;
 import com.jcrawley.codebreaker.game.Game;
 import com.jcrawley.codebreaker.game.PegColor;
+import com.jcrawley.codebreaker.game.PegCoordinates;
 import com.jcrawley.codebreaker.view.panel.GameOverHelper;
 import com.jcrawley.codebreaker.view.GameView;
 import com.jcrawley.codebreaker.view.GridWiper;
@@ -99,15 +100,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void enableUndoButton(){
-        undoButton.setEnabled(true);
-        // not using this because it is too distracting
-        //setUndoButtonDrawable(R.drawable.ic_undo);
-    }
-
-
-    private void setUndoButtonDrawable(int resId){
-        var drawable = AppCompatResources.getDrawable(getApplicationContext(), resId);
-        undoButton.setImageDrawable(drawable);
+        undoButton.setEnabled(true); // decided to not change button drawable because it's distracting
     }
 
 
@@ -293,27 +286,65 @@ public class MainActivity extends AppCompatActivity implements GameView {
         isInitialized = false;
         initGridWiper();
         gridWiper.resetAllRowsInstantly();
-    }
-
-
-    private void setPegColor(View pegView, int colorId) {
-        var drawable = pegView.getBackground();
-        var amended = drawable.mutate();
-        var color = getColor(colorId);
-        amended.setColorFilter(color, PorterDuff.Mode.LIGHTEN);
-        pegView.setBackground(amended);
+        showPegAsCurrent(new PegCoordinates(0,0));
     }
 
 
     @Override
     public void setPegColor(int row, int index, PegColor pegColor) {
+        log("entered setPegColor() row: " + row + " index :" + index);
         var pegView = getPegViewAt(row, index);
         setPegColor(pegView, pegColor.getColorId());
     }
 
 
+    private void log(String msg){
+        System.out.println("^^^ MainActivity: " + msg);
+    }
+
+
+    private void setPegColor(View pegView, int colorId) {
+        //var drawable = pegView.getBackground();
+        var drawable = AppCompatResources.getDrawable(getApplicationContext(), R.drawable.peg);
+        if(drawable != null){
+            var amended = drawable.mutate();
+            var color = getColor(colorId);
+            amended.setColorFilter(color, PorterDuff.Mode.LIGHTEN);
+            pegView.setBackground(amended);
+        }
+    }
+
+
+    @Override
+    public void showPegAsCurrent(PegCoordinates pegCoordinates) {
+        if(pegCoordinates.isNull()){
+            log("showPegAsCurrent() peg coordinates are null, returning!");
+            return;
+        }
+        var row = pegCoordinates.row();
+        if(row >= gridRowMap.size()){
+            log("showPegAsCurrent() row is larger than grid row map, returning!");
+            return;
+        }
+        var pegView = getPegViewAt(row, pegCoordinates.column());
+        if(pegView != null){
+          pegView.setBackgroundResource(R.drawable.peg_current);
+        }
+        else{
+            log("showPegAsCurrent() peg view is null, returning");
+        }
+    }
+
+
     private View getPegViewAt(int row, int index) {
-        var pegLayout = (ViewGroup) getPegRow(row).getChildAt(index);
+        var rowViewGroup = getPegRow(row);
+        if(rowViewGroup == null){
+            return null;
+        }
+        var pegLayout = (ViewGroup)rowViewGroup.getChildAt(index);
+        if(pegLayout == null){
+            return null;
+        }
         return pegLayout.getChildAt(0);
     }
 
@@ -334,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
 
     private int getThemedColor(int attrId){
-        TypedValue typedValue = new TypedValue();
+        var typedValue = new TypedValue();
         getTheme().resolveAttribute(attrId, typedValue, true);
         @ColorInt int color = typedValue.data;
         return color;

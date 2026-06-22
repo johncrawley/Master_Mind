@@ -29,6 +29,7 @@ public class Game {
             updateViewWithGameState();
             updateViewWithGamePhase();
             view.notifyInitializationComplete();
+            highlightCurrentPeg();
         }
     }
 
@@ -92,6 +93,7 @@ public class Game {
         setViewPeg(pegColor);
         checkAnswerAtRowEnd();
         updateUndoButtonState();
+        highlightCurrentPeg();
     }
 
 
@@ -164,14 +166,20 @@ public class Game {
         if(model.getCurrentIndex() == 0){
             return;
         }
-        model.removePeg();
         setViewPeg(PegColor.EMPTY);
+        model.removePeg();
+        highlightCurrentPeg();
         setUndoButtonState();
     }
 
 
     private void setViewPeg(PegColor pegColor){
         view.setPegColor(model.getCurrentRow(), model.getCurrentIndex(), pegColor);
+    }
+
+
+    private void highlightCurrentPeg(){
+        view.showPegAsCurrent(model.getCurrentPegCoordinates());
     }
 
 

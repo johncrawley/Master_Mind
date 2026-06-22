@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import com.jcrawley.codebreaker.game.Game;
 import com.jcrawley.codebreaker.game.PegColor;
+import com.jcrawley.codebreaker.game.PegCoordinates;
 
 public class GridWiper {
 
@@ -53,6 +54,9 @@ public class GridWiper {
     private void resetAllPegsInRow(int rowIndex) {
         for (int i = 0; i < game.getPegsPerRow(); i++) {
             gameView.setPegColor(rowIndex, i, PegColor.EMPTY);
+            if(rowIndex == 0 && i == 0){
+                gameView.showPegAsCurrent(new PegCoordinates(0, 0));
+            }
         }
     }
 

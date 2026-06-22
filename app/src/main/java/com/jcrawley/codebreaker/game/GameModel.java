@@ -171,4 +171,9 @@ public class GameModel {
         return isUserInputEnabled.get() && gamePhase == GamePhase.RUNNING;
     }
 
+
+    public PegCoordinates getCurrentPegCoordinates(){
+        return new PegCoordinates(getCurrentRow(), getCurrentIndex());
+    }
+
 }

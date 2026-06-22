@@ -2,6 +2,7 @@ package com.jcrawley.codebreaker.view;
 
 import com.jcrawley.codebreaker.game.Clue;
 import com.jcrawley.codebreaker.game.PegColor;
+import com.jcrawley.codebreaker.game.PegCoordinates;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface GameView {
     void updateClues(int rowIndex, List<Clue> clues);
     void updateRow(int row, List<PegColor> pegColors, List<Clue> clues);
     void setPegColor(int row, int index, PegColor pegColor);
+    void showPegAsCurrent(PegCoordinates pegCoordinates);
     void highlightRowBackground(int rowIndex);
     void resetAllRows();
     void resetAllRowsInstantly();
