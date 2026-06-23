@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Bullcow</string>
-    <string name="version_number" translatable="false">v1.3</string>
-    <string name="about_created_by">Created by John Crawley, 2025</string>
+    <string name="version_number" translatable="false">v1.4, 2026</string>
+    <string name="about_created_by">Created by John Crawley</string>
     <string name="clues_tip_green"> one of the choices has the correct colour and correct position</string>
     <string name="clues_tip_yellow">one of the choices has the correct colour but is in the wrong position</string>
     <string name="colors_tip">Tip: the solution might contain more than one peg of the same colour</string>

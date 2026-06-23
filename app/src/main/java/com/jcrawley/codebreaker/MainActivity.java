@@ -14,7 +14,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements GameView {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         initViewModel();
-        setupLayout();
+        setupInsets();
         configureNavAndStatusBarAppearance();
         setupGridMap();
         gameOverHelper = new GameOverHelper(this);
@@ -104,9 +103,9 @@ public class MainActivity extends AppCompatActivity implements GameView {
     }
 
 
-    private void setupLayout() {
+    private void setupInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            var systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
@@ -292,19 +291,12 @@ public class MainActivity extends AppCompatActivity implements GameView {
 
     @Override
     public void setPegColor(int row, int index, PegColor pegColor) {
-        log("entered setPegColor() row: " + row + " index :" + index);
         var pegView = getPegViewAt(row, index);
         setPegColor(pegView, pegColor.getColorId());
     }
 
 
-    private void log(String msg){
-        System.out.println("^^^ MainActivity: " + msg);
-    }
-
-
     private void setPegColor(View pegView, int colorId) {
-        //var drawable = pegView.getBackground();
         var drawable = AppCompatResources.getDrawable(getApplicationContext(), R.drawable.peg);
         if(drawable != null){
             var amended = drawable.mutate();
@@ -318,20 +310,15 @@ public class MainActivity extends AppCompatActivity implements GameView {
     @Override
     public void showPegAsCurrent(PegCoordinates pegCoordinates) {
         if(pegCoordinates.isNull()){
-            log("showPegAsCurrent() peg coordinates are null, returning!");
             return;
         }
         var row = pegCoordinates.row();
         if(row >= gridRowMap.size()){
-            log("showPegAsCurrent() row is larger than grid row map, returning!");
             return;
         }
         var pegView = getPegViewAt(row, pegCoordinates.column());
         if(pegView != null){
           pegView.setBackgroundResource(R.drawable.peg_current);
-        }
-        else{
-            log("showPegAsCurrent() peg view is null, returning");
         }
     }
 
