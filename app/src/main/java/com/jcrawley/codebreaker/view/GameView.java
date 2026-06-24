@@ -1,6 +1,7 @@
 package com.jcrawley.codebreaker.view;
 
 import com.jcrawley.codebreaker.game.Clue;
+import com.jcrawley.codebreaker.game.Game;
 import com.jcrawley.codebreaker.game.PegColor;
 import com.jcrawley.codebreaker.game.PegCoordinates;
 
@@ -27,4 +28,6 @@ public interface GameView {
 
     void disableUndoButton();
     void enableUndoButton();
+
+    Game getGame();
 }

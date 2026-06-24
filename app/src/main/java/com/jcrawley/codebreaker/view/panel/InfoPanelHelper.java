@@ -2,12 +2,14 @@ package com.jcrawley.codebreaker.view.panel;
 
 import static android.view.View.VISIBLE;
 
+import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.fragment.app.Fragment;
 
-import com.jcrawley.codebreaker.MainActivity;
 import com.jcrawley.codebreaker.R;
 import com.jcrawley.codebreaker.view.AnimationHelper;
 
@@ -23,42 +25,42 @@ public class InfoPanelHelper {
     private final AtomicBoolean hasPanelBeenDismissed = new AtomicBoolean(false);
     private final AtomicBoolean isDismissTimerActive = new AtomicBoolean(false);
     private final ScheduledExecutorService executor;
-    private final MainActivity mainActivity;
+    private final Context context;
 
 
-    public InfoPanelHelper(MainActivity mainActivity){
-        this.mainActivity = mainActivity;
-        panel = mainActivity.findViewById(R.id.infoPanelInclude);
+    public InfoPanelHelper(Context context, Fragment parentFragment, View parentView){
+        this.context = context;
+        panel = parentView.findViewById(R.id.infoPanelInclude);
         executor = Executors.newSingleThreadScheduledExecutor();
-        setupDismissSearchOnBackPressed();
+        onBackButtonPressed(parentFragment, this::dismissPanel);
         panel.setOnClickListener(v -> dismissPanel());
-        setupPanelDetails();
+        setupPanelDetails(parentView);
     }
 
 
-    private void setupPanelDetails(){
-        setupClueTip(R.id.clueTip1, R.string.clues_tip_green, R.color.clue_bull);
-        setupClueTip(R.id.clueTip2, R.string.clues_tip_yellow, R.color.clue_cow);
+    private void setupPanelDetails(View parent){
+        setupClueTip(parent, R.id.clueTip1, R.string.clues_tip_green, R.color.clue_bull);
+        setupClueTip(parent, R.id.clueTip2, R.string.clues_tip_yellow, R.color.clue_cow);
     }
 
 
-    private void setupClueTip(int parentId, int strId, int colorId){
-        ViewGroup parent = mainActivity.findViewById(parentId);
-        setupClueTipColor(parent, colorId);
-        setupClueTipText(parent, strId);
+    private void setupClueTip(View parent, int parentId, int strId, int colorId){
+        ViewGroup viewGroup = parent.findViewById(parentId);
+        setupClueTipColor(viewGroup, colorId);
+        setupClueTipText(viewGroup, strId);
     }
 
 
     private void setupClueTipColor(ViewGroup parent, int colorId){
         ViewGroup clue = parent.findViewById(R.id.clue);
-        int color = mainActivity.getColor(colorId);
+        int color = context.getColor(colorId);
         clue.setBackgroundColor(color);
     }
 
 
     private void setupClueTipText(ViewGroup parent, int strId){
         TextView clueText = parent.findViewById(R.id.clueTipText);
-        String str = mainActivity.getString(strId);
+        String str = context.getString(strId);
         clueText.setText(str);
     }
 
@@ -76,15 +78,18 @@ public class InfoPanelHelper {
     }
 
 
-    private void setupDismissSearchOnBackPressed(){
-        dismissPanelOnBackPressedCallback = new OnBackPressedCallback(false) {
+    private void onBackButtonPressed(Fragment parentFragment, Runnable action){
+        dismissPanelOnBackPressedCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                dismissPanel();
+                action.run();
             }
         };
-        mainActivity.getOnBackPressedDispatcher().addCallback(mainActivity, dismissPanelOnBackPressedCallback);
+        parentFragment.requireActivity()
+                .getOnBackPressedDispatcher()
+                .addCallback(parentFragment.getViewLifecycleOwner(), dismissPanelOnBackPressedCallback);
     }
+
 
 
     private void dismissPanel(){

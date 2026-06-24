@@ -2,14 +2,17 @@ package com.jcrawley.codebreaker.view.panel;
 
 import static android.view.View.VISIBLE;
 
+import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.fragment.app.Fragment;
 
-import com.jcrawley.codebreaker.MainActivity;
 import com.jcrawley.codebreaker.R;
 import com.jcrawley.codebreaker.view.AnimationHelper;
+import com.jcrawley.codebreaker.view.GameView;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,29 +23,32 @@ public class GameOverHelper {
 
     private ViewGroup panel;
     private TextView gameOverTitleText, gameOverMessageText;
-    private final MainActivity mainActivity;
     private final AtomicBoolean hasPanelBeenDismissed = new AtomicBoolean(false);
     private final AtomicBoolean isDismissTimerActive = new AtomicBoolean(false);
     private final ScheduledExecutorService executor;
     private OnBackPressedCallback dismissPanelOnBackPressedCallback;
+    private final Context context;
+    private final GameView gameView;
 
-
-    public GameOverHelper(MainActivity mainActivity){
-        this.mainActivity = mainActivity;
-        setupGameOverScreen();
+    public GameOverHelper(Context context, View parentView, GameView gameView, Fragment parentFragment){
+        this.gameView = gameView;
+        setupGameOverScreen(parentView);
+        this.context = context;
         executor = Executors.newSingleThreadScheduledExecutor();
-        setupDismissSearchOnBackPressed();
+        onBackButtonPressed(parentFragment, this::dismissPanel);
     }
 
 
-    private void setupDismissSearchOnBackPressed(){
-        dismissPanelOnBackPressedCallback = new OnBackPressedCallback(false) {
+    private void onBackButtonPressed(Fragment parentFragment, Runnable action){
+        dismissPanelOnBackPressedCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                dismissPanel();
+                action.run();
             }
         };
-        mainActivity.getOnBackPressedDispatcher().addCallback(mainActivity, dismissPanelOnBackPressedCallback);
+        parentFragment.requireActivity()
+                .getOnBackPressedDispatcher()
+                .addCallback(parentFragment.getViewLifecycleOwner(), dismissPanelOnBackPressedCallback);
     }
 
 
@@ -70,10 +76,10 @@ public class GameOverHelper {
     }
 
 
-    private void setupGameOverScreen() {
-        panel = mainActivity.findViewById(R.id.gameOverPanelInclude);
-        gameOverTitleText = mainActivity.findViewById(R.id.gameOverTitleText);
-        gameOverMessageText = mainActivity.findViewById(R.id.createdByText);
+    private void setupGameOverScreen(View parentView) {
+        panel = parentView.findViewById(R.id.gameOverPanelInclude);
+        gameOverTitleText = parentView.findViewById(R.id.gameOverTitleText);
+        gameOverMessageText = parentView.findViewById(R.id.createdByText);
         if(panel == null){
             return;
         }
@@ -93,9 +99,9 @@ public class GameOverHelper {
 
 
     private void afterDismissed(){
-        mainActivity.resetAllRows();
+        gameView.resetAllRows();
         panel.setZ(-1);
-        var game = mainActivity.getGame();
+        var game = gameView.getGame();
         if(game != null){
             game.setupFirstGame();
         }
@@ -108,7 +114,7 @@ public class GameOverHelper {
         if (numberOfTries == 1) {
             gameOverMessageText.setText(R.string.number_of_tries_one);
         } else {
-            var msg = mainActivity.getString(R.string.number_of_tries, numberOfTries);
+            var msg = context.getString(R.string.number_of_tries, numberOfTries);
             gameOverMessageText.setText(msg);
         }
     }
