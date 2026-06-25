@@ -35,9 +35,7 @@ import com.jcrawley.codebreaker.game.PegCoordinates;
 import com.jcrawley.codebreaker.view.panel.GameOverHelper;
 import com.jcrawley.codebreaker.view.panel.InfoPanelHelper;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GameFragment extends Fragment implements GameView {
     private MainViewModel viewModel;
@@ -46,16 +44,16 @@ public class GameFragment extends Fragment implements GameView {
     private boolean isInitialized;
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
-    private final Map<Integer, ViewGroup> gridRowMap = new HashMap<>();
     private ImageButton undoButton;
     private ViewGroup solutionPegsLayout;
+    private final GridMap gridMap = new GridMap();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         var view = inflater.inflate(R.layout.fragment_game, container, false);
         initViewModel();
-        setupGridMap(view);
+        gridMap.init(view);
         gameOverHelper = new GameOverHelper(getContext(), view, this, this);
         infoPanelHelper = new InfoPanelHelper(getContext(), this, view);
         solutionPegsLayout = view.findViewById(R.id.solutionPegsLayout);
@@ -108,7 +106,7 @@ public class GameFragment extends Fragment implements GameView {
 
     @Override
     public void updateClues(int rowIndex, List<Clue> clues) {
-        var rowLayout = getRow(rowIndex);
+        var rowLayout = gridMap.getRow(rowIndex);
         var clueLayouts = getClueViewsIn(rowLayout);
         for (int i = 0; i < clueLayouts.size(); i++) {
             updateClueView(clueLayouts.get(i), clues.get(i));
@@ -134,8 +132,6 @@ public class GameFragment extends Fragment implements GameView {
     }
 
 
-
-
     @Override
     public void updateRow(int rowIndex, List<PegColor> pegColors, List<Clue> clues) {
         updateClues(rowIndex, clues);
@@ -156,16 +152,22 @@ public class GameFragment extends Fragment implements GameView {
 
     @Override
     public void resetAllCluesIn(int index) {
-        var row = getCluesRow(index);
-        var context = getContext();
-        if(context == null){
-            return;
-        }
-
+        var row = gridMap.getCluesRow(index);
+        var color = getClueDefaultBackgroundColor();
         for (var clueView : getClueViewsIn(row)) {
-            clueView.setBackgroundColor(context.getColor(R.color.clue_default_background));
+            clueView.setBackgroundColor(color);
         }
     }
+
+
+    private int getClueDefaultBackgroundColor(){
+        var context = getContext();
+        if(context == null){
+            return Color.BLACK;
+        }
+        return context.getColor(R.color.clue_default_background);
+    }
+
 
     private void setupButtons(View parent) {
         setupButton(parent, R.id.infoButton, ()-> infoPanelHelper.showPanel() );
@@ -245,7 +247,7 @@ public class GameFragment extends Fragment implements GameView {
     @Override
     public void resetRowBackground(int index){
         var color = getThemedColor(R.attr.row_color);
-        getRow(index).setBackgroundColor(color);
+        gridMap.getRow(index).setBackgroundColor(color);
     }
 
 
@@ -321,7 +323,7 @@ public class GameFragment extends Fragment implements GameView {
             return;
         }
         var row = pegCoordinates.row();
-        if(row >= gridRowMap.size()){
+        if(row >= gridMap.size()){
             return;
         }
         var pegView = getPegViewAt(row, pegCoordinates.column());
@@ -332,7 +334,7 @@ public class GameFragment extends Fragment implements GameView {
 
 
     private View getPegViewAt(int row, int index) {
-        var rowViewGroup = getPegRow(row);
+        var rowViewGroup = gridMap.getPegRow(row);
         if(rowViewGroup == null){
             return null;
         }
@@ -355,7 +357,7 @@ public class GameFragment extends Fragment implements GameView {
     @Override
     public void highlightRowBackground(int rowIndex){
         var color = getThemedColor(R.attr.highlighted_row_color);
-        getRow(rowIndex).setBackgroundColor(color);
+        gridMap.getRow(rowIndex).setBackgroundColor(color);
     }
 
 
@@ -370,40 +372,4 @@ public class GameFragment extends Fragment implements GameView {
         return color;
     }
 
-
-    private void setupGridMap(View parent){
-        gridRowMap.clear();
-        setupGridSection(parent, R.id.gameGridLayout, 9);
-        setupGridSection(parent, R.id.gameGridLayout2, 4);
-    }
-
-
-    private void setupGridSection(View parentView, int parentLayoutId, int rowNumber){
-        var rowIds = List.of(R.id.row_a, R.id.row_b, R.id.row_c, R.id.row_d, R.id.row_e);
-        ViewGroup sectionLayout = parentView.findViewById(parentLayoutId);
-        for(int i = 0; i < rowIds.size(); i++, rowNumber--){
-            addRowToMap(rowNumber, sectionLayout, rowIds.get(i));
-        }
-    }
-
-
-    private void addRowToMap(int number, ViewGroup parent, int rowId){
-        ViewGroup row = parent.findViewById(rowId);
-        gridRowMap.put(number, row);
-    }
-
-
-    private ViewGroup getPegRow(int index) {
-        return (ViewGroup) getRow(index).getChildAt(0);
-    }
-
-
-    private ViewGroup getCluesRow(int index) {
-        return (ViewGroup) getRow(index).getChildAt(1);
-    }
-
-
-    private ViewGroup getRow(int index) {
-        return gridRowMap.get(index);
-    }
 }
