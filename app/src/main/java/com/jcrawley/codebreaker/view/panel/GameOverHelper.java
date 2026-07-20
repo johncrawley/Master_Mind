@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.jcrawley.codebreaker.R;
 import com.jcrawley.codebreaker.view.AnimationHelper;
-import com.jcrawley.codebreaker.view.GameView;
+import com.jcrawley.codebreaker.game.GameView;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

@@ -3,6 +3,7 @@ package com.jcrawley.codebreaker.view;
 import android.os.Handler;
 import android.os.Looper;
 import com.jcrawley.codebreaker.game.Game;
+import com.jcrawley.codebreaker.game.GameView;
 import com.jcrawley.codebreaker.game.PegColor;
 import com.jcrawley.codebreaker.game.PegCoordinates;
 

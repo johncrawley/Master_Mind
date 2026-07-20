@@ -12,7 +12,7 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.jcrawley.codebreaker.view.GameFragment" />
+        android:name="com.jcrawley.codebreaker.view.game.GameFragment" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.jcrawley.codebreaker.view;
+package com.jcrawley.codebreaker.view.game;
 
 import static com.jcrawley.codebreaker.game.PegColor.BLUE;
 import static com.jcrawley.codebreaker.game.PegColor.BROWN;
@@ -9,7 +9,6 @@ import static com.jcrawley.codebreaker.game.PegColor.PURPLE;
 import static com.jcrawley.codebreaker.game.PegColor.RED;
 import static com.jcrawley.codebreaker.game.PegColor.YELLOW;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -22,8 +21,8 @@ import android.widget.ImageButton;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.jcrawley.codebreaker.MainActivity;
 import com.jcrawley.codebreaker.MainViewModel;
@@ -32,6 +31,9 @@ import com.jcrawley.codebreaker.game.Clue;
 import com.jcrawley.codebreaker.game.Game;
 import com.jcrawley.codebreaker.game.PegColor;
 import com.jcrawley.codebreaker.game.PegCoordinates;
+import com.jcrawley.codebreaker.game.GameView;
+import com.jcrawley.codebreaker.view.GridMap;
+import com.jcrawley.codebreaker.view.GridWiper;
 import com.jcrawley.codebreaker.view.panel.GameOverHelper;
 import com.jcrawley.codebreaker.view.panel.InfoPanelHelper;
 
@@ -41,12 +43,12 @@ public class GameFragment extends Fragment implements GameView {
     private MainViewModel viewModel;
     private Game game;
     private GridWiper gridWiper;
-    private boolean isInitialized;
     private GameOverHelper gameOverHelper;
     private InfoPanelHelper infoPanelHelper;
     private ImageButton undoButton;
     private ViewGroup solutionPegsLayout;
     private final GridMap gridMap = new GridMap();
+    private InputButtonHelper inputButtonHelper;
 
     @Nullable
     @Override
@@ -116,7 +118,7 @@ public class GameFragment extends Fragment implements GameView {
 
     @Override
     public void notifyInitializationComplete(){
-        isInitialized = true;
+        inputButtonHelper.setInitialized(true);
     }
 
 
@@ -175,51 +177,9 @@ public class GameFragment extends Fragment implements GameView {
 
         undoButton = setupButton(parent, R.id.undoButton, ()-> game.removePeg() );
 
-        setupInputButtonRow(parent, R.id.panel1, List.of(RED, BLUE, GREEN, YELLOW) );
-        setupInputButtonRow(parent, R.id.panel2, List.of(BROWN, ORANGE, PINK, PURPLE) );
-    }
-
-
-    private void setupInputButtonRow(View parent, int panelId, List<PegColor> pegColors){
-        ViewGroup panel = parent.findViewById(panelId);
-        for(int i = 0; i < pegColors.size(); i++){
-            setupInputButton(panel, i, pegColors.get(i));
-        }
-    }
-
-
-    private void setupInputButton(ViewGroup panel, int index, PegColor pegColor){
-        var buttonLayout = (ViewGroup) panel.getChildAt(index);
-        var button = buttonLayout.getChildAt(0);
-        setContentDescription(button, pegColor);
-        setColorTint(button, pegColor);
-        setClickListenerOn(button, pegColor);
-    }
-
-
-    private void setContentDescription(View view, PegColor pegColor){
-        var description = getString(pegColor.getContentDescriptionId());
-        view.setContentDescription(description);
-    }
-
-
-    private void setClickListenerOn(View view, PegColor pegColor){
-        view.setOnClickListener((v -> {
-            if(game != null && isInitialized){
-                game.addPeg(pegColor);
-            }
-        }));
-    }
-
-
-    private void setColorTint(View view, PegColor pegColor){
-        var context = getContext();
-        if(context == null){
-            return;
-        }
-        int color = context.getColor(pegColor.getColorId());
-        var colorStateList = ColorStateList.valueOf(color);
-        view.setBackgroundTintList(colorStateList);
+        inputButtonHelper = new InputButtonHelper(this);
+        inputButtonHelper.setupInputButtonRow(getContext(), parent, R.id.panel1, List.of(RED, BLUE, GREEN, YELLOW) );
+        inputButtonHelper.setupInputButtonRow(getContext(), parent, R.id.panel2, List.of(BROWN, ORANGE, PINK, PURPLE) );
     }
 
 
@@ -266,7 +226,7 @@ public class GameFragment extends Fragment implements GameView {
 
     @Override
     public void resetAllRows(){
-        isInitialized = false;
+        inputButtonHelper.setInitialized(false);
         initGridWiper();
         gridWiper.resetAllRows();
     }
@@ -274,7 +234,7 @@ public class GameFragment extends Fragment implements GameView {
 
     @Override
     public void resetAllRowsInstantly(){
-        isInitialized = false;
+        inputButtonHelper.setInitialized(false);
         initGridWiper();
         gridWiper.resetAllRowsInstantly();
         showPegAsCurrent(new PegCoordinates(0,0));

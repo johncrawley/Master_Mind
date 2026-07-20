@@ -1,9 +1,4 @@
-package com.jcrawley.codebreaker.view;
-
-import com.jcrawley.codebreaker.game.Clue;
-import com.jcrawley.codebreaker.game.Game;
-import com.jcrawley.codebreaker.game.PegColor;
-import com.jcrawley.codebreaker.game.PegCoordinates;
+package com.jcrawley.codebreaker.game;
 
 import java.util.List;
 

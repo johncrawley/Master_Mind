@@ -2,7 +2,7 @@ package com.jcrawley.codebreaker.service.game;
 
 import com.jcrawley.codebreaker.game.Clue;
 import com.jcrawley.codebreaker.game.PegColor;
-import com.jcrawley.codebreaker.view.GameView;
+import com.jcrawley.codebreaker.game.GameView;
 
 import java.util.List;
 
