@@ -44,16 +44,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/buttonPanelInclude"/>
 
-   <include layout="@layout/input_button_panel"
-       android:id="@+id/buttonPanelInclude"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       app:layout_constraintHeight_percent="0.12"
-       android:layout_marginVertical="@dimen/_12sdp"
-       android:layout_marginHorizontal="@dimen/_18sdp"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"/>
+    <include layout="@layout/input_button_panel"
+        android:id="@+id/buttonPanelInclude"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.12"
+        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_18sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <include layout="@layout/game_over_panel"
         android:id="@+id/gameOverPanelInclude"
