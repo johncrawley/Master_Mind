@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Turbo Master Mind"
+rootProject.name = "Bullcow"
 include ':app'
