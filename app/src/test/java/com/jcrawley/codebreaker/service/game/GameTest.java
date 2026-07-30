@@ -16,10 +16,8 @@ import java.util.Arrays;
 
 public class GameTest {
 
-
     private Game game;
     private MockView mockView;
-
 
     @Before
     public void init(){
@@ -29,6 +27,7 @@ public class GameTest {
         // add a manual solution so that tests won't hit a random solution by accident
         game.setSolution(TEST, TEST, TEST, TEST);
     }
+
 
     @Test
     public void canFillARowWithCorrectColors(){
