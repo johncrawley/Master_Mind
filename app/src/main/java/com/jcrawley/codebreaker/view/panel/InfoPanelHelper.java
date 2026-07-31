@@ -2,9 +2,12 @@ package com.jcrawley.codebreaker.view.panel;
 
 import static android.view.View.VISIBLE;
 
+import static com.jcrawley.codebreaker.view.FragmentUtils.loadRulesFragment;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -34,7 +37,16 @@ public class InfoPanelHelper {
         executor = Executors.newSingleThreadScheduledExecutor();
         onBackButtonPressed(parentFragment, this::dismissPanel);
         panel.setOnClickListener(v -> dismissPanel());
+        setupRulesButton(parentView, parentFragment);
         setupPanelDetails(parentView);
+    }
+
+
+    private void setupRulesButton(View parentView, Fragment parentFragment){
+        Button rulesButton = parentView.findViewById(R.id.showRulesButton);
+        rulesButton.setOnClickListener( (v)->{
+            loadRulesFragment(parentFragment);
+        });
     }
 
 
