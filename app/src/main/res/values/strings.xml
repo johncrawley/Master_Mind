@@ -22,6 +22,7 @@
     <string name="button_image_desc_undo">Undo</string>
     <string name="button_image_desc_new_game">New game</string>
 
+    <string name="rules">Rules</string>
     <string name="rules_heading">How to Play</string>
     <string name="rule_1">at the start of every game a solution consisting of four pegs is randomly generated</string>
     <string name="rule_2">a solution can have more than one peg of the same colour</string>

@@ -18,6 +18,12 @@
     <color name="game_brown">#7C4115</color>
 
 
+    <color name="primary">#7E7D7D</color>
+    <color name="primary_light">#06433E</color>
+
+    <color name="on_primary">#F0E030</color>
+    <color name="on_primary_light">#FFEB3B</color>
+
     <color name="transparent">#00000000</color>
     <color name="clue_default_background">#000000</color>
     <color name="clue_cow">#C7C52B</color>
