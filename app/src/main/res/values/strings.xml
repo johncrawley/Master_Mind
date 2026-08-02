@@ -24,14 +24,14 @@
 
     <string name="rules">Rules</string>
     <string name="rules_heading">How to Play</string>
-    <string name="rule_1">at the start of every game a solution consisting of four pegs is randomly generated</string>
-    <string name="rule_2">a solution can have more than one peg of the same colour</string>
+    <string name="rule_1">based on the classic game "Bulls and Cows", a hidden sequence of four pegs is randomly generated</string>
+    <string name="rule_2">keep in mind that the solution can have more than one peg of the same colour</string>
     <string name="rule_3">you have ten chances to figure out the colours of the solution in the correct order</string>
     <string name="rule_4">place your pegs by using the buttons at the bottom of the screen</string>
     <string name="rule_5">you can undo choices of the current guess before the fourth peg has been placed</string>
     <string name="rule_6">once a guess is complete, up to four clues will appear to the right of the guess</string>
-    <string name="rule_7">a yellow clue means that one of your pegs is of the correct colour but in the wrong position</string>
-    <string name="rule_8">a green clue means that one of your pegs is of the correct colour and is in the correct position</string>
+    <string name="rule_7">a yellow clue means that one of your pegs is the correct colour but is in the wrong position</string>
+    <string name="rule_8">a green clue means that one of your pegs is the correct colour and is in the correct position</string>
     <string name="rule_9">remember that the position of a clue has no relevance to the position of the corresponding peg</string>
     <string name="rule_10">the game ends when you have guessed the sequence correctly, or you run out of guesses</string>
 </resources>
