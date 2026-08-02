@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 
 public class RulesFragment extends Fragment {
 
-    ViewGroup rulesContainer;
+    ViewGroup rulesLayout;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         var view = inflater.inflate(R.layout.fragment_rules, container, false);
 
-        rulesContainer = view.findViewById(R.id.rulesLayout);
+        rulesLayout = view.findViewById(R.id.rulesLayout);
         return view;
     }
 
@@ -56,26 +56,46 @@ public class RulesFragment extends Fragment {
         header.setGravity(Gravity.CENTER);
         header.setPadding(0, 16, 0, 32);
         header.setTextColor(getResources().getColor(android.R.color.white, null));
-        rulesContainer.addView(header);
+        addToLayout(header);
     }
 
 
-    private void addAndShowRule(String text, int i){
-        rulesContainer.postDelayed(() -> {
-            var bulletItem = new LinearLayout(requireContext());
-            bulletItem.setOrientation(LinearLayout.HORIZONTAL);
-            var params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            params.setMargins(0,12,0,12);
-            bulletItem.setLayoutParams(params);
+    private boolean addToLayout(View view){
+        boolean wasAdded = true;
+        if(rulesLayout != null){
+            rulesLayout.addView(view);
+            return wasAdded;
+        }
+        return !wasAdded;
+    }
 
-            bulletItem.addView(createBullet());
-            bulletItem.addView(createRuleTextView(text));
 
-            bulletItem.setAlpha(0f);
-            bulletItem.setTranslationY(40f);
-            rulesContainer.addView(bulletItem);
+    private void addAndShowRule(String text, int index){
+        rulesLayout.postDelayed(() -> {
+            var context = getContext();
+            if(context != null){
+                createBulletItemAndAddToLayout(text);
+            }
+
+        }, (index + 1) * 250L);
+    }
+
+
+    private void createBulletItemAndAddToLayout(String text){
+        var bulletItem = new LinearLayout(requireContext());
+        bulletItem.setOrientation(LinearLayout.HORIZONTAL);
+        var params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        params.setMargins(0,12,0,12);
+        bulletItem.setLayoutParams(params);
+
+        bulletItem.addView(createBullet());
+        bulletItem.addView(createRuleTextView(text));
+
+        bulletItem.setAlpha(0f);
+        bulletItem.setTranslationY(40f);
+        if(addToLayout(bulletItem)){
             startAnimationOn(bulletItem);
-        }, (i+1) * 350L);
+        }
     }
 
 
