@@ -18,10 +18,10 @@
     <color name="game_brown">#7C4115</color>
 
 
-    <color name="primary">#7E7D7D</color>
+    <color name="primary">#755503</color>
     <color name="primary_light">#06433E</color>
 
-    <color name="on_primary">#F0E030</color>
+    <color name="on_primary">#F8F3C8</color>
     <color name="on_primary_light">#FFEB3B</color>
 
     <color name="transparent">#00000000</color>
@@ -34,8 +34,8 @@
     <color name="background_top">#000</color>
     <color name="background_bottom">#000</color>
 
-    <color name="background_top_light">#568C94</color>
-    <color name="background_bottom_light">#7CAAB1</color>
+    <color name="background_top_light">#407178</color>
+    <color name="background_bottom_light">#608F97</color>
 
     <color name="row_background">#5B5757</color>
     <color name="row_background_light">#8096bc</color>

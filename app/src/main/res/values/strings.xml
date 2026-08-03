@@ -24,8 +24,8 @@
 
     <string name="rules">Rules</string>
     <string name="rules_heading">How to Play</string>
-    <string name="rule_1">based on the classic game "Bulls and Cows", a hidden sequence of four pegs is randomly generated</string>
-    <string name="rule_2">keep in mind that the solution can have more than one peg of the same colour</string>
+    <string name="rule_1">based on the classic game <i>Bulls and Cows</i>, the goal is to correctly guess the sequence of four pegs</string>
+    <string name="rule_2">the solution can have more than one peg of the same colour</string>
     <string name="rule_3">you have ten chances to figure out the colours of the solution in the correct order</string>
     <string name="rule_4">place your pegs by using the buttons at the bottom of the screen</string>
     <string name="rule_5">you can undo choices of the current guess before the fourth peg has been placed</string>
